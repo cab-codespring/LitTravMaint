@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="LittleTraveller">
+  <DataContextMoniker Name="/LittleTravellerDataContext" />
+  <nestedChildShapes>
+    <classShape Id="fa1a3473-80ef-4f38-8b98-e40b913b17c9" isExpanded="false" absoluteBounds="0.5, 3.75, 2, 0.45">
+      <DataClassMoniker Name="/LittleTravellerDataContext/Customer" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c109185b-1a22-48f4-b60d-d196554df611" absoluteBounds="0.51500000000000012, 4.21, 1.9700000000000002, 3.903116861979167" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="aa976de8-f157-4761-9869-86ece271a84a" isExpanded="false" absoluteBounds="3.75, 0.75, 2, 0.45">
+      <DataClassMoniker Name="/LittleTravellerDataContext/Color" />
+      <nestedChildShapes>
+        <elementListCompartment Id="8a27b553-1ba7-4252-8b99-415f7e657d82" absoluteBounds="3.765, 1.21, 1.9700000000000002, 0.44169108072916669" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="4fc10f4f-b20b-4de1-aa3d-f9c0ac4c5c0b" absoluteBounds="3.875, 1.75, 2, 1.1939925130208331">
+      <DataClassMoniker Name="/LittleTravellerDataContext/Design" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c1df3736-7875-4d71-94a4-a3472f373ae4" absoluteBounds="3.89, 2.21, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="714c483f-aba1-4f75-9665-6a1c0f34375d" isExpanded="false" absoluteBounds="1, 0.5, 2, 0.45">
+      <DataClassMoniker Name="/LittleTravellerDataContext/Item" />
+      <nestedChildShapes>
+        <elementListCompartment Id="9374f06b-23ec-4eb0-9d6d-a272dcf8b345" absoluteBounds="1.0150000000000001, 0.96, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="bf159be7-bb9b-4ee1-8c4b-7646560de8c0" isExpanded="false" absoluteBounds="3.625, 3.5, 2, 0.45">
+      <DataClassMoniker Name="/LittleTravellerDataContext/Season" />
+      <nestedChildShapes>
+        <elementListCompartment Id="75d3fa5a-27a5-4580-bd64-95f2296596d7" absoluteBounds="3.64, 3.96, 1.9700000000000002, 0.44169108072916669" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="5f6e6f24-ffd3-4198-a233-2dd957de63fa" isExpanded="false" absoluteBounds="1, 1, 2, 0.45">
+      <DataClassMoniker Name="/LittleTravellerDataContext/Size" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ab28b853-94ee-4f87-bb56-7554f9999f82" absoluteBounds="1.0150000000000001, 1.46, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="2c5d0b5e-ff49-4234-92ca-07aa961c5f1a" isExpanded="false" absoluteBounds="1.375, 2.875, 2, 0.45">
+      <DataClassMoniker Name="/LittleTravellerDataContext/SizeType" />
+      <nestedChildShapes>
+        <elementListCompartment Id="9a9ddc8c-ba0f-43ba-9b33-f1a94cf2224a" absoluteBounds="1.3900000000000001, 3.335, 1.9700000000000002, 0.44169108072916669" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="a4ac08bf-1a88-48f0-bec4-b191d8285f8e" isExpanded="false" absoluteBounds="0.5, 2.25, 2, 0.45">
+      <DataClassMoniker Name="/LittleTravellerDataContext/state" />
+      <nestedChildShapes>
+        <elementListCompartment Id="b363cce9-5464-44ca-9d99-56916fbdde3b" absoluteBounds="0.51500000000000012, 2.71, 1.9700000000000002, 0.44169108072916669" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="2b16290a-f12b-4ed7-8428-f7cf7ea88774" absoluteBounds="1.375, 1.5, 2, 1.1939925130208331">
+      <DataClassMoniker Name="/LittleTravellerDataContext/StyleType" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ff6f3441-2c7e-4d6d-bd31-dbba0a2fb7b4" absoluteBounds="1.3900000000000001, 1.96, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="8226e7cc-0d9a-4e4c-9b79-e9c71d27def1" absoluteBounds="3.375, 0.5, 2, 1.3862939453125">
+      <DataClassMoniker Name="/LittleTravellerDataContext/Order" />
+      <nestedChildShapes>
+        <elementListCompartment Id="3fa6ec4f-44c2-43b1-b117-d1bd37fb344a" absoluteBounds="3.39, 0.96, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="75ac98a3-70de-44fa-84dd-d73f69f72f72" absoluteBounds="4, 4.5, 2, 1.3862939453125">
+      <DataClassMoniker Name="/LittleTravellerDataContext/OrderItem" />
+      <nestedChildShapes>
+        <elementListCompartment Id="bfc84765-9697-4dfb-b234-c9f6d0ae61e0" absoluteBounds="4.015, 4.96, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

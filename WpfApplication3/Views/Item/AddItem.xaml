@@ -1,0 +1,8 @@
+﻿<Window x:Class="LitTravProj.Views.Item.AddItem"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="AddItem" Height="700" Width="606">
+    <Grid>
+        <Label Content="Add a new Item To The Database" Height="28" HorizontalAlignment="Left" Margin="44,27,0,0" Name="lableTitle" VerticalAlignment="Top" Width="328" FontWeight="Bold" />
+    </Grid>
+</Window>

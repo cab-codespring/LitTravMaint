@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="LittleTravellersDB" Class="LittleTravellerDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=ca-THINK;Initial Catalog=LittleTravellersDB;Integrated Security=True;Pooling=False" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="LittleTravellersDBConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Customer" Member="Customers">
+    <Type Name="Customer">
+      <Column Name="CustomerNum" Type="System.Int16" DbType="SmallInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CompanyName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="BillToAddr1" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="BillToAddr2" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="BillToCity" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="BillToState" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="BillToZip5" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="BillToZip4" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="BillToPhone" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="BillToFax" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="email" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ShipToAddr1" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ShipToAddr2" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ShipToCity" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ShipToState" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="ShipToZip5" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="ShipToZip4" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="ShipToPhone" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ShipToFax" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Color" Member="Colors">
+    <Type Name="Color">
+      <Column Name="ColorCode" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Design" Member="Designs">
+    <Type Name="Design">
+      <Column Name="ID" AutoSync="Never" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="[Desc]" Member="Desc" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Item" Member="Items">
+    <Type Name="Item">
+      <Column Name="Sku" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="SeasonID" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="ColorID" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="Color2ID" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="Color3ID" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="SizeType" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="Size" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="StyleTypeID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DesignID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Price" Type="System.Decimal" DbType="SmallMoney" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Season" Member="Seasons">
+    <Type Name="Season">
+      <Column Name="SeasonCode" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Size" Member="Sizes">
+    <Type Name="Size">
+      <Column Name="SizeTypeName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SizeVal" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SizeType" Member="SizeTypes">
+    <Type Name="SizeType">
+      <Column Name="SizeTypeName" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.states" Member="states">
+    <Type Name="state">
+      <Column Name="Name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.StyleType" Member="StyleTypes">
+    <Type Name="StyleType">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="[Desc]" Member="Desc" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.[Order]" Member="Orders">
+    <Type Name="Order">
+      <Column Name="OrderNum" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CustomerNum" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="OrderDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.OrderItem" Member="OrderItems">
+    <Type Name="OrderItem">
+      <Column Name="OrderNum" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Sku" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Quantity" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+</Database>
