@@ -1,9 +1,0 @@
-﻿<Window x:Class="LitTravProj.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        <Label Content="Little Traveller" Height="38" HorizontalAlignment="Left" Margin="157,30,0,0" Name="label1" VerticalAlignment="Top" Width="187" FontFamily="Ar" FontSize="24" />
-        <Button Content="Maintain Items" Height="23" HorizontalAlignment="Left" Margin="157,92,0,0" Name="ButtonMaintItem" VerticalAlignment="Top" Width="149" Click="ButtonMaintItem_Click" />
-    </Grid>
-</Window>
