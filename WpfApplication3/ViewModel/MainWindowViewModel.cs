@@ -26,9 +26,9 @@ namespace LitTravProj.ViewModel
 
         #region Constructor
 
-        public MainWindowViewModel(string customerDataFile)
+        public MainWindowViewModel()
         {
-          //  base.DisplayName = Strings.MainWindowViewModel_DisplayName;
+            base.DisplayName = "MOO DISPLAY NAME";
 
          //   _customerRepository = new CustomerRepository(customerDataFile);
         }
