@@ -8,22 +8,23 @@ This resource dictionary is used by the MainWindow.
   xmlns:vw="clr-namespace:LitTravProj.View"
   >
 
-  <!-- 
-  This template applies an AllCustomersView to an instance 
-  of the AllCustomersViewModel class shown in the main window.
+  
+  <!--This template applies an AllItemssView to an instance 
+  of the AllItemssViewModel class shown in the main window.
+  -->
 
   <DataTemplate DataType="{x:Type vm:AllItemsViewModel}">
     <vw:AllItemsView />
   </DataTemplate>
-  -->
-  <!-- 
-  This template applies a CustomerView to an instance  
-  of the CustomerViewModel class shown in the main window.
  
-  <DataTemplate DataType="{x:Type vm:Item/CustomerViewModel}">
-    <vw:CustomerView />
+  <!-- 
+  This template applies a ItemView to an instance  
+  of the ItemViewModel class shown in the main window.
+
+  <DataTemplate DataType="{x:Type vm:Item/ItemViewModel}">
+    <vw:ItemView />
   </DataTemplate>
- -->
+  -->
   <!-- 
   This style configures both of the main content areas in the main window.
   -->

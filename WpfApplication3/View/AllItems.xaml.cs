@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace LitTravProj.View
 {
     /// <summary>
-    /// Interaction logic for AllItems.xaml
+    /// Interaction logic for AllItemsViewModel.xaml
     /// </summary>
-    public partial class AllItems : UserControl
+    public partial class AllItemsView : UserControl
     {
-        public AllItems()
+        public AllItemsView()
         {
             InitializeComponent();
         }

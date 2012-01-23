@@ -28,7 +28,7 @@ namespace LitTravProj.ViewModel
 
         public MainWindowViewModel()
         {
-            base.DisplayName = "MOO DISPLAY NAME";
+            base.DisplayName = "Little Travellers Data Maintenance App";
 
          //   _customerRepository = new CustomerRepository(customerDataFile);
         }
@@ -121,13 +121,13 @@ namespace LitTravProj.ViewModel
 
         void ShowAllItems()
         {
-            AllCustomersViewModel workspace =
-                this.Workspaces.FirstOrDefault(vm => vm is AllCustomersViewModel)
-                as AllCustomersViewModel;
+            AllItemsViewModel workspace =
+                this.Workspaces.FirstOrDefault(vm => vm is AllItemsViewModel)
+                as AllItemsViewModel;
 
             if (workspace == null)
             {
-                workspace = new AllCustomersViewModel();
+                workspace = new AllItemsViewModel();
                 this.Workspaces.Add(workspace);
             }
 
