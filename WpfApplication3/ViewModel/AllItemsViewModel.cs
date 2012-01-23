@@ -16,22 +16,25 @@ namespace LitTravProj.ViewModel
        public  AllItemsViewModel()
         {
              context = new LittleTravellerDataContext();
+             Items = context.Items.ToList();
         }
-        ListViewItem AllItemsGridSource 
-        {
-            get
-            {
+       public List<Item> Items { get; private set; }
 
-                ListView listView1 = new ListView();
-                var itemQuery1 =
-                    from item in context.Items
-                    select item;
+        //public ListViewItem AllItemsGridSource 
+        //{
+        //    get
+        //    {
 
-                ListViewItem ItemsSource = new ListViewItem();
-                ItemsSource = (ListViewItem)itemQuery1;
-                return ItemsSource;
-            }
+        //        ListView listView1 = new ListView();
+        //        var itemQuery1 =
+        //            from item in context.Items
+        //            select item;
 
-        }
+        //        ListViewItem ItemsSource = new ListViewItem();
+        //        ItemsSource = (ListViewItem)itemQuery1;
+        //        return ItemsSource;
+        //    }
+
+        //}
     }
 }
