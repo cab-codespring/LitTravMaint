@@ -74,7 +74,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\AllItems.xaml">
+    <Page Include="View\AllItemsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -97,8 +97,8 @@
     <Compile Include="View\AddItem.xaml.cs">
       <DependentUpon>AddItem.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\AllItems.xaml.cs">
-      <DependentUpon>AllItems.xaml</DependentUpon>
+    <Compile Include="View\AllItemsView.xaml.cs">
+      <DependentUpon>AllItemsView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
