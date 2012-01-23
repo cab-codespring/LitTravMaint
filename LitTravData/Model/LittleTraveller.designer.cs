@@ -1071,7 +1071,7 @@ namespace LittleTraveller.Models
 			set
 			{
 				if ((this._SeasonCode != value))
-				{
+				{ 
 					this._SeasonCode = value;
 				}
 			}
