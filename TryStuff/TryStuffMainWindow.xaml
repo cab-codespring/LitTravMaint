@@ -1,0 +1,16 @@
+﻿<Window x:Class="TryStuff.TryStuffMainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Try Stuff" Height="350" Width="525"
+        Name="myMainWindowSpot">
+    <Grid DataContext="{Binding ElementName=myMainWindowSpot}">
+        <ListBox Name="listBoxEmployees" Margin="28,42,226,24"
+            ItemsSource="{Binding ElementName=myMainWindowSpot, Path=ListOfEmployees}">
+            
+        </ListBox>
+        <Label Height="23" Margin="311,49,24,0" Name="labelFirstName" VerticalAlignment="Top"
+            Content="{Binding ElementName=listBoxEmployees, Path=SelectedItem}"/>
+            
+
+    </Grid>
+</Window>
