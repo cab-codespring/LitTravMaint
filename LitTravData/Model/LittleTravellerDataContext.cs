@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using LitTravData.Model;
 
 
 namespace LittleTraveller.Models
@@ -61,6 +62,11 @@ namespace LittleTraveller.Models
         public Order GetOrderByNum(int orderNum)
         {
             return Orders.SingleOrDefault(c => c.OrderNum == orderNum);
+        }
+
+        public List<ItemsGridView> GetItemsGridView()
+        {
+            return ItemsGridView.ToList();
         }
     }
 

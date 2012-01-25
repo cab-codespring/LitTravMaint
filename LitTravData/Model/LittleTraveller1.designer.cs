@@ -164,6 +164,14 @@ namespace LitTravData.Model
 				return this.GetTable<OrderItem>();
 			}
 		}
+		
+		public System.Data.Linq.Table<ItemsGridView> ItemsGridViews
+		{
+			get
+			{
+				return this.GetTable<ItemsGridView>();
+			}
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Customer")]
@@ -1435,5 +1443,198 @@ namespace LitTravData.Model
 			}
 		}
 	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ItemsGridView")]
+    public partial class ItemsGridView 
+	{
+		
+		private string _Sku;
+		
+		private string _SeasonID;
+		
+		private string _ColorID;
+		
+		private string _Color2ID;
+		
+		private string _Color3ID;
+		
+		private string _SizeType;
+		
+		private string _Size;
+		
+		private string _StyleType;
+		
+		private string _Design;
+		
+		private System.Nullable<decimal> _Price;
+		
+		public ItemsGridView()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Sku", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Sku
+		{
+			get
+			{
+				return this._Sku;
+			}
+			set
+			{
+				if ((this._Sku != value))
+				{
+					this._Sku = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SeasonID", DbType="NVarChar(10)")]
+		public string SeasonID
+		{
+			get
+			{
+				return this._SeasonID;
+			}
+			set
+			{
+				if ((this._SeasonID != value))
+				{
+					this._SeasonID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ColorID", DbType="NVarChar(10)")]
+		public string ColorID
+		{
+			get
+			{
+				return this._ColorID;
+			}
+			set
+			{
+				if ((this._ColorID != value))
+				{
+					this._ColorID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Color2ID", DbType="NVarChar(10)")]
+		public string Color2ID
+		{
+			get
+			{
+				return this._Color2ID;
+			}
+			set
+			{
+				if ((this._Color2ID != value))
+				{
+					this._Color2ID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Color3ID", DbType="NVarChar(10)")]
+		public string Color3ID
+		{
+			get
+			{
+				return this._Color3ID;
+			}
+			set
+			{
+				if ((this._Color3ID != value))
+				{
+					this._Color3ID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SizeType", DbType="NVarChar(10)")]
+		public string SizeType
+		{
+			get
+			{
+				return this._SizeType;
+			}
+			set
+			{
+				if ((this._SizeType != value))
+				{
+					this._SizeType = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Size", DbType="NVarChar(10)")]
+		public string Size
+		{
+			get
+			{
+				return this._Size;
+			}
+			set
+			{
+				if ((this._Size != value))
+				{
+					this._Size = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StyleType", DbType="NVarChar(50)")]
+		public string StyleType
+		{
+			get
+			{
+				return this._StyleType;
+			}
+			set
+			{
+				if ((this._StyleType != value))
+				{
+					this._StyleType = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Design", DbType="NVarChar(50)")]
+		public string Design
+		{
+			get
+			{
+				return this._Design;
+			}
+			set
+			{
+				if ((this._Design != value))
+				{
+					this._Design = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Price", DbType="SmallMoney")]
+		public System.Nullable<decimal> Price
+		{
+			get
+			{
+				return this._Price;
+			}
+			set
+			{
+				if ((this._Price != value))
+				{
+					this._Price = value;
+				}
+			}
+		}
+
+        public event PropertyChangingEventHandler PropertyChanging;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+    }
 }
 #pragma warning restore 1591

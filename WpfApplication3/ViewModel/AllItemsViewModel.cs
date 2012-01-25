@@ -16,9 +16,30 @@ namespace LitTravProj.ViewModel
        public  AllItemsViewModel()
         {
              context = new LittleTravellerDataContext();
-             Items = context.Items.ToList();
+
+          
+
+           //Items =   (from item in context.ItemsGrisView
+           //            join st in context.StyleTypes on item.StyleTypeID equals st.ID
+           //            join d in context.Designs on item.DesignID equals d.ID
+           //            select
+           //                 new
+           //                 {
+           //                     item.Sku,
+           //                     item.SeasonID,
+           //                     item.ColorID,
+           //                     item.Color2ID,
+           //                     item.Color3ID,
+           //                     StyleTypeDesc = st.Desc,
+           //                     DesignDesc = d.Desc,
+           //                     item.Price
+           //                 }).Cast<object>().ToList();
+
+
+
+             Items = context.ItemsGridView.ToList();
         }
-       public List<Item> Items { get; private set; }
+       public List<ItemsGridView> Items { get; private set; }
 
         //public ListViewItem AllItemsGridSource 
         //{

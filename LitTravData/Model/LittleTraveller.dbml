@@ -89,4 +89,18 @@
       <Column Name="Quantity" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
+  <Table Name="dbo.ItemsGridView" Member="ItemsGridViews">
+    <Type Name="ItemsGridView">
+      <Column Name="Sku" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="SeasonID" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="ColorID" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="Color2ID" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="Color3ID" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="SizeType" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="Size" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="StyleType" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Design" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Price" Type="System.Decimal" DbType="SmallMoney" CanBeNull="true" />
+    </Type>
+  </Table>
 </Database>
