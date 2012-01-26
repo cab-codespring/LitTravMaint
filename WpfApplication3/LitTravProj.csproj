@@ -70,7 +70,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\AddItemView.xaml">
+    <Page Include="View\ItemView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -90,12 +90,12 @@
     <Compile Include="ViewModel\CommandViewModel.cs" />
     <Compile Include="ViewModel\ItemAddedEventArgs.cs" />
     <Compile Include="ViewModel\ItemRepository.cs" />
-    <Compile Include="ViewModel\AddItemViewModel.cs" />
+    <Compile Include="ViewModel\ItemViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="ViewModel\WorkspaceViewModel.cs" />
-    <Compile Include="View\AddItemView.xaml.cs">
-      <DependentUpon>AddItemView.xaml</DependentUpon>
+    <Compile Include="View\ItemView.xaml.cs">
+      <DependentUpon>ItemView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\AllItemsView.xaml.cs">
       <DependentUpon>AllItemsView.xaml</DependentUpon>

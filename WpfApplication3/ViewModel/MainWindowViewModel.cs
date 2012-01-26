@@ -114,7 +114,7 @@ namespace LitTravProj.ViewModel
         void CreateNewItem()
         {
             Item newItem = new Item();
-            AddItemViewModel workspace = new AddItemViewModel();
+            ItemViewModel workspace = new ItemViewModel();
             this.Workspaces.Add(workspace);
             this.SetActiveWorkspace(workspace);
          

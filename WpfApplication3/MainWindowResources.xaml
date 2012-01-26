@@ -21,8 +21,8 @@ This resource dictionary is used by the MainWindow.
   This template applies a ItemView to an instance  
   of the ItemViewModel class shown in the main window.
   -->
-  <DataTemplate DataType="{x:Type vm:AddItemViewModel}">
-    <vw:AddItemView />
+  <DataTemplate DataType="{x:Type vm:ItemViewModel}">
+    <vw:ItemView />
   </DataTemplate>
 
   <!-- 
