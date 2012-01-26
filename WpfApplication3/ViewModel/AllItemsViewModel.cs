@@ -37,7 +37,7 @@ namespace LitTravProj.ViewModel
 
 
 
-             Items = context.ItemsGridView.ToList();
+             Items = context.GridViewItems.ToList<ItemsGridView>(); ;
         }
        public List<ItemsGridView> Items { get; private set; }
 

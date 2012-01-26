@@ -20,6 +20,7 @@ namespace LittleTraveller.Models
 	using System.Linq.Expressions;
 	using System.ComponentModel;
 	using System;
+    using LitTravData.Model;
 	
 	
 	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="LittleTravellersDB")]
@@ -164,6 +165,13 @@ namespace LittleTraveller.Models
 				return this.GetTable<OrderItem>();
 			}
 		}
+        public System.Data.Linq.Table<ItemsGridView> ItemsGridViews
+        {
+            get
+            {
+                return this.GetTable<ItemsGridView>();
+            }
+        }
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Customer")]

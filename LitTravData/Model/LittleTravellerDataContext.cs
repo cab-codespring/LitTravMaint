@@ -66,7 +66,7 @@ namespace LittleTraveller.Models
 
         public List<ItemsGridView> GetItemsGridView()
         {
-            return ItemsGridView.ToList();
+            return ItemsGridViews.ToList();
         }
     }
 

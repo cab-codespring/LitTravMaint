@@ -45,6 +45,9 @@ namespace LitTravData.Model
     partial void InsertOrder(Order instance);
     partial void UpdateOrder(Order instance);
     partial void DeleteOrder(Order instance);
+    partial void InsertItemsGridView(ItemsGridView instance);
+    partial void UpdateItemsGridView(ItemsGridView instance);
+    partial void DeleteItemsGridView(ItemsGridView instance);
     #endregion
 		
 		public LittleTravellerDataContext() : 
@@ -165,7 +168,7 @@ namespace LitTravData.Model
 			}
 		}
 		
-		public System.Data.Linq.Table<ItemsGridView> ItemsGridViews
+		public System.Data.Linq.Table<ItemsGridView> GridViewItems
 		{
 			get
 			{
@@ -720,7 +723,7 @@ namespace LitTravData.Model
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 		public int ID
 		{
 			get
@@ -1445,8 +1448,10 @@ namespace LitTravData.Model
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ItemsGridView")]
-    public partial class ItemsGridView 
+	public partial class ItemsGridView : INotifyPropertyChanging, INotifyPropertyChanged
 	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
 		private string _Sku;
 		
@@ -1468,11 +1473,38 @@ namespace LitTravData.Model
 		
 		private System.Nullable<decimal> _Price;
 		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnSkuChanging(string value);
+    partial void OnSkuChanged();
+    partial void OnSeasonIDChanging(string value);
+    partial void OnSeasonIDChanged();
+    partial void OnColorIDChanging(string value);
+    partial void OnColorIDChanged();
+    partial void OnColor2IDChanging(string value);
+    partial void OnColor2IDChanged();
+    partial void OnColor3IDChanging(string value);
+    partial void OnColor3IDChanged();
+    partial void OnSizeTypeChanging(string value);
+    partial void OnSizeTypeChanged();
+    partial void OnSizeChanging(string value);
+    partial void OnSizeChanged();
+    partial void OnStyleTypeChanging(string value);
+    partial void OnStyleTypeChanged();
+    partial void OnDesignChanging(string value);
+    partial void OnDesignChanged();
+    partial void OnPriceChanging(System.Nullable<decimal> value);
+    partial void OnPriceChanged();
+    #endregion
+		
 		public ItemsGridView()
 		{
+			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Sku", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Sku", DbType="NVarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
 		public string Sku
 		{
 			get
@@ -1483,7 +1515,11 @@ namespace LitTravData.Model
 			{
 				if ((this._Sku != value))
 				{
+					this.OnSkuChanging(value);
+					this.SendPropertyChanging();
 					this._Sku = value;
+					this.SendPropertyChanged("Sku");
+					this.OnSkuChanged();
 				}
 			}
 		}
@@ -1499,7 +1535,11 @@ namespace LitTravData.Model
 			{
 				if ((this._SeasonID != value))
 				{
+					this.OnSeasonIDChanging(value);
+					this.SendPropertyChanging();
 					this._SeasonID = value;
+					this.SendPropertyChanged("SeasonID");
+					this.OnSeasonIDChanged();
 				}
 			}
 		}
@@ -1515,7 +1555,11 @@ namespace LitTravData.Model
 			{
 				if ((this._ColorID != value))
 				{
+					this.OnColorIDChanging(value);
+					this.SendPropertyChanging();
 					this._ColorID = value;
+					this.SendPropertyChanged("ColorID");
+					this.OnColorIDChanged();
 				}
 			}
 		}
@@ -1531,7 +1575,11 @@ namespace LitTravData.Model
 			{
 				if ((this._Color2ID != value))
 				{
+					this.OnColor2IDChanging(value);
+					this.SendPropertyChanging();
 					this._Color2ID = value;
+					this.SendPropertyChanged("Color2ID");
+					this.OnColor2IDChanged();
 				}
 			}
 		}
@@ -1547,7 +1595,11 @@ namespace LitTravData.Model
 			{
 				if ((this._Color3ID != value))
 				{
+					this.OnColor3IDChanging(value);
+					this.SendPropertyChanging();
 					this._Color3ID = value;
+					this.SendPropertyChanged("Color3ID");
+					this.OnColor3IDChanged();
 				}
 			}
 		}
@@ -1563,7 +1615,11 @@ namespace LitTravData.Model
 			{
 				if ((this._SizeType != value))
 				{
+					this.OnSizeTypeChanging(value);
+					this.SendPropertyChanging();
 					this._SizeType = value;
+					this.SendPropertyChanged("SizeType");
+					this.OnSizeTypeChanged();
 				}
 			}
 		}
@@ -1579,7 +1635,11 @@ namespace LitTravData.Model
 			{
 				if ((this._Size != value))
 				{
+					this.OnSizeChanging(value);
+					this.SendPropertyChanging();
 					this._Size = value;
+					this.SendPropertyChanged("Size");
+					this.OnSizeChanged();
 				}
 			}
 		}
@@ -1595,7 +1655,11 @@ namespace LitTravData.Model
 			{
 				if ((this._StyleType != value))
 				{
+					this.OnStyleTypeChanging(value);
+					this.SendPropertyChanging();
 					this._StyleType = value;
+					this.SendPropertyChanged("StyleType");
+					this.OnStyleTypeChanged();
 				}
 			}
 		}
@@ -1611,7 +1675,11 @@ namespace LitTravData.Model
 			{
 				if ((this._Design != value))
 				{
+					this.OnDesignChanging(value);
+					this.SendPropertyChanging();
 					this._Design = value;
+					this.SendPropertyChanged("Design");
+					this.OnDesignChanged();
 				}
 			}
 		}
@@ -1627,14 +1695,34 @@ namespace LitTravData.Model
 			{
 				if ((this._Price != value))
 				{
+					this.OnPriceChanging(value);
+					this.SendPropertyChanging();
 					this._Price = value;
+					this.SendPropertyChanged("Price");
+					this.OnPriceChanged();
 				}
 			}
 		}
-
-        public event PropertyChangingEventHandler PropertyChanging;
-
-        public event PropertyChangedEventHandler PropertyChanged;
-    }
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
 }
 #pragma warning restore 1591
