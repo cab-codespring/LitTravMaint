@@ -102,11 +102,6 @@ namespace LitTravProj.ViewModel
         {
             get
             {
-                //var sc = from n in context.Seasons select n.SeasonCode;
-                //return sc.ToList().ToArray();
-
-               // return (context.Seasons.ToArray<string>();
-               // return new string [] {"A", "B"};
                 var sc = from n in context.Seasons select n.SeasonCode;
                 return sc.ToArray();
                 
