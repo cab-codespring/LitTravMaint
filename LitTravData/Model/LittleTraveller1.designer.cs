@@ -168,7 +168,7 @@ namespace LitTravData.Model
 			}
 		}
 		
-		public System.Data.Linq.Table<ItemsGridView> GridViewItems
+		public System.Data.Linq.Table<ItemsGridView> ItemsGridViews
 		{
 			get
 			{

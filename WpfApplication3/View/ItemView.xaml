@@ -18,7 +18,7 @@
         <Label Content="Color3:" Height="28" HorizontalAlignment="Left" Margin="10,196,0,0" Name="label5" VerticalAlignment="Top" />
         <ComboBox Height="23" HorizontalAlignment="Left" ItemsSource="{Binding ColorOptions}" Margin="120,196,0,0" Name="Color3ComboBox" VerticalAlignment="Top" Width="251" />
         <Label Content="Size Type:" Height="28" HorizontalAlignment="Left" Margin="10,238,0,0" Name="label6" VerticalAlignment="Top" />
-        <ComboBox Height="23" HorizontalAlignment="Left" ItemsSource="{Binding SizeTypeOptions}" DisplayMemberPath="Path=Desc"  Margin="120,238,0,0" Name="SizeTypeComboBox" VerticalAlignment="Top" Width="251" />
+        <ComboBox Height="23" HorizontalAlignment="Left" ItemsSource="{Binding SizeTypeOptions}" DisplayMemberPath="SizeTypeName"  Margin="120,238,0,0" Name="SizeTypeComboBox" VerticalAlignment="Top" Width="251" />
         <Label Content="Size:" Height="28" HorizontalAlignment="Left" Margin="11,281,0,0" Name="label7" VerticalAlignment="Top" />
         <ComboBox Height="23" HorizontalAlignment="Left" ItemsSource="{Binding SizeOptions}" Margin="121,281,0,0" Name="SizeComboBox" VerticalAlignment="Top" Width="251" />
     </Grid>
