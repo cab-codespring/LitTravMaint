@@ -63,7 +63,7 @@ namespace LitTravProj.ViewModel
                     new RelayCommand(param => this.ShowAllItems())),
 
                 new CommandViewModel(
-                    "View New Item",
+                    "Add New Item",
                     new RelayCommand(param => this.CreateNewItem()))
             };
         }
@@ -114,9 +114,10 @@ namespace LitTravProj.ViewModel
         void CreateNewItem()
         {
             Item newItem = new Item();
-            ItemViewModel workspace = new ItemViewModel(newItem);
+            AddItemViewModel workspace = new AddItemViewModel();
             this.Workspaces.Add(workspace);
             this.SetActiveWorkspace(workspace);
+         
         }
 
         void ShowAllItems()

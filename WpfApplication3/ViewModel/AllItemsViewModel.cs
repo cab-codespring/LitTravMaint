@@ -16,7 +16,7 @@ namespace LitTravProj.ViewModel
        public  AllItemsViewModel()
         {
              context = new LittleTravellerDataContext();
-
+             this.DisplayName = "View All Items";
           
 
            //Items =   (from item in context.ItemsGrisView
