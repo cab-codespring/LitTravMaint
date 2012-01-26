@@ -98,14 +98,17 @@ namespace LitTravProj.ViewModel
         /// <summary>
         /// Returns a list of strings used to populate the Customer Type selector.
         /// </summary>
-        public List<Season> SeasonOptions
+        public string []  SeasonOptions
         {
             get
             {
                 //var sc = from n in context.Seasons select n.SeasonCode;
                 //return sc.ToList().ToArray();
 
-                return context.Seasons.ToList();
+               // return (context.Seasons.ToArray<string>();
+               // return new string [] {"A", "B"};
+                var sc = from n in context.Seasons select n.SeasonCode;
+                return sc.ToArray();
                 
             }
         }
