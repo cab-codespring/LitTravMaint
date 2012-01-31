@@ -79,7 +79,7 @@ namespace LitTravProj.ViewModel
         /// <summary>
         /// Size must be limited to this size Type
         /// </summary>
-        //public SizeType SizeTypeIDChanged
+        //public SizeType SelectedSizeTypeID
         //{
         //    get;
         //    set;
@@ -91,14 +91,14 @@ namespace LitTravProj.ViewModel
         /// Size must be limited to this size Type
         /// </summary>
 
-        public SizeType SizeTypeIDChanged
+        public SizeType SelectedSizeTypeID
         {
            
             get { return _selectedSizeTypeID; }
             set
-            { 
-                _selectedSizeTypeID = value;
-             //   OnPropertyChanged("SizeTypeIDChanged");
+            {
+                this.RaiseAndSetIfChanged(vm => vm.SelectedSizeTypeID, ref _selectedSizeTypeID, value);
+                this.RaisePropertyChanged(vm => vm.SizeOptions);
             }
         }
 
@@ -109,9 +109,9 @@ namespace LitTravProj.ViewModel
         {
             get
             {
-                if (SizeTypeIDChanged == null)
+                if (SelectedSizeTypeID == null)
                     return context.Sizes;
-                return from sz in context.Sizes where sz.SizeTypeName == SizeTypeIDChanged.SizeTypeName select sz;
+                return from sz in context.Sizes where sz.SizeTypeName == SelectedSizeTypeID.SizeTypeName select sz;
             }
         }
 
