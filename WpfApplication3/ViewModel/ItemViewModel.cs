@@ -7,43 +7,49 @@ using LitTravProj.Properties;
 using System.Diagnostics;
 using System.Linq;
 using System.Collections.Generic;
+using System.Reactive.Linq;
+using ReactiveUI;
+using ReactiveUI.Xaml;
+
 namespace LitTravProj.ViewModel
 {
     /// <summary>
     /// A UI-friendly wrapper for an Item object.
     /// </summary>
-    public class ItemViewModel : WorkspaceViewModel
+    public class ItemViewModel : WorkspaceViewModel, INotifyPropertyChanged
     {
-     
-         RelayCommand _saveCommand;
+
+        RelayCommand _saveCommand;
         LittleTravellerDataContext context;
-      
-     
+
+       
+
+
         //public ItemViewModel(Item item)
         //{
         //    if (item == null)
         //        throw new ArgumentNullException("item");
 
         //    context = new LittleTravellerDataContext();
-           
+
         //}
         public ItemViewModel()
         {
+            
             this.DisplayName = "Add New Item";
-           
+
             context = new LittleTravellerDataContext();
-         
+
         }
 
         /// <summary>
         /// Returns a list of strings used to populate the Season selector.
         /// </summary>
-        public string[] SeasonOptions
+        public IEnumerable<Season> SeasonOptions
         {
             get
             {
-                var sc = from n in context.Seasons select n.SeasonCode;
-                return sc.ToArray();
+                return context.Seasons;
 
             }
         }
@@ -51,13 +57,11 @@ namespace LitTravProj.ViewModel
         /// <summary>
         /// Returns a list of strings used to populate the Color selector.
         /// </summary>
-        public string[] ColorOptions
+        public IEnumerable<Color> ColorOptions
         {
             get
             {
-                var sc = from n in context.Colors select n.ColorCode;
-                return sc.ToArray();
-
+                return context.Colors;
             }
         }
 
@@ -68,36 +72,58 @@ namespace LitTravProj.ViewModel
         {
             get
             {
-
                 return context.SizeTypes;
+            }
+        }
 
+        /// <summary>
+        /// Size must be limited to this size Type
+        /// </summary>
+        //public SizeType SizeTypeIDChanged
+        //{
+        //    get;
+        //    set;
+        //}
+
+        SizeType _selectedSizeTypeID;
+
+        /// <summary>
+        /// Size must be limited to this size Type
+        /// </summary>
+
+        public SizeType SizeTypeIDChanged
+        {
+           
+            get { return _selectedSizeTypeID; }
+            set
+            { 
+                _selectedSizeTypeID = value;
+             //   OnPropertyChanged("SizeTypeIDChanged");
             }
         }
 
         /// <summary>
         /// Returns a list of strings used to populate the Color selector.
         /// </summary>
-        public string[] SizeOptions
+        public IEnumerable<Size> SizeOptions
         {
             get
             {
-                var sc = from n in context.Sizes select n.SizeVal;
-                return sc.ToArray();
-
+                if (SizeTypeIDChanged == null)
+                    return context.Sizes;
+                return from sz in context.Sizes where sz.SizeTypeName == SizeTypeIDChanged.SizeTypeName select sz;
             }
         }
 
-        /// <summary>
-        /// Returns a list of strings used to populate the Color selector.
-        /// </summary>
-        public int SelectedSizeTypeID
-        {
-            get
-            {
-                return 0;
+        //public event PropertyChangedEventHandler PropertyChanged;
 
-            }
-        }
+        //void NotifyProprtyChanged(string propName)
+        //{
+        //    if (PropertyChanged != null)
+        //        PropertyChanged(this, new PropertyChangedEventArgs(propName));
+        //}
+
+
 
         //public string Email
         //{
@@ -155,9 +181,9 @@ namespace LitTravProj.ViewModel
 
         // Presentation Properties
 
-      
-         
-       
+
+
+
 
         //public override string DisplayName
         //{
@@ -206,7 +232,7 @@ namespace LitTravProj.ViewModel
                 {
                     _saveCommand = new RelayCommand(
                         param => this.Save()
-                      //  param => this.CanSave
+                        //  param => this.CanSave
                         );
                 }
                 return _saveCommand;
@@ -215,7 +241,7 @@ namespace LitTravProj.ViewModel
 
         // Presentation Properties
 
-       // Public Methods
+        // Public Methods
 
         /// <summary>
         /// Saves the customer to the repository.  This method is invoked by the SaveCommand.
@@ -227,7 +253,7 @@ namespace LitTravProj.ViewModel
 
             //if (this.IsNewCustomer)
             //    _customerRepository.AddCustomer(_customer);
-            
+
             //base.OnPropertyChanged("DisplayName");
         }
 
@@ -249,10 +275,10 @@ namespace LitTravProj.ViewModel
         /// </summary>
         bool CanSave
         {
-           get {return true;} // get { return String.IsNullOrEmpty(this.ValidateCustomerType()) && _customer.IsValid; }
+            get { return true; } // get { return String.IsNullOrEmpty(this.ValidateCustomerType()) && _customer.IsValid; }
         }
 
-   
+
 
         //#region IDataErrorInfo Members
 

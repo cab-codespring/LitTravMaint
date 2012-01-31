@@ -1,4 +1,5 @@
 ﻿using System.Windows.Controls;
+using System.ComponentModel;
 
 namespace LitTravProj.View
 {
@@ -11,8 +12,13 @@ namespace LitTravProj.View
         {
             InitializeComponent();
         }
+
+         private void SizeTypeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+         {
+
+         }
     }
-}
+
     //    LittleTravellerDataContext context;
     //    List<string> _seasons;
 
@@ -41,11 +47,5 @@ namespace LitTravProj.View
 
     //    }
 
-    //    public event PropertyChangedEventHandler PropertyChanged;
-
-    //    void NotifyProprtyChanged(string propName)
-    //    {
-    //        if (PropertyChanged != null)
-    //            PropertyChanged(this, new PropertyChangedEventArgs(propName));
-    //    }
-
+   
+}
