@@ -23,7 +23,6 @@
             ItemsSource="{Binding SizeTypeOptions}"
             DisplayMemberPath="SizeTypeName"
             SelectedItem="{Binding SelectedSizeTypeID}"
-            SelectionChanged="SizeTypeComboBox_SelectionChanged"
             />
         
         <Label Content="Size:" Height="28" HorizontalAlignment="Left" Margin="11,281,0,0" Name="label7" VerticalAlignment="Top" />
