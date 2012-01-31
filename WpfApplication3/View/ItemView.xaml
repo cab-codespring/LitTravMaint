@@ -27,5 +27,9 @@
         
         <Label Content="Size:" Height="28" HorizontalAlignment="Left" Margin="11,281,0,0" Name="label7" VerticalAlignment="Top" />
         <ComboBox Height="23" HorizontalAlignment="Left" ItemsSource="{Binding SizeOptions}" DisplayMemberPath="SizeVal"  Margin="121,281,0,0" Name="SizeComboBox" VerticalAlignment="Top" Width="251" />
+        <Label Content="Design:" Height="28" HorizontalAlignment="Left" Margin="10,325,0,0" Name="label8" VerticalAlignment="Top" />
+        <ComboBox DisplayMemberPath="Desc" Height="23" HorizontalAlignment="Left" ItemsSource="{Binding DesignOptions}" Margin="121,325,329,0" Name="DesignComboBox"  VerticalAlignment="Top" Width="251" />
+        <Button Content="Save" Height="23" HorizontalAlignment="Left" Margin="153,391,0,0" Name="SaveButton" VerticalAlignment="Top" Width="75" />
+        <Button Content=" Cancel" Height="23" HorizontalAlignment="Right" Margin="0,391,350,0" Name="CancelButton" VerticalAlignment="Top" Width="75" />
     </Grid>
 </UserControl>

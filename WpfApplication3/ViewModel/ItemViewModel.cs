@@ -39,7 +39,7 @@ namespace LitTravProj.ViewModel
             this.DisplayName = "Add New Item";
 
             context = new LittleTravellerDataContext();
-
+            var canSave = this. ( _ => ValidateFields());
         }
 
         /// <summary>
@@ -97,7 +97,8 @@ namespace LitTravProj.ViewModel
             get { return _selectedSizeTypeID; }
             set
             {
-                this.RaiseAndSetIfChanged(vm => vm.SelectedSizeTypeID, ref _selectedSizeTypeID, value);
+                _selectedSizeTypeID = value;
+                //this.RaiseAndSetIfChanged(vm => vm.SelectedSizeTypeID, ref _selectedSizeTypeID, value);
                 this.RaisePropertyChanged(vm => vm.SizeOptions);
             }
         }
@@ -115,95 +116,25 @@ namespace LitTravProj.ViewModel
             }
         }
 
-        //public event PropertyChangedEventHandler PropertyChanged;
+        /// <summary>
+        /// Returns a list of strings used to populate the DesignID selector.
+        /// </summary>
+        public IEnumerable<Design> DesignOptions
+        {
+            get
+            {
+                return context.Designs;
+            }
+        }
 
-        //void NotifyProprtyChanged(string propName)
-        //{
-        //    if (PropertyChanged != null)
-        //        PropertyChanged(this, new PropertyChangedEventArgs(propName));
-        //}
-
-
-
-        //public string Email
-        //{
-        //    get { return _customer.Email; }
-        //    set
-        //    {
-        //        if (value == _customer.Email)
-        //            return;
-
-        //        _customer.Email = value;
-
-        //        base.OnPropertyChanged("Email");
-        //    }
-        //}
-
-        //public string FirstName
-        //{
-        //    get { return _customer.FirstName; }
-        //    set
-        //    {
-        //        if (value == _customer.FirstName)
-        //            return;
-
-        //        _customer.FirstName = value;
-
-        //        base.OnPropertyChanged("FirstName");
-        //    }
-        //}
-
-        //public bool IsCompany
-        //{
-        //    get { return _customer.IsCompany; }
-        //}
-
-        //public string LastName
-        //{
-        //    get { return _customer.LastName; }
-        //    set
-        //    {
-        //        if (value == _customer.LastName)
-        //            return;
-
-        //        _customer.LastName = value;
-
-        //        base.OnPropertyChanged("LastName");
-        //    }
-        //}
-
-        //public double TotalSales
-        //{
-        //    get { return _customer.TotalSales; }
-        //}
-
-        // // Customer Properties
-
-        // Presentation Properties
+       
+         public ReactiveCommand Save = new ReactiveCommand(canSave);
 
 
-
-
-
-        //public override string DisplayName
-        //{
-        //    get
-        //    {
-        //        if (this.IsNewCustomer)
-        //        {
-        //            return Strings.CustomerViewModel_DisplayName;
-        //        }
-        //        else if (_customer.IsCompany)
-        //        {
-        //            return _customer.FirstName;
-        //        }
-        //        else
-        //        {
-        //            return String.Format("{0}, {1}", _customer.LastName, _customer.FirstName);
-        //        }
-        //    }
-        //}
-
+         private bool ValidateFields()
+         {
+             return true;
+         }
         ///// <summary>
         ///// Gets/sets whether this customer is selected in the UI.
         ///// </summary>
