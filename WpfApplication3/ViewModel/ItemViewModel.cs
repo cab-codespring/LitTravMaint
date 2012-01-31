@@ -18,11 +18,9 @@ namespace LitTravProj.ViewModel
     /// </summary>
     public class ItemViewModel : WorkspaceViewModel, INotifyPropertyChanged
     {
-
-        RelayCommand _saveCommand;
         LittleTravellerDataContext context;
 
-       
+   
 
 
         //public ItemViewModel(Item item)
@@ -39,7 +37,8 @@ namespace LitTravProj.ViewModel
             this.DisplayName = "Add New Item";
 
             context = new LittleTravellerDataContext();
-            var canSave = this. ( _ => ValidateFields());
+           var CanSave = this.Changed.Select( _ => ValidateFields());
+           SaveCommand = new ReactiveCommand(CanSave);
         }
 
         /// <summary>
@@ -128,13 +127,20 @@ namespace LitTravProj.ViewModel
         }
 
        
-         public ReactiveCommand Save = new ReactiveCommand(canSave);
+        
 
 
          private bool ValidateFields()
          {
-             return true;
+             return false;
          }
+
+
+
+
+       public ReactiveCommand SaveCommand{get; private set; } 
+
+
         ///// <summary>
         ///// Gets/sets whether this customer is selected in the UI.
         ///// </summary>
@@ -152,23 +158,23 @@ namespace LitTravProj.ViewModel
         //    }
         //}
 
-        /// <summary>
-        /// Returns a command that saves the customer.
-        /// </summary>
-        public ICommand SaveCommand
-        {
-            get
-            {
-                if (_saveCommand == null)
-                {
-                    _saveCommand = new RelayCommand(
-                        param => this.Save()
-                        //  param => this.CanSave
-                        );
-                }
-                return _saveCommand;
-            }
-        }
+        ///// <summary>
+        ///// Returns a command that saves the customer.
+        ///// </summary>
+        //public ICommand SaveCommand
+        //{
+        //    get
+        //    {
+        //        if (_saveCommand == null)
+        //        {
+        //            _saveCommand = new RelayCommand(
+        //                param => this.Save()
+        //                //  param => this.CanSave
+        //                );
+        //        }
+        //        return _saveCommand;
+        //    }
+        //}
 
         // Presentation Properties
 
@@ -177,16 +183,16 @@ namespace LitTravProj.ViewModel
         /// <summary>
         /// Saves the customer to the repository.  This method is invoked by the SaveCommand.
         /// </summary>
-        public void Save()
-        {
-            //if (!_customer.IsValid)
-            //    throw new InvalidOperationException(Strings.CustomerViewModel_Exception_CannotSave);
+        //public void Save()
+        //{
+        //    //if (!_customer.IsValid)
+        //    //    throw new InvalidOperationException(Strings.CustomerViewModel_Exception_CannotSave);
 
-            //if (this.IsNewCustomer)
-            //    _customerRepository.AddCustomer(_customer);
+        //    //if (this.IsNewCustomer)
+        //    //    _customerRepository.AddCustomer(_customer);
 
-            //base.OnPropertyChanged("DisplayName");
-        }
+        //    //base.OnPropertyChanged("DisplayName");
+        //}
 
         // Public Methods
 
@@ -204,10 +210,10 @@ namespace LitTravProj.ViewModel
         /// <summary>
         /// Returns true if the customer is valid and can be saved.
         /// </summary>
-        bool CanSave
-        {
-            get { return true; } // get { return String.IsNullOrEmpty(this.ValidateCustomerType()) && _customer.IsValid; }
-        }
+        //bool CanSave
+        //{
+        //    get { return true; } // get { return String.IsNullOrEmpty(this.ValidateCustomerType()) && _customer.IsValid; }
+        //}
 
 
 
