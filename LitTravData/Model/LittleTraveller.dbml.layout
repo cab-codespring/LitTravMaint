@@ -26,10 +26,10 @@
         <elementListCompartment Id="9374f06b-23ec-4eb0-9d6d-a272dcf8b345" absoluteBounds="6.1400000000000006, 0.96, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="bf159be7-bb9b-4ee1-8c4b-7646560de8c0" absoluteBounds="3.625, 3.5, 2, 1.0016910807291666">
+    <classShape Id="bf159be7-bb9b-4ee1-8c4b-7646560de8c0" absoluteBounds="3.75, 3.125, 2, 1.0016910807291666">
       <DataClassMoniker Name="/LittleTravellerDataContext/Season" />
       <nestedChildShapes>
-        <elementListCompartment Id="75d3fa5a-27a5-4580-bd64-95f2296596d7" absoluteBounds="3.64, 3.96, 1.9700000000000002, 0.44169108072916669" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="75d3fa5a-27a5-4580-bd64-95f2296596d7" absoluteBounds="3.765, 3.585, 1.9700000000000002, 0.44169108072916669" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <classShape Id="5f6e6f24-ffd3-4198-a233-2dd957de63fa" absoluteBounds="0.625, 0.5, 2, 1.1939925130208331">

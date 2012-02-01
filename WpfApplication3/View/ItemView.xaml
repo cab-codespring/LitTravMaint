@@ -2,14 +2,15 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Name="addItemDialog" mc:Ignorable="d" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" d:DesignHeight="717" d:DesignWidth="700">
-    
+
     <Grid >
-        <TextBox Height="23" HorizontalAlignment="Left" Margin="121,21,0,0" Name="textBox1" VerticalAlignment="Top" Width="251" />
         <Label Content="SKU:" Height="28" HorizontalAlignment="Left" Margin="12,21,0,0" Name="label1" VerticalAlignment="Top" Width="64" />
+        <TextBox Text="{Binding SKU}"  Height="23" HorizontalAlignment="Left" Margin="121,21,0,0" Name="textBox1" VerticalAlignment="Top" Width="251" />
         <Label Content="Season ID:" Height="28" HorizontalAlignment="Left" Margin="11,66,0,0" Name="label2" VerticalAlignment="Top" />
         <ComboBox Height="23" HorizontalAlignment="Left" Margin="121,66,0,0" Name="SeasonIDComBox" VerticalAlignment="Top" Width="251"
-                  ItemsSource="{Binding SeasonOptions}" DisplayMemberPath="SeasonCode">
-            
+               
+                  ItemsSource="{Binding SeasonOptions}" SelectedValue="{Binding SelectedSeason, Mode=TwoWay}" DisplayMemberPath="SeasonCode" >
+
         </ComboBox>
         <Label Content="Color1:" Height="28" HorizontalAlignment="Left" Margin="11,111,0,0" Name="label3" VerticalAlignment="Top" />
         <ComboBox Height="23" HorizontalAlignment="Left" ItemsSource="{Binding ColorOptions}" DisplayMemberPath="ColorCode" Margin="121,111,0,0" Name="Color1ComboBox" VerticalAlignment="Top" Width="251" />
@@ -24,7 +25,7 @@
             DisplayMemberPath="SizeTypeName"
             SelectedItem="{Binding SelectedSizeTypeID}"
             />
-        
+
         <Label Content="Size:" Height="28" HorizontalAlignment="Left" Margin="11,281,0,0" Name="label7" VerticalAlignment="Top" />
         <ComboBox Height="23" HorizontalAlignment="Left" ItemsSource="{Binding SizeOptions}" DisplayMemberPath="SizeVal"  Margin="121,281,0,0" Name="SizeComboBox" VerticalAlignment="Top" Width="251" />
         <Label Content="Design:" Height="28" HorizontalAlignment="Left" Margin="10,325,0,0" Name="label8" VerticalAlignment="Top" />

@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Reactive.Linq;
 using ReactiveUI;
 using ReactiveUI.Xaml;
+using System.Collections.ObjectModel;
 
 namespace LitTravProj.ViewModel
 {
@@ -18,38 +19,76 @@ namespace LitTravProj.ViewModel
     /// </summary>
     public class ItemViewModel : WorkspaceViewModel, INotifyPropertyChanged
     {
-        LittleTravellerDataContext context;
+        private LittleTravellerDataContext context;
+        private string _sku;
+        private Item _item;
 
-   
 
 
-        //public ItemViewModel(Item item)
-        //{
-        //    if (item == null)
-        //        throw new ArgumentNullException("item");
-
-        //    context = new LittleTravellerDataContext();
-
-        //}
         public ItemViewModel()
         {
-            
+
             this.DisplayName = "Add New Item";
 
             context = new LittleTravellerDataContext();
-           var CanSave = this.Changed.Select( _ => ValidateFields());
-           SaveCommand = new ReactiveCommand(CanSave);
+            var CanSave = this.Changed.Select(_ => ValidateFields()).StartWith(false);
+            SaveCommand = new ReactiveCommand(CanSave);
+        }
+
+        public ItemViewModel(Item itemIn)
+        {
+            this._item = itemIn;
+        }
+
+        public string SKU
+        {
+            get { return _sku; }
+
+            set
+            {
+                _sku = value;
+                if (_sku.Length == 0)
+                    return;
+                Item existingItem = null;
+                try
+                {
+                    existingItem = context.Items.Single(it => it.Sku.Equals(_sku));
+                }
+                catch (Exception)
+                { //item doesn;t exist              
+                    _item = new Item();
+                    _item.Sku = _sku;
+                    return; // new sku
+                }
+                _item = existingItem;
+
+                Season moo = new Season();
+                moo.SeasonCode = _item.SeasonID;
+                SelectedSeason = moo;
+            }
         }
 
         /// <summary>
-        /// Returns a list of strings used to populate the Season selector.
+        /// Returns a list of Seasons used to populate the Season selector.
         /// </summary>
         public IEnumerable<Season> SeasonOptions
         {
             get
             {
                 return context.Seasons;
+            }
+        }
 
+        private Season _selectedSeason = new Season();
+        public Season SelectedSeason
+        {
+            get { return _selectedSeason; }
+            set
+            {
+                _selectedSeason = value;
+
+                this.RaisePropertyChanged(vm => vm.SeasonOptions);
+                this.RaisePropertyChanged(vm => vm.SelectedSeason);
             }
         }
 
@@ -92,7 +131,7 @@ namespace LitTravProj.ViewModel
 
         public SizeType SelectedSizeTypeID
         {
-           
+
             get { return _selectedSizeTypeID; }
             set
             {
@@ -126,19 +165,19 @@ namespace LitTravProj.ViewModel
             }
         }
 
-       
-        
-
-
-         private bool ValidateFields()
-         {
-             return false;
-         }
 
 
 
 
-       public ReactiveCommand SaveCommand{get; private set; } 
+        private bool ValidateFields()
+        {
+            return false;
+        }
+
+
+
+
+        public ReactiveCommand SaveCommand { get; private set; }
 
 
         ///// <summary>
