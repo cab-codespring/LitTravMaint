@@ -50,16 +50,15 @@ namespace LitTravProj.ViewModel
                 if (_sku.Length == 0)
                     return;
                 Item existingItem = null;
-                try
-                {
-                    existingItem = context.Items.Single(it => it.Sku.Equals(_sku));
-                }
-                catch (Exception)
-                { //item doesn;t exist              
-                    _item = new Item();
-                    _item.Sku = _sku;
-                    return; // new sku
-                }
+                 // first or default returns null if none
+                 existingItem = context.Items.FirstOrDefault(it => it.Sku.Equals(_sku));
+                 if (existingItem == null)
+                 {
+                     //item doesn;t exist              
+                     _item = new Item();
+                     _item.Sku = _sku;
+                     return; // new sku
+                 }
                 _item = existingItem;
 
                 Season moo = new Season();
