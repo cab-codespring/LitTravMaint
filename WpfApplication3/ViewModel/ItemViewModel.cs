@@ -33,6 +33,7 @@ namespace LitTravProj.ViewModel
             context = new LittleTravellerDataContext();
             var CanSave = this.Changed.Select(_ => ValidateFields()).StartWith(false);
             SaveCommand = new ReactiveCommand(CanSave);
+            SeasonOptions = context.Seasons.ToList();
         }
 
         public ItemViewModel(Item itemIn)
@@ -61,22 +62,15 @@ namespace LitTravProj.ViewModel
                  }
                 _item = existingItem;
 
-                Season moo = new Season();
-                moo.SeasonCode = _item.SeasonID;
-                SelectedSeason = moo;
+               
+                SelectedSeason = SeasonOptions.FirstOrDefault(ssn => ssn.SeasonCode == _item.SeasonID);
             }
         }
 
         /// <summary>
         /// Returns a list of Seasons used to populate the Season selector.
         /// </summary>
-        public IEnumerable<Season> SeasonOptions
-        {
-            get
-            {
-                return context.Seasons;
-            }
-        }
+        public IEnumerable<Season> SeasonOptions { get; private set; }
 
         private Season _selectedSeason = new Season();
         public Season SelectedSeason
@@ -84,10 +78,7 @@ namespace LitTravProj.ViewModel
             get { return _selectedSeason; }
             set
             {
-                _selectedSeason = value;
-
-                this.RaisePropertyChanged(vm => vm.SeasonOptions);
-                this.RaisePropertyChanged(vm => vm.SelectedSeason);
+                this.RaiseAndSetIfChanged(vm => vm.SelectedSeason, ref _selectedSeason, value);
             }
         }
 

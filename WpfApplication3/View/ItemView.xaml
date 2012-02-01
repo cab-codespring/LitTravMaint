@@ -9,7 +9,7 @@
         <Label Content="Season ID:" Height="28" HorizontalAlignment="Left" Margin="11,66,0,0" Name="label2" VerticalAlignment="Top" />
         <ComboBox Height="23" HorizontalAlignment="Left" Margin="121,66,0,0" Name="SeasonIDComBox" VerticalAlignment="Top" Width="251"
                
-                  ItemsSource="{Binding SeasonOptions}" SelectedValue="{Binding SelectedSeason, Mode=TwoWay}" DisplayMemberPath="SeasonCode" >
+                  ItemsSource="{Binding SeasonOptions}" SelectedItem="{Binding SelectedSeason, Mode=TwoWay}" DisplayMemberPath="SeasonCode" >
 
         </ComboBox>
         <Label Content="Color1:" Height="28" HorizontalAlignment="Left" Margin="11,111,0,0" Name="label3" VerticalAlignment="Top" />
