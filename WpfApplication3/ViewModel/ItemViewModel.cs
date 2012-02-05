@@ -28,12 +28,16 @@ namespace LitTravProj.ViewModel
         public ItemViewModel()
         {
 
-            this.DisplayName = "Add New Item";
+            this.DisplayName = "Add or Edit Item";
 
             context = new LittleTravellerDataContext();
             var CanSave = this.Changed.Select(_ => ValidateFields()).StartWith(false);
             SaveCommand = new ReactiveCommand(CanSave);
+
             SeasonOptions = context.Seasons.ToList();
+            ColorOptions = context.Colors.ToList();
+            SizeTypeOptions = context.SizeTypes.ToList();
+            SizeOptions = context.Sizes.ToList();
         }
 
         public ItemViewModel(Item itemIn)
@@ -51,19 +55,23 @@ namespace LitTravProj.ViewModel
                 if (_sku.Length == 0)
                     return;
                 Item existingItem = null;
-                 // first or default returns null if none
-                 existingItem = context.Items.FirstOrDefault(it => it.Sku.Equals(_sku));
-                 if (existingItem == null)
-                 {
-                     //item doesn;t exist              
-                     _item = new Item();
-                     _item.Sku = _sku;
-                     return; // new sku
-                 }
+                // first or default returns null if none
+                existingItem = context.Items.FirstOrDefault(it => it.Sku.Equals(_sku));
+                if (existingItem == null)
+                {
+                    //item doesn;t exist              
+                    _item = new Item();
+                    _item.Sku = _sku;
+                    return; // new sku
+                }
                 _item = existingItem;
 
-               
+
                 SelectedSeason = SeasonOptions.FirstOrDefault(ssn => ssn.SeasonCode == _item.SeasonID);
+                SelectedSizeTypeID = SizeTypeOptions.FirstOrDefault(ssn => ssn.SizeTypeName == _item.SizeType);
+                SelectedColor1 = ColorOptions.FirstOrDefault(ssn => ssn.ColorCode == _item.ColorID);
+                SelectedColor2 = ColorOptions.FirstOrDefault(ssn => ssn.ColorCode == _item.Color2ID);
+                SelectedColor3 = ColorOptions.FirstOrDefault(ssn => ssn.ColorCode == _item.Color3ID);
             }
         }
 
@@ -82,36 +90,55 @@ namespace LitTravProj.ViewModel
             }
         }
 
-        /// <summary>
-        /// Returns a list of strings used to populate the Color selector.
-        /// </summary>
-        public IEnumerable<Color> ColorOptions
-        {
-            get
-            {
-                return context.Colors;
-            }
-        }
 
         /// <summary>
         /// Returns a list of strings used to populate the Color selector.
         /// </summary>
-        public IEnumerable<SizeType> SizeTypeOptions
+        public IEnumerable<Color> ColorOptions { get; private set; }
+
+        Color _selectedColor1;
+
+        public Color SelectedColor1
         {
-            get
+            get { return _selectedColor1; }
+            set
             {
-                return context.SizeTypes;
+                this.RaiseAndSetIfChanged(vm => vm._selectedColor1, ref _selectedColor1, value);
             }
         }
 
+
         /// <summary>
-        /// Size must be limited to this size Type
+        /// Returns a list of strings used to populate the Color selector.
         /// </summary>
-        //public SizeType SelectedSizeTypeID
-        //{
-        //    get;
-        //    set;
-        //}
+        Color _selectedColor2;
+
+        public Color SelectedColor2
+        {
+            get { return _selectedColor2; }
+            set
+            {
+                this.RaiseAndSetIfChanged(vm => vm._selectedColor2, ref _selectedColor2, value);
+            }
+        }
+        /// <summary>
+        /// Returns a list of strings used to populate the Color selector.
+        /// </summary>
+        Color _selectedColor3;
+
+        public Color SelectedColor3
+        {
+            get { return _selectedColor3; }
+            set
+            {
+                this.RaiseAndSetIfChanged(vm => vm._selectedColor3, ref _selectedColor3, value);
+            }
+        }
+        /// <summary>
+        /// Returns a list of strings used to populate the Color selector.
+        /// </summary>
+        public IEnumerable<SizeType> SizeTypeOptions { get; private set; }
+
 
         SizeType _selectedSizeTypeID;
 
@@ -125,14 +152,14 @@ namespace LitTravProj.ViewModel
             get { return _selectedSizeTypeID; }
             set
             {
-                _selectedSizeTypeID = value;
-                //this.RaiseAndSetIfChanged(vm => vm.SelectedSizeTypeID, ref _selectedSizeTypeID, value);
-                this.RaisePropertyChanged(vm => vm.SizeOptions);
+                // _selectedSizeTypeID = value;
+                this.RaiseAndSetIfChanged(vm => vm.SelectedSizeTypeID, ref _selectedSizeTypeID, value);
+                // this.RaisePropertyChanged(vm => vm.SizeOptions);
             }
         }
 
         /// <summary>
-        /// Returns a list of strings used to populate the Color selector.
+        /// Returns a list of Sizes used to populate the Size selector.
         /// </summary>
         public IEnumerable<Size> SizeOptions
         {
@@ -142,7 +169,28 @@ namespace LitTravProj.ViewModel
                     return context.Sizes;
                 return from sz in context.Sizes where sz.SizeTypeName == SelectedSizeTypeID.SizeTypeName select sz;
             }
+            set
+            {
+
+            }
         }
+        SizeType _selectedSize;
+
+        /// <summary>
+        /// Size must be limited to this size Type
+        /// </summary>
+
+        public SizeType SelectedSize
+        {
+
+            get { return _selectedSize; }
+            set
+            {
+                this.RaiseAndSetIfChanged(vm => vm.SelectedSize, ref _selectedSize, value);
+            }
+        }
+
+
 
         /// <summary>
         /// Returns a list of strings used to populate the DesignID selector.

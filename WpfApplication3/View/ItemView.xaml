@@ -8,16 +8,16 @@
         <TextBox Text="{Binding SKU}"  Height="23" HorizontalAlignment="Left" Margin="121,21,0,0" Name="textBox1" VerticalAlignment="Top" Width="251" />
         <Label Content="Season ID:" Height="28" HorizontalAlignment="Left" Margin="11,66,0,0" Name="label2" VerticalAlignment="Top" />
         <ComboBox Height="23" HorizontalAlignment="Left" Margin="121,66,0,0" Name="SeasonIDComBox" VerticalAlignment="Top" Width="251"
-               
                   ItemsSource="{Binding SeasonOptions}" SelectedItem="{Binding SelectedSeason, Mode=TwoWay}" DisplayMemberPath="SeasonCode" >
-
         </ComboBox>
         <Label Content="Color1:" Height="28" HorizontalAlignment="Left" Margin="11,111,0,0" Name="label3" VerticalAlignment="Top" />
-        <ComboBox Height="23" HorizontalAlignment="Left" ItemsSource="{Binding ColorOptions}" DisplayMemberPath="ColorCode" Margin="121,111,0,0" Name="Color1ComboBox" VerticalAlignment="Top" Width="251" />
+        <ComboBox Height="23" HorizontalAlignment="Left" ItemsSource="{Binding ColorOptions}" SelectedItem="{Binding SelectedColor, Mode=TwoWay}"
+                  DisplayMemberPath="ColorCode" Margin="121,111,0,0" Name="Color1ComboBox" VerticalAlignment="Top" Width="251" />
         <Label Content="Color2:" Height="28" HorizontalAlignment="Left" Margin="10,154,0,0" Name="label4" VerticalAlignment="Top" />
-        <ComboBox Height="23" HorizontalAlignment="Left" ItemsSource="{Binding ColorOptions}" DisplayMemberPath="ColorCode" Margin="120,154,0,0" Name="Color2ComboBox" VerticalAlignment="Top" Width="251" />
+        <ComboBox Height="23" HorizontalAlignment="Left" ItemsSource="{Binding ColorOptions}" SelectedItem="{Binding SelectedColor2, Mode=TwoWay}" 
+                  DisplayMemberPath="ColorCode" Margin="120,154,0,0" Name="Color2ComboBox" VerticalAlignment="Top" Width="251" />
         <Label Content="Color3:" Height="28" HorizontalAlignment="Left" Margin="10,196,0,0" Name="label5" VerticalAlignment="Top" />
-        <ComboBox Height="23" HorizontalAlignment="Left" ItemsSource="{Binding ColorOptions}" DisplayMemberPath="ColorCode" Margin="120,196,0,0" Name="Color3ComboBox" VerticalAlignment="Top" Width="251" />
+        <ComboBox Height="23" HorizontalAlignment="Left" ItemsSource="{Binding ColorOptions}" SelectedItem="{Binding SelectedColor3}" DisplayMemberPath="ColorCode" Margin="120,196,0,0" Name="Color3ComboBox" VerticalAlignment="Top" Width="251" />
         <Label Content="Size Type:" Height="28" HorizontalAlignment="Left" Margin="10,238,0,0" Name="label6" VerticalAlignment="Top" />
 
         <ComboBox Height="23" HorizontalAlignment="Left" Margin="120,238,0,0" Name="SizeTypeComboBox" VerticalAlignment="Top" Width="251" 
