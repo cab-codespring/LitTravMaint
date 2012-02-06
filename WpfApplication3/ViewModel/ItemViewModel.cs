@@ -75,7 +75,7 @@ namespace LitTravProj.ViewModel
                 SelectedColor3 = ColorOptions3.FirstOrDefault(ssn => ssn.ColorCode == _item.Color3ID);
                 SelectedSizeTypeID = SizeTypeOptions.FirstOrDefault(ssn => ssn.SizeTypeName == _item.SizeType);
                 SelectedSize = SizeOptions.FirstOrDefault(ssn => ssn.SizeVal == _item.Size);
-            }
+                }
         }
 
         /// <summary>
@@ -108,7 +108,7 @@ namespace LitTravProj.ViewModel
             get { return _selectedColor1; }
             set
             {
-                this.RaiseAndSetIfChanged(vm => vm._selectedColor1, ref _selectedColor1, value);
+                this.RaiseAndSetIfChanged(vm => vm.SelectedColor1, ref _selectedColor1, value);
             }
         }
 
@@ -123,7 +123,7 @@ namespace LitTravProj.ViewModel
             get { return _selectedColor2; }
             set
             {
-                this.RaiseAndSetIfChanged(vm => vm._selectedColor2, ref _selectedColor2, value);
+                this.RaiseAndSetIfChanged(vm => vm.SelectedColor2, ref _selectedColor2, value);
             }
         }
         /// <summary>
@@ -136,7 +136,7 @@ namespace LitTravProj.ViewModel
             get { return _selectedColor3; }
             set
             {
-                this.RaiseAndSetIfChanged(vm => vm._selectedColor3, ref _selectedColor3, value);
+                this.RaiseAndSetIfChanged(vm => vm.SelectedColor3, ref _selectedColor3, value);
             }
         }
         /// <summary>
@@ -160,23 +160,24 @@ namespace LitTravProj.ViewModel
                 // _selectedSizeTypeID = value;
                 this.RaiseAndSetIfChanged(vm => vm.SelectedSizeTypeID, ref _selectedSizeTypeID, value);
                 // this.RaisePropertyChanged(vm => vm.SizeOptions);
+               SizeOptions =  (from sz in context.Sizes where sz.SizeTypeName.CompareTo(SelectedSizeTypeID.SizeTypeName) == 0 select sz).ToList();
             }
         }
 
         /// <summary>
         /// Returns a list of Sizes used to populate the Size selector.
         /// </summary>
+        private IEnumerable<Size> _sizeOptions;
         public IEnumerable<Size> SizeOptions
         {
             get
             {
-                if (SelectedSizeTypeID == null)
-                    return context.Sizes;
-                return from sz in context.Sizes where sz.SizeTypeName.CompareTo(SelectedSizeTypeID.SizeTypeName) == 0 select sz;
+                return _sizeOptions; 
+          
             }
             set
             {
-
+                this.RaiseAndSetIfChanged(vm => vm.SizeOptions, ref _sizeOptions, value);
             }
         }
 
