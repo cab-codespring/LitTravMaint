@@ -35,7 +35,9 @@ namespace LitTravProj.ViewModel
             SaveCommand = new ReactiveCommand(CanSave);
 
             SeasonOptions = context.Seasons.ToList();
-            ColorOptions = context.Colors.ToList();
+            ColorOptions1 = context.Colors.ToList();
+            ColorOptions2 = context.Colors.ToList();
+            ColorOptions3 = context.Colors.ToList();
             SizeTypeOptions = context.SizeTypes.ToList();
             SizeOptions = context.Sizes.ToList();
         }
@@ -68,10 +70,11 @@ namespace LitTravProj.ViewModel
 
 
                 SelectedSeason = SeasonOptions.FirstOrDefault(ssn => ssn.SeasonCode == _item.SeasonID);
+                SelectedColor1 = ColorOptions1.FirstOrDefault(ssn => ssn.ColorCode == _item.ColorID);
+                SelectedColor2 = ColorOptions2.FirstOrDefault(ssn => ssn.ColorCode == _item.Color2ID);
+                SelectedColor3 = ColorOptions3.FirstOrDefault(ssn => ssn.ColorCode == _item.Color3ID);
                 SelectedSizeTypeID = SizeTypeOptions.FirstOrDefault(ssn => ssn.SizeTypeName == _item.SizeType);
-                SelectedColor1 = ColorOptions.FirstOrDefault(ssn => ssn.ColorCode == _item.ColorID);
-                SelectedColor2 = ColorOptions.FirstOrDefault(ssn => ssn.ColorCode == _item.Color2ID);
-                SelectedColor3 = ColorOptions.FirstOrDefault(ssn => ssn.ColorCode == _item.Color3ID);
+                SelectedSize = SizeOptions.FirstOrDefault(ssn => ssn.SizeVal == _item.Size);
             }
         }
 
@@ -92,13 +95,15 @@ namespace LitTravProj.ViewModel
 
 
         /// <summary>
-        /// Returns a list of strings used to populate the Color selector.
+        /// Returns a list of Colors used to populate the Color selector.
         /// </summary>
-        public IEnumerable<Color> ColorOptions { get; private set; }
+        public IEnumerable<Color> ColorOptions1 { get; private set; }
+        public IEnumerable<Color> ColorOptions2 { get; private set; }
+        public IEnumerable<Color> ColorOptions3 { get; private set; }
 
-        Color _selectedColor1;
+        private Color _selectedColor1 = new Color();
 
-        public Color SelectedColor1
+        public Color SelectedColor1 
         {
             get { return _selectedColor1; }
             set
@@ -111,9 +116,9 @@ namespace LitTravProj.ViewModel
         /// <summary>
         /// Returns a list of strings used to populate the Color selector.
         /// </summary>
-        Color _selectedColor2;
+        private Color _selectedColor2 = new Color();
 
-        public Color SelectedColor2
+        public Color SelectedColor2 
         {
             get { return _selectedColor2; }
             set
@@ -124,7 +129,7 @@ namespace LitTravProj.ViewModel
         /// <summary>
         /// Returns a list of strings used to populate the Color selector.
         /// </summary>
-        Color _selectedColor3;
+        private Color _selectedColor3 = new Color();
 
         public Color SelectedColor3
         {
@@ -140,7 +145,7 @@ namespace LitTravProj.ViewModel
         public IEnumerable<SizeType> SizeTypeOptions { get; private set; }
 
 
-        SizeType _selectedSizeTypeID;
+        private SizeType _selectedSizeTypeID;
 
         /// <summary>
         /// Size must be limited to this size Type
@@ -167,20 +172,22 @@ namespace LitTravProj.ViewModel
             {
                 if (SelectedSizeTypeID == null)
                     return context.Sizes;
-                return from sz in context.Sizes where sz.SizeTypeName == SelectedSizeTypeID.SizeTypeName select sz;
+                return from sz in context.Sizes where sz.SizeTypeName.CompareTo(SelectedSizeTypeID.SizeTypeName) == 0 select sz;
             }
             set
             {
 
             }
         }
-        SizeType _selectedSize;
+
+
+      
 
         /// <summary>
         /// Size must be limited to this size Type
         /// </summary>
-
-        public SizeType SelectedSize
+        private Size _selectedSize = new Size();
+        public Size SelectedSize
         {
 
             get { return _selectedSize; }
