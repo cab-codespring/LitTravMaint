@@ -6,7 +6,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="1196">
     <Grid >
-
-        <DataGrid ItemsSource="{Binding Items}" AutoGenerateColumns="True" Height="281" HorizontalAlignment="Left" Margin="12,12,0,0" Name="dataGrid1" VerticalAlignment="Top" Width="1157" />
+        <DataGrid ItemsSource="{Binding Items}" AutoGenerateColumns="True"  HorizontalAlignment="Stretch"  Margin="12,12,0,0" Name="dataGrid1" VerticalAlignment="Top" />
     </Grid>
 </UserControl>

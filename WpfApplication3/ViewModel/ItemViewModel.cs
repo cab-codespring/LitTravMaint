@@ -28,7 +28,7 @@ namespace LitTravProj.ViewModel
         public ItemViewModel()
         {
 
-            this.DisplayName = "Add or Edit Item";
+            this.DisplayName = "Add/Edit Item";
 
             context = new LittleTravellerDataContext();
             var CanSave = this.Changed.Select(_ => ValidateFields()).StartWith(false);
@@ -40,6 +40,7 @@ namespace LitTravProj.ViewModel
             ColorOptions3 = context.Colors.ToList();
             SizeTypeOptions = context.SizeTypes.ToList();
             SizeOptions = context.Sizes.ToList();
+            DesignOptions = context.Designs.ToList();
         }
 
         public ItemViewModel(Item itemIn)
@@ -75,6 +76,7 @@ namespace LitTravProj.ViewModel
                 SelectedColor3 = ColorOptions3.FirstOrDefault(ssn => ssn.ColorCode == _item.Color3ID);
                 SelectedSizeTypeID = SizeTypeOptions.FirstOrDefault(ssn => ssn.SizeTypeName == _item.SizeType);
                 SelectedSize = SizeOptions.FirstOrDefault(ssn => ssn.SizeVal == _item.Size);
+                SelectedDesign = DesignOptions.FirstOrDefault(ssn => ssn.ID == _item.DesignID);
                 }
         }
 
@@ -203,16 +205,18 @@ namespace LitTravProj.ViewModel
         /// <summary>
         /// Returns a list of strings used to populate the DesignID selector.
         /// </summary>
-        public IEnumerable<Design> DesignOptions
+        public IEnumerable<Design> DesignOptions { get; private set; }
+
+        private Design _selectedDesign= new Design();
+
+        public Design SelectedDesign
         {
-            get
+            get { return _selectedDesign; }
+            set
             {
-                return context.Designs;
+                this.RaiseAndSetIfChanged(vm => vm.SelectedDesign, ref _selectedDesign, value);
             }
         }
-
-
-
 
 
         private bool ValidateFields()
