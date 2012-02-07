@@ -41,6 +41,7 @@ namespace LitTravProj.ViewModel
             SizeTypeOptions = context.SizeTypes.ToList();
             SizeOptions = context.Sizes.ToList();
             DesignOptions = context.Designs.ToList();
+            StyleTypeOptions = context.StyleTypes.ToList();
         }
 
         public ItemViewModel(Item itemIn)
@@ -76,6 +77,7 @@ namespace LitTravProj.ViewModel
                 SelectedColor3 = ColorOptions3.FirstOrDefault(ssn => ssn.ColorCode == _item.Color3ID);
                 SelectedSizeTypeID = SizeTypeOptions.FirstOrDefault(ssn => ssn.SizeTypeName == _item.SizeType);
                 SelectedSize = SizeOptions.FirstOrDefault(ssn => ssn.SizeVal == _item.Size);
+                SelectedStyleType = StyleTypeOptions.FirstOrDefault(ssn => ssn.ID == _item.StyleTypeID);
                 SelectedDesign = DesignOptions.FirstOrDefault(ssn => ssn.ID == _item.DesignID);
                 }
         }
@@ -200,7 +202,21 @@ namespace LitTravProj.ViewModel
             }
         }
 
+        /// <summary>
+        /// Returns a list of Styles used to populate the styletype  selector.
+        /// </summary>
+        public IEnumerable<StyleType> StyleTypeOptions { get; private set; }
 
+        private StyleType _selectedStyleType = new StyleType();
+
+        public StyleType SelectedStyleType
+        {
+            get { return _selectedStyleType; }
+            set
+            {
+                this.RaiseAndSetIfChanged(vm => vm.SelectedStyleType, ref _selectedStyleType, value);
+            }
+        }
 
         /// <summary>
         /// Returns a list of strings used to populate the DesignID selector.
@@ -221,14 +237,29 @@ namespace LitTravProj.ViewModel
 
         private bool ValidateFields()
         {
-            return false;
+            if (SKU.Length == 0)
+                return false;
+            return true;
         }
 
 
 
 
-        public ReactiveCommand SaveCommand { get; private set; }
+        public ReactiveCommand SaveCommand { get;  private set; }
 
+
+        public void SaveItem()
+        {
+            _item.SeasonID = SelectedSeason.SeasonCode;
+            _item.ColorID = SelectedColor1.ColorCode;
+            _item.Color2ID = SelectedColor2.ColorCode;
+            _item.Color3ID = SelectedColor3.ColorCode;
+            _item.SizeType = SelectedSizeTypeID.SizeTypeName;
+            _item.Size = SelectedSize.SizeVal;
+
+
+
+        }
 
         ///// <summary>
         ///// Gets/sets whether this customer is selected in the UI.

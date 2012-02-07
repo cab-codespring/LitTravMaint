@@ -38,7 +38,7 @@
         <elementListCompartment Id="ab28b853-94ee-4f87-bb56-7554f9999f82" absoluteBounds="0.64000000000000012, 0.96, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="2c5d0b5e-ff49-4234-92ca-07aa961c5f1a" isExpanded="false" absoluteBounds="1.375, 2.875, 2, 0.45">
+    <classShape Id="2c5d0b5e-ff49-4234-92ca-07aa961c5f1a" absoluteBounds="1.375, 2.875, 2, 1.0016910807291666">
       <DataClassMoniker Name="/LittleTravellerDataContext/SizeType" />
       <nestedChildShapes>
         <elementListCompartment Id="9a9ddc8c-ba0f-43ba-9b33-f1a94cf2224a" absoluteBounds="1.3900000000000001, 3.335, 1.9700000000000002, 0.44169108072916669" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />

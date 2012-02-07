@@ -17,6 +17,11 @@ namespace LitTravProj.View
          {
 
          }
+
+         private void comboBox1_SelectionChanged(object sender, SelectionChangedEventArgs e)
+         {
+
+         }
     }
 
     //    LittleTravellerDataContext context;

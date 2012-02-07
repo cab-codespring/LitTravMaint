@@ -6,16 +6,18 @@
 
     <Grid Height="Auto" Width="Auto" HorizontalAlignment="Stretch" Margin="3.5" VerticalAlignment="Top">
         <Grid.RowDefinitions>
-            <RowDefinition Height="50*" />
-            <RowDefinition Height="50*" />
-            <RowDefinition Height="50*" />
-            <RowDefinition Height="50*" />
-            <RowDefinition Height="50*" />
-            <RowDefinition Height="50*" />
-            <RowDefinition Height="50*" />
-            <RowDefinition Height="50*" />
-            <RowDefinition Height="74*" />
-            <RowDefinition Height="74*" />
+            <RowDefinition Height="33*" />
+            <RowDefinition Height="33*" />
+            <RowDefinition Height="33*" />
+            <RowDefinition Height="33*" />
+            <RowDefinition Height="33*" />
+            <RowDefinition Height="33*" />
+            <RowDefinition Height="34*" />
+            <RowDefinition Height="29" />
+            <RowDefinition Height="39*" />
+            <RowDefinition Height="44*" />
+            <RowDefinition Height="0*" />
+            <RowDefinition Height="0*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20*" />
@@ -43,12 +45,19 @@
             DisplayMemberPath="SizeTypeName"
             SelectedItem="{Binding SelectedSizeTypeID}" Grid.Column="1" Grid.Row="5" />
 
-        <Label Content="Size:" Height="Auto" HorizontalAlignment="Stretch" Margin="3.5" Name="label7" VerticalAlignment="Center" Grid.Row="6" Width="Auto" />
-        <ComboBox Height="Auto" HorizontalAlignment="Left" ItemsSource="{Binding SizeOptions}" SelectedItem="{Binding SelectedSize}"  DisplayMemberPath="SizeVal"  Margin="3.5" Name="SizeComboBox" VerticalAlignment="Center" Width="251" Grid.Column="1" Grid.Row="6" />
-        <Label Content="Design:" Height="Auto" HorizontalAlignment="Stretch" Margin="3.5" Name="label8" VerticalAlignment="Center" Grid.Row="7" Width="Auto" />
+        <Label Content="Size:" Height="Auto" HorizontalAlignment="Stretch" Margin="3.5,4" Name="label7" VerticalAlignment="Center" Grid.Row="6" Width="Auto" />
+        <ComboBox Height="Auto" HorizontalAlignment="Left" ItemsSource="{Binding SizeOptions}" SelectedItem="{Binding SelectedSize}"  DisplayMemberPath="SizeVal"  Margin="3.5,6,0,6"
+                  Name="SizeComboBox" VerticalAlignment="Center" Width="251" Grid.Column="1" Grid.Row="6" />
+        
+        <Label Content="Style Type:" Height="Auto" HorizontalAlignment="Stretch" Margin="3,0,0,3" Name="label9" VerticalAlignment="Center" Width="Auto" Grid.Row="7" />
+        <ComboBox DisplayMemberPath="Desc" Height="Auto" HorizontalAlignment="Left" ItemsSource="{Binding StyleTypeOptions}" Margin="3.5" 
+                  Name="StyleTypeComboBox" SelectedItem="{Binding SelectedStyleType}" VerticalAlignment="Center" Width="251" Grid.Row="7" Grid.Column="1"  />
+
+        <Label Content="Design:" Height="Auto" HorizontalAlignment="Stretch" Margin="3.5,4" Name="label8" VerticalAlignment="Center" Grid.Row="8" Width="Auto" />
         <ComboBox Height="Auto" HorizontalAlignment="Left" ItemsSource="{Binding DesignOptions}" SelectedItem="{Binding SelectedDesign}" 
-                  DisplayMemberPath="Desc" Margin="3.5" Name="DesignComboBox"  VerticalAlignment="Center" Width="251" Grid.Column="1" Grid.Row="7" />
-        <Button Content="Save" Height="23" HorizontalAlignment="Left" Margin="22,16,0,12" Name="SaveButton" VerticalAlignment="Center" Width="75" Command="{Binding SaveCommand}" Grid.Column="1" Grid.Row="8" />
-        <Button Content=" Cancel" Height="23" HorizontalAlignment="Center" Margin="136,16,366,12" Name="CancelButton" VerticalAlignment="Center" Width="75" Grid.Column="1" Grid.Row="8" />
+                  DisplayMemberPath="Desc" Margin="3.5,6,0,6" Name="DesignComboBox"  VerticalAlignment="Center" Width="251" Grid.Column="1" Grid.Row="8" />
+        
+        <Button Content="Save" Height="23" HorizontalAlignment="Left" Margin="22,16,0,12" Name="SaveButton" VerticalAlignment="Center" Width="75" Command="{Binding SaveCommand}" Grid.Column="1" Grid.Row="9" />
+        <Button Content=" Cancel" Height="23" HorizontalAlignment="Center" Margin="136,16,366,12" Name="CancelButton" VerticalAlignment="Center" Width="75" Grid.Column="1" Grid.Row="9" />
     </Grid>
 </UserControl>
