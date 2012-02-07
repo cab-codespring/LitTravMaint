@@ -83,7 +83,7 @@ namespace LitTravProj.ViewModel
                 SelectedSize = SizeOptions.FirstOrDefault(ssn => ssn.SizeVal == _item.Size);
                 SelectedStyleType = StyleTypeOptions.FirstOrDefault(ssn => ssn.ID == _item.StyleTypeID);
                 SelectedDesign = DesignOptions.FirstOrDefault(ssn => ssn.ID == _item.DesignID);
-                Price = _item.Price.ToString();
+                Price = String.Format("{0:C}", _item.Price);
                 
             }
         }
