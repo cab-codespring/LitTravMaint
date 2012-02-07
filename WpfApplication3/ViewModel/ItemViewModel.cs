@@ -11,6 +11,7 @@ using System.Reactive.Linq;
 using ReactiveUI;
 using ReactiveUI.Xaml;
 using System.Collections.ObjectModel;
+using System.Globalization;
 
 namespace LitTravProj.ViewModel
 {
@@ -20,7 +21,7 @@ namespace LitTravProj.ViewModel
     public class ItemViewModel : WorkspaceViewModel, INotifyPropertyChanged
     {
         private LittleTravellerDataContext context;
-        private string _sku;
+      
         private Item _item;
         private bool _itemExists = false;
 
@@ -50,6 +51,7 @@ namespace LitTravProj.ViewModel
             this._item = itemIn;
         }
 
+        private string _sku;
         public string SKU
         {
             get { return _sku; }
@@ -81,6 +83,8 @@ namespace LitTravProj.ViewModel
                 SelectedSize = SizeOptions.FirstOrDefault(ssn => ssn.SizeVal == _item.Size);
                 SelectedStyleType = StyleTypeOptions.FirstOrDefault(ssn => ssn.ID == _item.StyleTypeID);
                 SelectedDesign = DesignOptions.FirstOrDefault(ssn => ssn.ID == _item.DesignID);
+                Price = _item.Price.ToString();
+                
             }
         }
 
@@ -183,9 +187,6 @@ namespace LitTravProj.ViewModel
             }
         }
 
-
-
-
         /// <summary>
         /// Size must be limited to this size Type
         /// </summary>
@@ -232,11 +233,23 @@ namespace LitTravProj.ViewModel
             }
         }
 
+        public string Price { get;  set; }
 
+        decimal _validatedPrice = 0;
         private bool ValidateFields()
         {
             if (SKU == null || SKU.Length == 0)
                 return false;
+            if (Price == null)
+                return false;
+            try
+            {
+                _validatedPrice = Decimal.Parse(Price, NumberStyles.Currency);
+            }
+            catch (Exception )
+            {
+                return false;
+            }
             return true;
         }
 
@@ -253,6 +266,7 @@ namespace LitTravProj.ViewModel
             _item.Size = SelectedSize.SizeVal;
             _item.StyleTypeID = _selectedStyleType.ID;
             _item.DesignID = SelectedDesign.ID;
+            _item.Price = _validatedPrice;
 
             if (!_itemExists)
                 context.Items.InsertOnSubmit(_item);

@@ -15,6 +15,7 @@
             <RowDefinition Height="34*" />
             <RowDefinition Height="29" />
             <RowDefinition Height="39*" />
+            <RowDefinition Height="29" />
             <RowDefinition Height="44*" />
             <RowDefinition Height="0*" />
             <RowDefinition Height="0*" />
@@ -57,7 +58,9 @@
         <ComboBox Height="Auto" HorizontalAlignment="Left" ItemsSource="{Binding DesignOptions}" SelectedItem="{Binding SelectedDesign}" 
                   DisplayMemberPath="Desc" Margin="3.5,6,0,6" Name="DesignComboBox"  VerticalAlignment="Center" Width="251" Grid.Column="1" Grid.Row="8" />
         
-        <Button Content="Save" Height="23" HorizontalAlignment="Left" Margin="22,16,0,12" Name="SaveButton" VerticalAlignment="Center" Width="75" Command="{Binding SaveCommand}" Grid.Column="1" Grid.Row="9" />
-        <Button Content=" Cancel" Height="23" HorizontalAlignment="Center" Margin="136,16,366,12" Name="CancelButton" VerticalAlignment="Center" Width="75" Grid.Column="1" Grid.Row="9" />
+        <Button Content="Save" Height="23" HorizontalAlignment="Left" Margin="22,16,0,12" Name="SaveButton" VerticalAlignment="Center" Width="75" Command="{Binding SaveCommand}" Grid.Column="1" Grid.Row="10" />
+        <Button Content="Close" Height="23" HorizontalAlignment="Center" Margin="136,16,366,12" Name="CancelButton" VerticalAlignment="Center" Width="75" Grid.Column="1" Grid.Row="10" Command="{Binding CloseCommand}"/>
+        <Label Content="Price:" Height="Auto" HorizontalAlignment="Stretch" Margin="3,3,4,0" Name="label10" VerticalAlignment="Center" Width="Auto" Grid.Row="9" />
+        <TextBox Height="Auto" HorizontalAlignment="Left" Margin="4,4,0,3" Name="priceTextBox" Text="{Binding Price}"  VerticalAlignment="Center" Width="251" Grid.Column="1" Grid.Row="9" />
     </Grid>
 </UserControl>

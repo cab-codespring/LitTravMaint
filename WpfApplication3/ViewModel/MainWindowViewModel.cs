@@ -63,7 +63,7 @@ namespace LitTravProj.ViewModel
                     new RelayCommand(param => this.ShowAllItems())),
 
                 new CommandViewModel(
-                    "Add New Item",
+                    "Add or Edit Item",
                     new RelayCommand(param => this.CreateNewItem()))
             };
         }
