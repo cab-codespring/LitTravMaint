@@ -232,8 +232,16 @@ namespace LitTravProj.ViewModel
                 this.RaiseAndSetIfChanged(vm => vm.SelectedDesign, ref _selectedDesign, value);
             }
         }
-
-        public string Price { get;  set; }
+        private string _price;
+        public string Price 
+        { 
+            get { return _price;}
+            set
+            {
+                this.RaiseAndSetIfChanged(vm => vm.Price, ref _price, value);
+            }
+            
+         }
 
         decimal _validatedPrice = 0;
         private bool ValidateFields()
