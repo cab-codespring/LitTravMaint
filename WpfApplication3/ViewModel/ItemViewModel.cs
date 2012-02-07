@@ -22,7 +22,7 @@ namespace LitTravProj.ViewModel
         private LittleTravellerDataContext context;
         private string _sku;
         private Item _item;
-
+        private bool _itemExists = false;
 
 
         public ItemViewModel()
@@ -33,6 +33,7 @@ namespace LitTravProj.ViewModel
             context = new LittleTravellerDataContext();
             var CanSave = this.Changed.Select(_ => ValidateFields()).StartWith(false);
             SaveCommand = new ReactiveCommand(CanSave);
+            SaveCommand.Subscribe(_ => SaveItem());
 
             SeasonOptions = context.Seasons.ToList();
             ColorOptions1 = context.Colors.ToList();
@@ -66,10 +67,11 @@ namespace LitTravProj.ViewModel
                     //item doesn;t exist              
                     _item = new Item();
                     _item.Sku = _sku;
+                    _itemExists = false;
                     return; // new sku
                 }
                 _item = existingItem;
-
+                _itemExists = true;
 
                 SelectedSeason = SeasonOptions.FirstOrDefault(ssn => ssn.SeasonCode == _item.SeasonID);
                 SelectedColor1 = ColorOptions1.FirstOrDefault(ssn => ssn.ColorCode == _item.ColorID);
@@ -79,7 +81,7 @@ namespace LitTravProj.ViewModel
                 SelectedSize = SizeOptions.FirstOrDefault(ssn => ssn.SizeVal == _item.Size);
                 SelectedStyleType = StyleTypeOptions.FirstOrDefault(ssn => ssn.ID == _item.StyleTypeID);
                 SelectedDesign = DesignOptions.FirstOrDefault(ssn => ssn.ID == _item.DesignID);
-                }
+            }
         }
 
         /// <summary>
@@ -107,7 +109,7 @@ namespace LitTravProj.ViewModel
 
         private Color _selectedColor1 = new Color();
 
-        public Color SelectedColor1 
+        public Color SelectedColor1
         {
             get { return _selectedColor1; }
             set
@@ -122,7 +124,7 @@ namespace LitTravProj.ViewModel
         /// </summary>
         private Color _selectedColor2 = new Color();
 
-        public Color SelectedColor2 
+        public Color SelectedColor2
         {
             get { return _selectedColor2; }
             set
@@ -164,7 +166,7 @@ namespace LitTravProj.ViewModel
                 // _selectedSizeTypeID = value;
                 this.RaiseAndSetIfChanged(vm => vm.SelectedSizeTypeID, ref _selectedSizeTypeID, value);
                 // this.RaisePropertyChanged(vm => vm.SizeOptions);
-               SizeOptions =  (from sz in context.Sizes where sz.SizeTypeName.CompareTo(SelectedSizeTypeID.SizeTypeName) == 0 select sz).ToList();
+                SizeOptions = (from sz in context.Sizes where sz.SizeTypeName.CompareTo(SelectedSizeTypeID.SizeTypeName) == 0 select sz).ToList();
             }
         }
 
@@ -174,11 +176,7 @@ namespace LitTravProj.ViewModel
         private IEnumerable<Size> _sizeOptions;
         public IEnumerable<Size> SizeOptions
         {
-            get
-            {
-                return _sizeOptions; 
-          
-            }
+            get { return _sizeOptions; }
             set
             {
                 this.RaiseAndSetIfChanged(vm => vm.SizeOptions, ref _sizeOptions, value);
@@ -186,7 +184,7 @@ namespace LitTravProj.ViewModel
         }
 
 
-      
+
 
         /// <summary>
         /// Size must be limited to this size Type
@@ -223,7 +221,7 @@ namespace LitTravProj.ViewModel
         /// </summary>
         public IEnumerable<Design> DesignOptions { get; private set; }
 
-        private Design _selectedDesign= new Design();
+        private Design _selectedDesign = new Design();
 
         public Design SelectedDesign
         {
@@ -237,150 +235,33 @@ namespace LitTravProj.ViewModel
 
         private bool ValidateFields()
         {
-            if (SKU.Length == 0)
+            if (SKU == null || SKU.Length == 0)
                 return false;
             return true;
         }
 
+        public ReactiveCommand SaveCommand { get; private set; }
 
-
-
-        public ReactiveCommand SaveCommand { get;  private set; }
-
-
-        public void SaveItem()
+        private void SaveItem()
         {
+
             _item.SeasonID = SelectedSeason.SeasonCode;
             _item.ColorID = SelectedColor1.ColorCode;
             _item.Color2ID = SelectedColor2.ColorCode;
             _item.Color3ID = SelectedColor3.ColorCode;
             _item.SizeType = SelectedSizeTypeID.SizeTypeName;
             _item.Size = SelectedSize.SizeVal;
+            _item.StyleTypeID = _selectedStyleType.ID;
+            _item.DesignID = SelectedDesign.ID;
 
-
-
+            if (!_itemExists)
+                context.Items.InsertOnSubmit(_item);
+            context.SubmitChanges();
+     
+            this.RaiseAndSetIfChanged(vm => vm.SKU, ref _sku, "");
         }
 
-        ///// <summary>
-        ///// Gets/sets whether this customer is selected in the UI.
-        ///// </summary>
-        //public bool IsSelected
-        //{
-        //    get { return _isSelected; }
-        //    set
-        //    {
-        //        if (value == _isSelected)
-        //            return;
 
-        //        _isSelected = value;
-
-        //        base.OnPropertyChanged("IsSelected");
-        //    }
-        //}
-
-        ///// <summary>
-        ///// Returns a command that saves the customer.
-        ///// </summary>
-        //public ICommand SaveCommand
-        //{
-        //    get
-        //    {
-        //        if (_saveCommand == null)
-        //        {
-        //            _saveCommand = new RelayCommand(
-        //                param => this.Save()
-        //                //  param => this.CanSave
-        //                );
-        //        }
-        //        return _saveCommand;
-        //    }
-        //}
-
-        // Presentation Properties
-
-        // Public Methods
-
-        /// <summary>
-        /// Saves the customer to the repository.  This method is invoked by the SaveCommand.
-        /// </summary>
-        //public void Save()
-        //{
-        //    //if (!_customer.IsValid)
-        //    //    throw new InvalidOperationException(Strings.CustomerViewModel_Exception_CannotSave);
-
-        //    //if (this.IsNewCustomer)
-        //    //    _customerRepository.AddCustomer(_customer);
-
-        //    //base.OnPropertyChanged("DisplayName");
-        //}
-
-        // Public Methods
-
-        // Private Helpers
-
-        /// <summary>
-        /// Returns true if this customer was created by the user and it has not yet
-        /// been saved to the customer repository.
-        /// </summary>
-        //bool IsNewCustomer
-        //{
-        //    get { return !_customerRepository.ContainsCustomer(_customer); }
-        //}
-
-        /// <summary>
-        /// Returns true if the customer is valid and can be saved.
-        /// </summary>
-        //bool CanSave
-        //{
-        //    get { return true; } // get { return String.IsNullOrEmpty(this.ValidateCustomerType()) && _customer.IsValid; }
-        //}
-
-
-
-        //#region IDataErrorInfo Members
-
-        //string IDataErrorInfo.Error
-        //{
-        //    get { return (_item as IDataErrorInfo).Error; }
-        //}
-
-        //string IDataErrorInfo.this[string propertyName]
-        //{
-        //    get
-        //    {
-        //        string error = null;
-
-        //        //if (propertyName == "CustomerType")
-        //        //{
-        //        //    // The IsCompany property of the Customer class 
-        //        //    // is Boolean, so it has no concept of being in
-        //        //    // an "unselected" state.  The ItemViewModel
-        //        //    // class handles this mapping and validation.
-        //        //    error = this.ValidateCustomerType();
-        //        //}
-        //        //else
-        //        //{
-        //        //    error = (_item as IDataErrorInfo)[propertyName];
-        //        //}
-
-        //        //// Dirty the commands registered with CommandManager,
-        //        //// such as our Save command, so that they are queried
-        //        //// to see if they can execute now.
-        //        //CommandManager.InvalidateRequerySuggested();
-
-        //        return error;
-        //    }
-        //}
-
-        ////string ValidateCustomerType()
-        ////{
-        ////    if (this.CustomerType == Strings.CustomerViewModel_CustomerTypeOption_Company ||
-        ////       this.CustomerType == Strings.CustomerViewModel_CustomerTypeOption_Person)
-        ////        return null;
-
-        ////    return Strings.CustomerViewModel_Error_MissingCustomerType;
-        ////}
-
-        //#endregion // IDataErrorInfo Members
+       
     }
 }
