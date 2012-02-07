@@ -25,7 +25,16 @@ This resource dictionary is used by the MainWindow.
     <vw:ItemView />
   </DataTemplate>
 
-  <!-- 
+
+  <!--This template applies an AllCustomersView to an instance 
+  of the AllItemssViewModel class shown in the main window.
+  -->
+
+    <DataTemplate DataType="{x:Type vm:AllCustomersViewModel}">
+        <vw:AllCustomersView />
+    </DataTemplate>
+
+    <!-- 
   This style configures both of the main content areas in the main window.
   -->
   <Style x:Key="MainHCCStyle" TargetType="{x:Type HeaderedContentControl}">
@@ -123,7 +132,7 @@ This resource dictionary is used by the MainWindow.
         Margin="0,1,0,0"
         Padding="0"
         VerticalContentAlignment="Bottom"
-        Width="16" Height="16" 
+        Width="20" Height="16" 
         />
       <ContentPresenter 
         Content="{Binding Path=DisplayName}" 

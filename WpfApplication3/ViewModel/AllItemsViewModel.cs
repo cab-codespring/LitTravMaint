@@ -17,45 +17,10 @@ namespace LitTravProj.ViewModel
         {
              context = new LittleTravellerDataContext();
              this.DisplayName = "View All Items";
-          
-
-           //Items =   (from item in context.ItemsGrisView
-           //            join st in context.StyleTypes on item.StyleTypeID equals st.ID
-           //            join d in context.Designs on item.DesignID equals d.ID
-           //            select
-           //                 new
-           //                 {
-           //                     item.Sku,
-           //                     item.SeasonID,
-           //                     item.ColorID,
-           //                     item.Color2ID,
-           //                     item.Color3ID,
-           //                     StyleTypeDesc = st.Desc,
-           //                     DesignDesc = d.Desc,
-           //                     item.Price
-           //                 }).Cast<object>().ToList();
-
-
-
              Items = context.ItemsGridViews.ToList<ItemsGridView>();
         }
        public List<ItemsGridView> Items { get; private set; }
 
-        //public ListViewItem AllItemsGridSource 
-        //{
-        //    get
-        //    {
-
-        //        ListView listView1 = new ListView();
-        //        var itemQuery1 =
-        //            from item in context.Items
-        //            select item;
-
-        //        ListViewItem ItemsSource = new ListViewItem();
-        //        ItemsSource = (ListViewItem)itemQuery1;
-        //        return ItemsSource;
-        //    }
-
-        //}
+       
     }
 }

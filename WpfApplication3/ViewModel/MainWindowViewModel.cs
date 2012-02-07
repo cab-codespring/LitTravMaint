@@ -16,26 +16,22 @@ namespace LitTravProj.ViewModel
     /// </summary>
     public class MainWindowViewModel : WorkspaceViewModel
     {
-        #region Fields
+
 
         ReadOnlyCollection<CommandViewModel> _commands;
-       // readonly CustomerRepository _customerRepository;
+        // readonly CustomerRepository _customerRepository;
         ObservableCollection<WorkspaceViewModel> _workspaces;
 
-        #endregion // Fields
 
-        #region Constructor
 
         public MainWindowViewModel()
         {
             base.DisplayName = "Little Travellers Data Maintenance App";
 
-         //   _customerRepository = new CustomerRepository(customerDataFile);
+            //   _customerRepository = new CustomerRepository(customerDataFile);
         }
 
-        #endregion // Constructor
 
-        #region Commands
 
         /// <summary>
         /// Returns a read-only list of commands 
@@ -64,13 +60,15 @@ namespace LitTravProj.ViewModel
 
                 new CommandViewModel(
                     "Add or Edit Item",
-                    new RelayCommand(param => this.CreateNewItem()))
+                    new RelayCommand(param => this.CreateNewItem())),
+       
+                new CommandViewModel(
+                    "View All Customers",
+                    new RelayCommand(param => this.ShowAllCustomers()))
             };
         }
 
-        #endregion // Commands
 
-        #region Workspaces
 
         /// <summary>
         /// Returns the collection of available workspaces to display.
@@ -107,17 +105,13 @@ namespace LitTravProj.ViewModel
             this.Workspaces.Remove(workspace);
         }
 
-        #endregion // Workspaces
-
-        #region Private Helpers
-
         void CreateNewItem()
         {
             Item newItem = new Item();
             ItemViewModel workspace = new ItemViewModel();
             this.Workspaces.Add(workspace);
             this.SetActiveWorkspace(workspace);
-         
+
         }
 
         void ShowAllItems()
@@ -135,6 +129,21 @@ namespace LitTravProj.ViewModel
             this.SetActiveWorkspace(workspace);
         }
 
+        void ShowAllCustomers()
+        {
+            AllCustomersViewModel workspace =
+                this.Workspaces.FirstOrDefault(vm => vm is AllCustomersViewModel)
+                as AllCustomersViewModel;
+
+            if (workspace == null)
+            {
+                workspace = new AllCustomersViewModel();
+                this.Workspaces.Add(workspace);
+            }
+
+            this.SetActiveWorkspace(workspace);
+        }
+
         void SetActiveWorkspace(WorkspaceViewModel workspace)
         {
             Debug.Assert(this.Workspaces.Contains(workspace));
@@ -144,38 +153,6 @@ namespace LitTravProj.ViewModel
                 collectionView.MoveCurrentTo(workspace);
         }
 
-        #endregion // Private Helpers
     }
-//    public class MainWindowViewModel : INotifyPropertyChanged
-//    {
 
-//        List<string> _seasons;
-
-//        public MainWindowViewModel()
-//        {
-//            Seasons = new List<string>() { "Spring 12", "Summer 12", "Fall 12" }; // put some sample data in there
-//        }
-
-
-//        public List<string> Seasons
-//        {
-//            get
-//            {
-//                return _seasons;
-//            }
-//            set
-//            {
-//                _seasons = value;
-//                NotifyProprtyChanged("Seasons");
-//            }
-//        }
-
-//        public event PropertyChangedEventHandler PropertyChanged;
-
-//        void NotifyProprtyChanged(string propName)
-//        {
-//            if (PropertyChanged != null)
-//                PropertyChanged(this, new PropertyChangedEventArgs(propName));
-//        }
-//    }
 }
