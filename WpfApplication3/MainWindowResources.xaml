@@ -34,6 +34,14 @@ This resource dictionary is used by the MainWindow.
         <vw:AllCustomersView />
     </DataTemplate>
 
+    <!--This template applies an AllCustomersView to an instance 
+  of the AllItemssViewModel class shown in the main window.
+  -->
+
+    <DataTemplate DataType="{x:Type vm:CustomerViewModel}">
+        <vw:CustomerView />
+    </DataTemplate>
+
     <!-- 
   This style configures both of the main content areas in the main window.
   -->
