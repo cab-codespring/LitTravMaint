@@ -107,12 +107,14 @@ namespace LitTravProj.ViewModel
             _customer.BillToState = SelectedBillToState;
             _customer.BillToZip5 = BillToZip5;
             _customer.BillToZip4 = BillToZip4;
+            _customer.BillToState = SelectedBillToState;
             _customer.BillToPhone = BillToPhone;
             _customer.BillToFax = BillToFax;
             _customer.email = Email;
             _customer.ShipToAddr1 = ShipToAddr1;
             _customer.ShipToAddr2 = ShipToAddr2;
             _customer.ShipToCity = ShipToCity;
+            _customer.ShipToState = SelectedShipToState;
             _customer.ShipToZip5 = ShipToZip5;
             _customer.ShipToZip4 = ShipToZip4;
             _customer.ShipToPhone = ShipToPhone;
