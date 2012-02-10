@@ -32,6 +32,7 @@ namespace LitTravProj.ViewModel
             var CanSave = this.Changed.Select(_ => ValidateFields()).StartWith(false);
             SaveCommand = new ReactiveCommand(CanSave);
             SaveCommand.Subscribe(_ => SaveItem());
+            BillToStateOptions = context.states.ToList();
         }
 
         private string _customerNum;
@@ -72,7 +73,7 @@ namespace LitTravProj.ViewModel
                 BillToAddr1 = _customer.BillToAddr1;
                 BillToAddr2 = _customer.BillToAddr2;
                 BillToCity = _customer.BillToCity;
-                BillToState = _customer.BillToState;
+                SelectedBillToState = _customer.BillToState;
                 BillToZip5 = _customer.BillToZip5;
                 BillToZip4 = _customer.BillToZip4;
                 BillToPhone = _customer.BillToPhone;
@@ -81,6 +82,7 @@ namespace LitTravProj.ViewModel
                 ShipToAddr1 = _customer.ShipToAddr1;
                 ShipToAddr2 = _customer.ShipToAddr2;
                 ShipToCity = _customer.ShipToCity;
+                SelectedShipToState = _customer.ShipToState;
                 ShipToZip5 = _customer.ShipToZip5;
                 ShipToZip4 = _customer.ShipToZip4;
                 ShipToPhone = _customer.ShipToPhone;
@@ -93,17 +95,40 @@ namespace LitTravProj.ViewModel
 
         private bool ValidateFields()
         {
-            throw new NotImplementedException();
+            return true;
         }
 
         private void SaveItem()
         {
-            throw new NotImplementedException();
+            _customer.CompanyName = CompanyName;
+            _customer.BillToAddr1 = BillToAddr1;
+            _customer.BillToAddr2 = BillToAddr2;
+            _customer.BillToCity = BillToCity;
+            _customer.BillToState = SelectedBillToState;
+            _customer.BillToZip5 = BillToZip5;
+            _customer.BillToZip4 = BillToZip4;
+            _customer.BillToPhone = BillToPhone;
+            _customer.BillToFax = BillToFax;
+            _customer.email = Email;
+            _customer.ShipToAddr1 = ShipToAddr1;
+            _customer.ShipToAddr2 = ShipToAddr2;
+            _customer.ShipToCity = ShipToCity;
+            _customer.ShipToZip5 = ShipToZip5;
+            _customer.ShipToZip4 = ShipToZip4;
+            _customer.ShipToPhone = ShipToPhone;
+            _customer.ShipToFax = ShipToFax;
+            if (!_customerExists)
+                context.Customers.InsertOnSubmit(_customer);
+            context.SubmitChanges();
+
+            this.RaiseAndSetIfChanged(vm => vm.CustomerNum, ref _customerNum, "");
         }
 
         public ReactiveCommand SaveCommand { get; private set; }
 
         public List<Customer> Customers { get; private set; }
+
+
 
         private string _companyName;
         public string CompanyName
@@ -147,15 +172,19 @@ namespace LitTravProj.ViewModel
 
         }
 
-        private string _billToState;
-        public string BillToState
+        /// <summary>
+        /// Returns a list of states used to populate the BillToState selector.
+        /// </summary>
+        public IEnumerable<state> BillToStateOptions { get; private set; }
+
+        private string _selectedBillToState;
+        public string SelectedBillToState
         {
-            get { return _billToState; }
+            get { return _selectedBillToState; }
             set
             {
-                this.RaiseAndSetIfChanged(vm => vm.BillToState, ref _billToState, value);
+                this.RaiseAndSetIfChanged(vm => vm.SelectedBillToState, ref _selectedBillToState, value);
             }
-
         }
 
         private string _billToZip5;
@@ -251,15 +280,14 @@ namespace LitTravProj.ViewModel
 
         }
 
-        private string _shipToState;
-        public string ShipToState
+        private string _selectedShipToState;
+        public string SelectedShipToState
         {
-            get { return _shipToState; }
+            get { return _selectedShipToState; }
             set
             {
-                this.RaiseAndSetIfChanged(vm => vm.ShipToState, ref _shipToState, value);
+                this.RaiseAndSetIfChanged(vm => vm.SelectedShipToState, ref _selectedShipToState, value);
             }
-
         }
 
         private string _shipToZip5;
