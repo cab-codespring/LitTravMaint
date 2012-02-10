@@ -21,9 +21,9 @@
             <RowDefinition Height="97*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="136*" />
+            <ColumnDefinition  Width="Auto" />
             <ColumnDefinition Width="272*" />
-            <ColumnDefinition Width="99*" />
+            <ColumnDefinition  Width="Auto" />
             <ColumnDefinition Width="335*" />
         </Grid.ColumnDefinitions>
         <Label Content="Customer Number:" Height="28" HorizontalAlignment="Left" Margin="12,5,0,0" Name="label17" VerticalAlignment="Top" />
