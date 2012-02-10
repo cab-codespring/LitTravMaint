@@ -4,57 +4,75 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="2000" d:DesignWidth="468">
-    <Grid>
+             d:DesignHeight="453" d:DesignWidth="967" HorizontalAlignment="Center">
+
+    <Grid Name="gridTopRow" Background="Beige" Margin="3.5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="34*" />
+            <RowDefinition Height="34*" />
+            <RowDefinition Height="34*" />
+            <RowDefinition Height="34*" />
+            <RowDefinition Height="34*" />
+            <RowDefinition Height="34*" />
+            <RowDefinition Height="34*" />
+            <RowDefinition Height="34*" />
+            <RowDefinition Height="34*" />
+            <RowDefinition Height="42*" />
+            <RowDefinition Height="97*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150*" />
+            <ColumnDefinition Width="169*" />
+            <ColumnDefinition Width="118*" />
+            <ColumnDefinition Width="523*" />
+        </Grid.ColumnDefinitions>
+        <Label Content="Customer Number" Height="28" HorizontalAlignment="Left" Margin="12,5,0,0" Name="label17" VerticalAlignment="Top" />
+        <Label Content="Company Name" Height="28" HorizontalAlignment="Left" Margin="12,5,0,0" Name="label1" VerticalAlignment="Top" Grid.Row="1"  />
+        <Label Content="BillToAddr1" Height="28" HorizontalAlignment="Left" Margin="12,5,0,0" Name="label2" VerticalAlignment="Top" Grid.Row="2" />
+        <Label Content="BillToAddr2" Height="28" HorizontalAlignment="Left" Margin="12,5,0,0" Name="label3" VerticalAlignment="Top" Grid.Row="3" />
+        <Label Content="BillToCity" Height="28" HorizontalAlignment="Left" Margin="12,5,0,0" Name="label4" VerticalAlignment="Top" Grid.Row="4" />
+        <Label Content="BillToState:" Height="28" HorizontalAlignment="Left" Margin="12,5,0,0" Name="label20" VerticalAlignment="Top"  Grid.Row="5"  />
+        <Label Content="BillToZip4" Height="28" HorizontalAlignment="Left" Margin="12,5,0,0" Name="label6" VerticalAlignment="Top" Grid.Row="7" />
+        <Label Content="BillToPhone" Height="28" HorizontalAlignment="Left" Margin="12,5,0,0" Name="label7" VerticalAlignment="Top" Grid.Row="8"  />
+        <Label Content="BillToFax" Height="28" HorizontalAlignment="Left" Margin="12,5,0,0" Name="label8" VerticalAlignment="Top" Grid.Row="9" />
+        <Label Content="Email" Height="28" HorizontalAlignment="Left" Margin="12,5,0,0" Name="label9" VerticalAlignment="Top" Grid.Column="2" Grid.Row="1" />
+        <Label Content="BillToZip5" Height="28" HorizontalAlignment="Left" Margin="12,5,0,0" Name="label21" VerticalAlignment="Top" Grid.Row="6"  />
+        <Label Content="ShipToAddr1" Height="28" HorizontalAlignment="Left" Margin="12,5,0,0" Name="label10" VerticalAlignment="Top" Grid.Column="2" Grid.Row="2" />
+        <Label Content="ShipToAddr2" Height="28" HorizontalAlignment="Left" Margin="12,5,0,0" Name="label11" VerticalAlignment="Top" Grid.Column="2" Grid.Row="3" />
+        <Label Content="ShipToCity" Height="28" HorizontalAlignment="Left" Margin="12,5,0,0" Name="label12" VerticalAlignment="Top" Grid.Column="2" Grid.Row="4"  />
+        <Label Content="ShipToZip5" Height="28" HorizontalAlignment="Left" Margin="12,5,0,0" Name="label13" VerticalAlignment="Top" Grid.Column="2" Grid.Row="7" />
+        <Label Content="ShipToZip4" Height="28" HorizontalAlignment="Left" Margin="12,5,0,0" Name="label15" VerticalAlignment="Top" Grid.Column="2" Grid.Row="6" />
+        <Label Content="ShipToFax" Height="28" HorizontalAlignment="Left" Margin="12,5,0,0" Name="label16" VerticalAlignment="Top" Grid.Column="2" Grid.Row="9" />
+        <Label Content="ShipToPhone" Height="28" HorizontalAlignment="Left" Margin="12,5,0,0" Name="label14" VerticalAlignment="Top" Grid.Column="2" Grid.Row="8" />
+        <Label Content="ShipToState" Height="28" HorizontalAlignment="Left" Margin="12,5,0,0" Name="label123" VerticalAlignment="Top" Grid.Column="2" Grid.Row="5" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="12,5,0,0" Name="CustomerNumTB" Text="{Binding CustomerNum}" VerticalAlignment="Top" Width="120" Grid.Column="1" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="12,5,0,0" Name="CompanyNameTB1" Text="{Binding CompanyName}" VerticalAlignment="Top" Width="120" Grid.Column="1" Grid.Row="1" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="12,5,0,0" Name="BillToAddr1TB" Text="{Binding BillToAddr1}" VerticalAlignment="Top" Width="120" Grid.Column="1" Grid.Row="2" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="12,5,0,0" Name="BillToAddr2TB" Text="{Binding BillToAddr2}" VerticalAlignment="Top" Width="120" Grid.Column="1" Grid.Row="3" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="12,5,0,0" Name="BillToCity" Text="{Binding BillToCity}" VerticalAlignment="Top" Width="120" Grid.Column="1" Grid.Row="4" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="12,5,0,0" Name="BillToZip5TB" Text="{Binding BillToZip5}" VerticalAlignment="Top" Width="120" Grid.Column="1" Grid.Row="6" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="12,5,0,0" Name="BillToZip4TB" Text="{Binding BillToZip4}" VerticalAlignment="Top" Width="120" Grid.Column="1" Grid.Row="7" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="12,5,0,0" Name="BillToPhoneTB" Text="{Binding BillToPhone}" VerticalAlignment="Top" Width="120" Grid.Column="1" Grid.Row="8" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="12,5,0,0" Name="BillToFaxTB" Text="{Binding BillToFax}" VerticalAlignment="Top" Width="120" Grid.Column="1" Grid.Row="9" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="12,5,0,0" Name="Email" Text="{Binding Email}" VerticalAlignment="Top" Width="120" Grid.Column="3" Grid.Row="1" />
+        <ComboBox DisplayMemberPath="Name" Height="24" HorizontalAlignment="Left" ItemsSource="{Binding BillToStateOptions}" Margin="12,5,0,0" Name="BillToStateComBox" SelectedItem="{Binding SelectedBillToState, Mode=TwoWay}" 
+                  VerticalAlignment="Center" Width="120" Grid.Column="1"  Grid.Row="5"/>
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="12,5,0,0" Name="ShipToAddr1TB" Text="{Binding ShipToAddr1}" VerticalAlignment="Top" Width="120" Grid.Column="3" Grid.Row="2" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="12,5,0,0" Name="ShipToAddr2TB" Text="{Binding ShipToAddr2}" VerticalAlignment="Top" Width="120" Grid.Column="3" Grid.Row="3" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="12,5,0,0" Name="ShipToCityTB" Text="{Binding ShipToCity}" VerticalAlignment="Top" Width="120" Grid.Column="3" Grid.Row="4" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="12,5,0,0" Name="ShipToZip5TB" Text="{Binding ShipToZip5}" VerticalAlignment="Top" Width="120" Grid.Column="3" Grid.Row="7" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="12,5,0,0" Name="ShipToPhoneTB" Text="{Binding ShipToPhone}" VerticalAlignment="Top" Width="120" Grid.Column="3" Grid.Row="8" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="12,5,0,0" Name="ShipToZip4TB" Text="{Binding ShipToZip4}" VerticalAlignment="Top" Width="120" Grid.Column="3" Grid.Row="6" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="12,5,0,0" Name="ShipToFaxTB" Text="{Binding ShipToFax}" VerticalAlignment="Top" Width="120" Grid.Column="3" Grid.Row="9" />
+        <ComboBox DisplayMemberPath="Name" Height="28" HorizontalAlignment="Left" ItemsSource="{Binding BillToStateOptions}" Margin="12,12,0,0" Name="ShipToStateComBox" SelectedItem="{Binding SelectedShipToState, Mode=TwoWay}" 
+                      VerticalAlignment="Center" Width="120" Grid.Column="3" Grid.Row="5" />
+    </Grid>
+    <!--  <Grid VerticalAlignment="Bottom">
         <Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition Height="Auto"/>
             <RowDefinition />
         </Grid.RowDefinitions>
-
-        <Grid Name="gridTopRow" Grid.Row="0" Background="Beige">
-            <Label Content="Customer Number" Height="28" HorizontalAlignment="Left" Margin="114,18,0,0" Name="label17" VerticalAlignment="Top" />
-            <TextBox Height="23" HorizontalAlignment="Right" Margin="0,18,69,0" Name="CustomerNumTB" Text="{Binding CustomerNum}" VerticalAlignment="Top" Width="120" />
-            <Label Content="Company Name" Height="28" HorizontalAlignment="Left" Margin="114,52,0,0" Name="label1" VerticalAlignment="Top" />
-            <TextBox Name="CompanyNameTB1" Text="{Binding CompanyName}" Height="23" HorizontalAlignment="Right" Margin="0,52,69,0" VerticalAlignment="Top" Width="120" />
-            <Label Content="BillToAddr1" Height="28" HorizontalAlignment="Left" Margin="114,82,0,0" Name="label2" VerticalAlignment="Top" />
-            <TextBox Height="23" HorizontalAlignment="Right" Margin="0,84,69,0" Name="BillToAddr1TB" Text="{Binding BillToAddr1}" VerticalAlignment="Top" Width="120" />
-            <Label Content="BillToAddr2" Height="28" HorizontalAlignment="Left" Margin="114,116,0,0" Name="label3" VerticalAlignment="Top" />
-            <TextBox Height="23" HorizontalAlignment="Right" Margin="0,118,69,0" Name="BillToAddr2TB" Text="{Binding BillToAddr2}" VerticalAlignment="Top" Width="120" />
-            <Label Content="BillToCity" Height="28" HorizontalAlignment="Left" Margin="114,150,0,0" Name="label4" VerticalAlignment="Top" />
-            <TextBox Height="23" HorizontalAlignment="Right" Margin="0,152,69,0" Name="BillToCity" Text="{Binding BillToCity}" VerticalAlignment="Top" Width="120" />
-            <Label Content="BillToState:" Height="Auto" HorizontalAlignment="Stretch" Margin="114,184,-108,0" Name="label20" VerticalAlignment="Top" Width="Auto" />
-            <TextBox Height="23" HorizontalAlignment="Right" Margin="0,228,69,0" Name="BillToZip5TB" Text="{Binding BillToZip5}" VerticalAlignment="Top" Width="120" />
-            <Label Content="BillToZip4" Height="28" HorizontalAlignment="Left" Margin="114,260,0,0" Name="label6" VerticalAlignment="Top" />
-            <TextBox Height="23" HorizontalAlignment="Right" Margin="0,262,69,0" Name="BillToZip4TB" Text="{Binding BillToZip4}" VerticalAlignment="Top" Width="120" />
-            <Label Content="BillToPhone" Height="28" HorizontalAlignment="Left" Margin="114,294,0,0" Name="label7" VerticalAlignment="Top" />
-            <TextBox Height="23" HorizontalAlignment="Right" Margin="0,296,69,0" Name="BillToPhoneTB" Text="{Binding BillToPhone}" VerticalAlignment="Top" Width="120" />
-            <Label Content="BillToFax" Height="28" HorizontalAlignment="Left" Margin="114,326,0,0" Name="label8" VerticalAlignment="Top" />
-            <TextBox Height="23" HorizontalAlignment="Right" Margin="0,328,69,0" Name="BillToFaxTB" Text="{Binding BillToFax}" VerticalAlignment="Top" Width="120" />
-            <Label Content="Email" Height="28" HorizontalAlignment="Left" Margin="114,360,0,0" Name="label9" VerticalAlignment="Top" />
-            <TextBox Height="23" HorizontalAlignment="Right" Margin="0,362,69,0" Name="Email" Text="{Binding Email}" VerticalAlignment="Top" Width="120" />
-            <Label Content="ShipToAddr1" Height="28" HorizontalAlignment="Left" Margin="114,394,0,0" Name="label10" VerticalAlignment="Top" />
-            <TextBox Height="23" HorizontalAlignment="Right" Margin="0,396,69,0" Name="ShipToAddr1TB" Text="{Binding ShipToAddr1}" VerticalAlignment="Top" Width="120" />
-            <Label Content="ShipToAddr2" Height="28" HorizontalAlignment="Left" Margin="114,426,0,0" Name="label11" VerticalAlignment="Top" />
-            <TextBox Height="23" HorizontalAlignment="Right" Margin="0,428,69,0" Name="ShipToAddr2TB" Text="{Binding ShipToAddr2}" VerticalAlignment="Top" Width="120" />
-            <Label Content="ShipToCity" Height="28" HorizontalAlignment="Left" Margin="114,460,0,0" Name="label12" VerticalAlignment="Top" />
-            <TextBox Height="23" HorizontalAlignment="Right" Margin="0,462,69,0" Name="ShipToCityTB" Text="{Binding ShipToCity}" VerticalAlignment="Top" Width="120" />
-            <Label Content="BillToZip5" Height="28" HorizontalAlignment="Left" Margin="114,226,0,0" Name="label21" VerticalAlignment="Top" />
-            <Label Content="ShipToZip5" Height="28" HorizontalAlignment="Left" Margin="114,542,0,0" Name="label13" VerticalAlignment="Top" />
-            <TextBox Height="23" HorizontalAlignment="Right" Margin="0,544,69,0" Name="ShipToZip5TB" Text="{Binding ShipToZip5}" VerticalAlignment="Top" Width="120" />
-            <TextBox Height="23" HorizontalAlignment="Right" Margin="0,576,69,0" Name="ShipToPhoneTB" Text="{Binding ShipToPhone}" VerticalAlignment="Top" Width="120" />
-            <Label Content="ShipToZip4" Height="28" HorizontalAlignment="Left" Margin="114,608,0,0" Name="label15" VerticalAlignment="Top" />
-            <TextBox Height="23" HorizontalAlignment="Right" Margin="0,610,69,0" Name="ShipToZip4TB" Text="{Binding ShipToZip4}" VerticalAlignment="Top" Width="120" />
-            <Label Content="ShipToFax" Height="28" HorizontalAlignment="Left" Margin="114,642,0,0" Name="label16" VerticalAlignment="Top" />
-            <TextBox Height="23" HorizontalAlignment="Right" Margin="0,644,69,0" Name="ShipToFaxTB" Text="{Binding ShipToFax}" VerticalAlignment="Top" Width="120" />
-            <Label Content="ShipToPhone" Height="28" HorizontalAlignment="Left" Margin="114,571,0,0" Name="label14" VerticalAlignment="Top" />
-            <Label Content="ShipToState" Height="28" HorizontalAlignment="Left" Margin="114,494,0,0" Name="label123" VerticalAlignment="Top" />
-            <ComboBox Height="28" HorizontalAlignment="Right" Margin="0,494,59,477" Name="ShipToStateComBox" VerticalAlignment="Center" Width="130"
-                      ItemsSource="{Binding BillToStateOptions}" SelectedItem="{Binding SelectedShipToState, Mode=TwoWay}" DisplayMemberPath="Name" />
-            <ComboBox Height="Auto" HorizontalAlignment="Right" Margin="0,190,69,789" Name="BillToStateComBox" VerticalAlignment="Center" Width="120" 
-                      ItemsSource="{Binding BillToStateOptions}" SelectedItem="{Binding SelectedBillToState, Mode=TwoWay}" DisplayMemberPath="Name" />
-            <ScrollBar Height="792" HorizontalAlignment="Right" Margin="0,0,6,0" Name="scrollBar1" VerticalAlignment="Top" Width="18" />
-        </Grid>
 
         <GridSplitter 
             ResizeDirection="Rows" 
@@ -75,6 +93,6 @@
             </Grid.ColumnDefinitions>
             <DataGrid  Name="dataGrid1"  Background="Beige" AutoGenerateColumns="True"  HorizontalAlignment="Stretch"  Margin="12,204,0,0" VerticalAlignment="Stretch"
                  ItemsSource="{Binding Customers}" Grid.ColumnSpan="3" />
-        </Grid>
-    </Grid>
+        </Grid> 
+    </Grid>-->
 </UserControl>
