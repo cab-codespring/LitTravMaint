@@ -35,7 +35,7 @@ namespace LitTravProj.ViewModel
         }
 
         private string _customerNum;
-        public string SKU
+        public string CustomerNum
         {
             get { return _customerNum; }
 
@@ -68,6 +68,23 @@ namespace LitTravProj.ViewModel
                 _customer = existingCustomer;
                 _customerExists = true;
 
+                CompanyName = _customer.CompanyName;
+                BillToAddr1 = _customer.BillToAddr1;
+                BillToAddr2 = _customer.BillToAddr2;
+                BillToCity = _customer.BillToCity;
+                BillToState = _customer.BillToState;
+                BillToZip5 = _customer.BillToZip5;
+                BillToZip4 = _customer.BillToZip4;
+                BillToPhone = _customer.BillToPhone;
+                BillToFax = _customer.BillToFax;
+                Email = _customer.email;
+                ShipToAddr1 = _customer.ShipToAddr1;
+                ShipToAddr2 = _customer.ShipToAddr2;
+                ShipToCity = _customer.ShipToCity;
+                ShipToZip5 = _customer.ShipToZip5;
+                ShipToZip4 = _customer.ShipToZip4;
+                ShipToPhone = _customer.ShipToPhone;
+                ShipToFax = _customer.ShipToFax;
 
             }
         }
@@ -86,45 +103,212 @@ namespace LitTravProj.ViewModel
 
         public ReactiveCommand SaveCommand { get; private set; }
 
-
-
-        public string CompanyName { get;  set; }
-
-        public string BillToAddr1 { get;  set; }
-
-        public string BillToAddr2 { get;  set; }
-
-        public string BillToCity { get;  set; }
-
-        public string BillToState { get;  set; }
-
-        public string BillToZip5 { get;  set; }
-
-        public string BillToZip4 { get;  set; }
-
-        public string BillToPhone { get;  set; }
-
-        public string BillToFax { get;  set; }
-
-        public string Email { get;  set; }
-
-        public string ShipToAddr1 { get;  set; }
-
-        public string ShipToAddr2 { get;  set; }
-
-        public string ShipToCity { get;  set; }
-
-        public string ShipToState { get;  set; }
-
-        public string ShipToZip5 { get;  set; }
-
-        public string ShipToZip4 { get;  set; }
-
-        public string ShipToPhone { get;  set; }
-
-        public string ShipToFax { get; set; }
-
         public List<Customer> Customers { get; private set; }
+
+        private string _companyName;
+        public string CompanyName
+        {
+            get { return _companyName; }
+            set
+            {
+                this.RaiseAndSetIfChanged(vm => vm.CompanyName, ref _companyName, value);
+            }
+
+        }
+        private string _billToAddr1;
+        public string BillToAddr1
+        {
+            get { return _billToAddr1; }
+            set
+            {
+                this.RaiseAndSetIfChanged(vm => vm.BillToAddr1, ref _billToAddr1, value);
+            }
+        }
+
+        private string _billToAddr2;
+        public string BillToAddr2
+        {
+            get { return _billToAddr2; }
+            set
+            {
+                this.RaiseAndSetIfChanged(vm => vm.BillToAddr2, ref _billToAddr2, value);
+            }
+
+        }
+
+        private string _billToCity;
+        public string BillToCity
+        {
+            get { return _billToCity; }
+            set
+            {
+                this.RaiseAndSetIfChanged(vm => vm.BillToCity, ref _billToCity, value);
+            }
+
+        }
+
+        private string _billToState;
+        public string BillToState
+        {
+            get { return _billToState; }
+            set
+            {
+                this.RaiseAndSetIfChanged(vm => vm.BillToState, ref _billToState, value);
+            }
+
+        }
+
+        private string _billToZip5;
+        public string BillToZip5
+        {
+            get { return _billToZip5; }
+            set
+            {
+                this.RaiseAndSetIfChanged(vm => vm.BillToZip5, ref _billToZip5, value);
+            }
+
+        }
+
+
+        private string _billToZip4;
+        public string BillToZip4
+        {
+            get { return _billToZip4; }
+            set
+            {
+                this.RaiseAndSetIfChanged(vm => vm.BillToZip4, ref _billToZip4, value);
+            }
+
+        }
+
+
+        private string _billToPhone;
+        public string BillToPhone
+        {
+            get { return _billToPhone; }
+            set
+            {
+                this.RaiseAndSetIfChanged(vm => vm.BillToPhone, ref _billToPhone, value);
+            }
+
+        }
+
+
+        private string _billToFax;
+        public string BillToFax
+        {
+            get { return _billToPhone; }
+            set
+            {
+                this.RaiseAndSetIfChanged(vm => vm.BillToFax, ref _billToFax, value);
+            }
+
+        }
+
+
+        private string _email;
+        public string Email
+        {
+            get { return _email; }
+            set
+            {
+                this.RaiseAndSetIfChanged(vm => vm.Email, ref _email, value);
+            }
+
+        }
+
+
+        private string _shipToAddr1;
+        public string ShipToAddr1
+        {
+            get { return _shipToAddr1; }
+            set
+            {
+                this.RaiseAndSetIfChanged(vm => vm.ShipToAddr1, ref _shipToAddr1, value);
+            }
+
+        }
+
+        private string _shipToAddr2;
+        public string ShipToAddr2
+        {
+            get { return _shipToAddr2; }
+            set
+            {
+                this.RaiseAndSetIfChanged(vm => vm.ShipToAddr2, ref _shipToAddr2, value);
+            }
+
+        }
+
+        private string _shipToCity;
+        public string ShipToCity
+        {
+            get { return _shipToCity; }
+            set
+            {
+                this.RaiseAndSetIfChanged(vm => vm.ShipToCity, ref _shipToCity, value);
+            }
+
+        }
+
+        private string _shipToState;
+        public string ShipToState
+        {
+            get { return _shipToState; }
+            set
+            {
+                this.RaiseAndSetIfChanged(vm => vm.ShipToState, ref _shipToState, value);
+            }
+
+        }
+
+        private string _shipToZip5;
+        public string ShipToZip5
+        {
+            get { return _shipToZip5; }
+            set
+            {
+                this.RaiseAndSetIfChanged(vm => vm.ShipToZip5, ref _shipToZip5, value);
+            }
+
+        }
+
+
+        private string _shipToZip4;
+        public string ShipToZip4
+        {
+            get { return _shipToZip4; }
+            set
+            {
+                this.RaiseAndSetIfChanged(vm => vm.ShipToZip4, ref _shipToZip4, value);
+            }
+
+        }
+
+
+        private string _shipToPhone;
+        public string ShipToPhone
+        {
+            get { return _shipToPhone; }
+            set
+            {
+                this.RaiseAndSetIfChanged(vm => vm.ShipToPhone, ref _shipToPhone, value);
+            }
+
+        }
+
+
+        private string _shipToFax;
+        public string ShipToFax
+        {
+            get { return _shipToPhone; }
+            set
+            {
+                this.RaiseAndSetIfChanged(vm => vm.ShipToFax, ref _shipToFax, value);
+            }
+
+        }
+
 
     }
 }

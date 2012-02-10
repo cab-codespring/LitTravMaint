@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="453">
+             d:DesignHeight="2000" d:DesignWidth="453">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition />
@@ -13,8 +13,40 @@
         </Grid.RowDefinitions>
 
         <Grid Name="gridTopRow" Grid.Row="0" Background="Beige">
-            <Label Content="Company Name" Height="28" HorizontalAlignment="Left" Margin="114,50,0,0" Name="label1" VerticalAlignment="Top" />
-            <TextBox Name="CompanyNameTB1" Text="{Binding CompanyName}" Height="23" HorizontalAlignment="Left" Margin="264,52,0,0" VerticalAlignment="Top" Width="120" />
+            <Label Content="Customer Number" Height="28" HorizontalAlignment="Left" Margin="114,18,0,0" Name="label17" VerticalAlignment="Top" />
+            <TextBox Height="23" HorizontalAlignment="Right" Margin="0,18,69,0" Name="CustomerNumTB" Text="{Binding CustomerNum}" VerticalAlignment="Top" Width="120" />
+            <Label Content="Company Name" Height="28" HorizontalAlignment="Left" Margin="114,52,0,0" Name="label1" VerticalAlignment="Top" />
+            <TextBox Name="CompanyNameTB1" Text="{Binding CompanyName}" Height="23" HorizontalAlignment="Right" Margin="0,52,69,0" VerticalAlignment="Top" Width="120" />
+            <Label Content="BillToAddr1" Height="28" HorizontalAlignment="Left" Margin="114,82,0,0" Name="label2" VerticalAlignment="Top" />
+            <TextBox Height="23" HorizontalAlignment="Right" Margin="0,84,69,0" Name="BillToAddr1TB" Text="{Binding BillToAddr1}" VerticalAlignment="Top" Width="120" />
+            <Label Content="BillToAddr2" Height="28" HorizontalAlignment="Left" Margin="114,116,0,0" Name="label3" VerticalAlignment="Top" />
+            <TextBox Height="23" HorizontalAlignment="Right" Margin="0,118,69,0" Name="BillToAddr2TB" Text="{Binding BillToAddr2}" VerticalAlignment="Top" Width="120" />
+            <Label Content="BillToCity" Height="28" HorizontalAlignment="Left" Margin="114,150,0,0" Name="label4" VerticalAlignment="Top" />
+            <TextBox Height="23" HorizontalAlignment="Right" Margin="0,152,69,0" Name="BillToCity" Text="{Binding BillToCity}" VerticalAlignment="Top" Width="120" />
+            <Label Content="BillToZip5" Height="28" HorizontalAlignment="Left" Margin="114,182,0,0" Name="label5" VerticalAlignment="Top" />
+            <TextBox Height="23" HorizontalAlignment="Right" Margin="0,184,69,0" Name="BillToZip5TB" Text="{Binding BillToZip5}" VerticalAlignment="Top" Width="120" />
+            <Label Content="BillToZip4" Height="28" HorizontalAlignment="Left" Margin="114,216,0,0" Name="label6" VerticalAlignment="Top" />
+            <TextBox Height="23" HorizontalAlignment="Right" Margin="0,218,69,0" Name="BillToZip4TB" Text="{Binding BillToZip4}" VerticalAlignment="Top" Width="120" />
+            <Label Content="BillToPhone" Height="28" HorizontalAlignment="Left" Margin="114,250,0,0" Name="label7" VerticalAlignment="Top" />
+            <TextBox Height="23" HorizontalAlignment="Right" Margin="0,252,69,0" Name="BillToPhoneTB" Text="{Binding BillToPhone}" VerticalAlignment="Top" Width="120" />
+            <Label Content="BillToFax" Height="28" HorizontalAlignment="Left" Margin="114,282,0,0" Name="label8" VerticalAlignment="Top" />
+            <TextBox Height="23" HorizontalAlignment="Right" Margin="0,284,69,0" Name="BillToFaxTB" Text="{Binding BillToFax}" VerticalAlignment="Top" Width="120" />
+            <Label Content="Email" Height="28" HorizontalAlignment="Left" Margin="114,316,0,0" Name="label9" VerticalAlignment="Top" />
+            <TextBox Height="23" HorizontalAlignment="Right" Margin="0,318,69,0" Name="Email" Text="{Binding Email}" VerticalAlignment="Top" Width="120" />
+            <Label Content="ShipToAddr1" Height="28" HorizontalAlignment="Left" Margin="114,350,0,0" Name="label10" VerticalAlignment="Top" />
+            <TextBox Height="23" HorizontalAlignment="Right" Margin="0,352,69,0" Name="ShipToAddr1TB" Text="{Binding ShipToAddr1}" VerticalAlignment="Top" Width="120" />
+            <Label Content="ShipToAddr2" Height="28" HorizontalAlignment="Left" Margin="114,382,0,0" Name="label11" VerticalAlignment="Top" />
+            <TextBox Height="23" HorizontalAlignment="Right" Margin="0,384,69,0" Name="ShipToAddr2TB" Text="{Binding ShipToAddr2}" VerticalAlignment="Top" Width="120" />
+            <Label Content="ShipToCity" Height="28" HorizontalAlignment="Left" Margin="114,416,0,0" Name="label12" VerticalAlignment="Top" />
+            <TextBox Height="23" HorizontalAlignment="Right" Margin="0,418,69,0" Name="ShipToCityTB" Text="{Binding ShipToCity}" VerticalAlignment="Top" Width="120" />
+            <Label Content="ShipToZip5" Height="28" HorizontalAlignment="Left" Margin="114,450,0,0" Name="label13" VerticalAlignment="Top" />
+            <TextBox Height="23" HorizontalAlignment="Right" Margin="0,452,69,0" Name="ShipToZip5TB" Text="{Binding ShipToZip5}" VerticalAlignment="Top" Width="120" />
+            <Label Content="ShipToPhonee" Height="28" HorizontalAlignment="Left" Margin="114,482,0,0" Name="label14" VerticalAlignment="Top" />
+            <TextBox Height="23" HorizontalAlignment="Right" Margin="0,484,69,0" Name="ShipToPhoneTB" Text="{Binding ShipToPhone}" VerticalAlignment="Top" Width="120" />
+            <Label Content="ShipToZip4" Height="28" HorizontalAlignment="Left" Margin="114,516,0,0" Name="label15" VerticalAlignment="Top" />
+            <TextBox Height="23" HorizontalAlignment="Right" Margin="0,518,69,0" Name="ShipToZip4TB" Text="{Binding ShipToZip4}" VerticalAlignment="Top" Width="120" />
+            <Label Content="ShipToFax" Height="28" HorizontalAlignment="Left" Margin="114,550,0,0" Name="label16" VerticalAlignment="Top" />
+            <TextBox Height="23" HorizontalAlignment="Right" Margin="0,552,69,0" Name="ShipToFaxTB" Text="{Binding ShipToFax}" VerticalAlignment="Top" Width="120" />
         </Grid>
         
         <GridSplitter 
