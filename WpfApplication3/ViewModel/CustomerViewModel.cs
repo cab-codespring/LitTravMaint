@@ -73,7 +73,7 @@ namespace LitTravProj.ViewModel
                 BillToAddr1 = _customer.BillToAddr1;
                 BillToAddr2 = _customer.BillToAddr2;
                 BillToCity = _customer.BillToCity;
-                SelectedBillToState = _customer.BillToState;
+                SelectedBillToState.Name = _customer.BillToState;
                 BillToZip5 = _customer.BillToZip5;
                 BillToZip4 = _customer.BillToZip4;
                 BillToPhone = _customer.BillToPhone;
@@ -95,7 +95,19 @@ namespace LitTravProj.ViewModel
 
         private bool ValidateFields()
         {
-            return true;
+            if ( CustomerNum == null  ||  
+                (BillToAddr1 == null && BillToAddr2 == null) ||
+                BillToCity == null ||
+                SelectedBillToState == null ||
+                BillToPhone == null || 
+                BillToZip5 == null ||
+                CustomerNum.Length == 0 ||
+                (BillToAddr1.Length == 0 && BillToAddr2.Length == 0) || 
+                SelectedBillToState.Name.Length == 0 ||
+                BillToPhone.Length == 0 || 
+                BillToZip5.Length == 0 )
+                return false;
+             return true;
         }
 
         private void SaveItem()
@@ -104,10 +116,10 @@ namespace LitTravProj.ViewModel
             _customer.BillToAddr1 = BillToAddr1;
             _customer.BillToAddr2 = BillToAddr2;
             _customer.BillToCity = BillToCity;
-            _customer.BillToState = SelectedBillToState;
+            _customer.BillToState = SelectedBillToState.Name;
             _customer.BillToZip5 = BillToZip5;
             _customer.BillToZip4 = BillToZip4;
-            _customer.BillToState = SelectedBillToState;
+            _customer.BillToState = SelectedBillToState.Name;
             _customer.BillToPhone = BillToPhone;
             _customer.BillToFax = BillToFax;
             _customer.email = Email;
@@ -124,6 +136,8 @@ namespace LitTravProj.ViewModel
             context.SubmitChanges();
 
             this.RaiseAndSetIfChanged(vm => vm.CustomerNum, ref _customerNum, "");
+            this.RaiseAndSetIfChanged(vm => vm.CompanyName, ref _companyName, "");
+ 
         }
 
         public ReactiveCommand SaveCommand { get; private set; }
@@ -179,8 +193,8 @@ namespace LitTravProj.ViewModel
         /// </summary>
         public IEnumerable<state> BillToStateOptions { get; private set; }
 
-        private string _selectedBillToState;
-        public string SelectedBillToState
+        private state _selectedBillToState = new state();
+        public state SelectedBillToState
         {
             get { return _selectedBillToState; }
             set
