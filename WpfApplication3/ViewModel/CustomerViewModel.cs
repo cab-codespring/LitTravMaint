@@ -32,6 +32,8 @@ namespace LitTravProj.ViewModel
             var CanSave = this.Changed.Select(_ => ValidateFields()).StartWith(false);
             SaveCommand = new ReactiveCommand(CanSave);
             SaveCommand.Subscribe(_ => SaveItem());
+            ClearFieldsCommand = new ReactiveCommand();
+            ClearFieldsCommand.Subscribe(_ => ClearFields());
             BillToStateOptions = context.states.ToList();
         }
 
@@ -110,6 +112,7 @@ namespace LitTravProj.ViewModel
              return true;
         }
 
+        public ReactiveCommand SaveCommand { get; private set; }
         private void SaveItem()
         {
             _customer.CompanyName = CompanyName;
@@ -134,13 +137,34 @@ namespace LitTravProj.ViewModel
             if (!_customerExists)
                 context.Customers.InsertOnSubmit(_customer);
             context.SubmitChanges();
-
-            this.RaiseAndSetIfChanged(vm => vm.CustomerNum, ref _customerNum, "");
-            this.RaiseAndSetIfChanged(vm => vm.CompanyName, ref _companyName, "");
+            ClearFields();
  
         }
 
-        public ReactiveCommand SaveCommand { get; private set; }
+        public ReactiveCommand ClearFieldsCommand { get; private set; }
+        public void ClearFields()
+        {
+            this.RaiseAndSetIfChanged(vm => vm.CustomerNum, ref _customerNum, "");
+            this.RaiseAndSetIfChanged(vm => vm.CompanyName, ref _companyName, "");
+            this.RaiseAndSetIfChanged(vm => vm.BillToAddr1, ref _billToAddr1, "");
+            this.RaiseAndSetIfChanged(vm => vm.CustomerNum, ref _customerNum, "");
+            this.RaiseAndSetIfChanged(vm => vm.CompanyName, ref _companyName, "");
+            this.RaiseAndSetIfChanged(vm => vm.BillToAddr1, ref _billToAddr1, "");
+            this.RaiseAndSetIfChanged(vm => vm.BillToAddr2, ref _billToAddr2, "");
+            this.RaiseAndSetIfChanged(vm => vm.BillToCity, ref _billToCity, "");
+            this.RaiseAndSetIfChanged(vm => vm.BillToZip5, ref _billToZip5, "");
+            this.RaiseAndSetIfChanged(vm => vm.BillToPhone, ref _billToPhone, "");
+            this.RaiseAndSetIfChanged(vm => vm.BillToFax, ref _billToFax, "");
+            this.RaiseAndSetIfChanged(vm => vm.Email, ref _email, "");
+            this.RaiseAndSetIfChanged(vm => vm.ShipToAddr1, ref _shipToAddr1, "");
+            this.RaiseAndSetIfChanged(vm => vm.ShipToAddr2, ref _shipToAddr2, "");
+            this.RaiseAndSetIfChanged(vm => vm.ShipToCity, ref _shipToCity, "");
+            this.RaiseAndSetIfChanged(vm => vm.ShipToZip5, ref _shipToZip5, "");
+            this.RaiseAndSetIfChanged(vm => vm.ShipToPhone, ref _shipToPhone, "");
+            this.RaiseAndSetIfChanged(vm => vm.ShipToFax, ref _shipToFax, "");
+            
+        }
+        
 
         public List<Customer> Customers { get; private set; }
 
