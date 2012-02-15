@@ -74,5 +74,11 @@
         <elementListCompartment Id="75545c5a-932c-4d1d-96f0-bc646cc495cc" absoluteBounds="4.265, 6.335, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
+    <classShape Id="9f0274b2-74d4-4873-90dd-1ae4d74220b3" absoluteBounds="8.125, 0.625, 2, 3.6939111328124996">
+      <DataClassMoniker Name="/LittleTravellerDataContext/OrderView" />
+      <nestedChildShapes>
+        <elementListCompartment Id="981f83df-b607-4ee0-b5a9-a4e35e47b8a3" absoluteBounds="8.14, 1.085, 1.9700000000000002, 3.1339111328125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

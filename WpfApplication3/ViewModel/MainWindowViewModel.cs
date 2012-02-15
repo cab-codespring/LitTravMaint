@@ -65,9 +65,15 @@ namespace LitTravProj.ViewModel
                 new CommandViewModel(
                     "View All Customers",
                     new RelayCommand(param => this.ShowAllCustomers())),
+
               new CommandViewModel(
                     "Add or Edit Customers",
-                    new RelayCommand(param => this.CreateNewCustomer()))
+                    new RelayCommand(param => this.CreateNewCustomer())),
+
+              new CommandViewModel(
+                    "View All Orders",
+                    new RelayCommand(param => this.ShowAllOrders()))
+
             };
         }
 
@@ -151,6 +157,21 @@ namespace LitTravProj.ViewModel
             if (workspace == null)
             {
                 workspace = new AllCustomersViewModel();
+                this.Workspaces.Add(workspace);
+            }
+
+            this.SetActiveWorkspace(workspace);
+        }
+
+        void ShowAllOrders()
+        {
+            AllOrdersViewModel workspace =
+                this.Workspaces.FirstOrDefault(vm => vm is AllOrdersViewModel)
+                as AllOrdersViewModel;
+
+            if (workspace == null)
+            {
+                workspace = new AllOrdersViewModel();
                 this.Workspaces.Add(workspace);
             }
 

@@ -48,6 +48,9 @@ namespace LitTravData.Model
     partial void InsertItemsGridView(ItemsGridView instance);
     partial void UpdateItemsGridView(ItemsGridView instance);
     partial void DeleteItemsGridView(ItemsGridView instance);
+    partial void InsertOrderView(OrderView instance);
+    partial void UpdateOrderView(OrderView instance);
+    partial void DeleteOrderView(OrderView instance);
     #endregion
 		
 		public LittleTravellerDataContext() : 
@@ -173,6 +176,14 @@ namespace LitTravData.Model
 			get
 			{
 				return this.GetTable<ItemsGridView>();
+			}
+		}
+		
+		public System.Data.Linq.Table<OrderView> OrderViews
+		{
+			get
+			{
+				return this.GetTable<OrderView>();
 			}
 		}
 	}
@@ -1700,6 +1711,404 @@ namespace LitTravData.Model
 					this._Price = value;
 					this.SendPropertyChanged("Price");
 					this.OnPriceChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.OrderView")]
+	public partial class OrderView : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private short _CustomerNum;
+		
+		private string _CompanyName;
+		
+		private int _OrderNum;
+		
+		private System.Nullable<System.DateTime> _OrderDate;
+		
+		private short _Quantity;
+		
+		private string _Sku;
+		
+		private System.Nullable<decimal> _Price;
+		
+		private string _SeasonID;
+		
+		private string _SizeType;
+		
+		private string _Size;
+		
+		private string _Desc;
+		
+		private string _Expr17;
+		
+		private string _ColorID;
+		
+		private string _Color2ID;
+		
+		private string _Color3ID;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnCustomerNumChanging(short value);
+    partial void OnCustomerNumChanged();
+    partial void OnCompanyNameChanging(string value);
+    partial void OnCompanyNameChanged();
+    partial void OnOrderNumChanging(int value);
+    partial void OnOrderNumChanged();
+    partial void OnOrderDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnOrderDateChanged();
+    partial void OnQuantityChanging(short value);
+    partial void OnQuantityChanged();
+    partial void OnSkuChanging(string value);
+    partial void OnSkuChanged();
+    partial void OnPriceChanging(System.Nullable<decimal> value);
+    partial void OnPriceChanged();
+    partial void OnSeasonIDChanging(string value);
+    partial void OnSeasonIDChanged();
+    partial void OnSizeTypeChanging(string value);
+    partial void OnSizeTypeChanged();
+    partial void OnSizeChanging(string value);
+    partial void OnSizeChanged();
+    partial void OnDescChanging(string value);
+    partial void OnDescChanged();
+    partial void OnExpr17Changing(string value);
+    partial void OnExpr17Changed();
+    partial void OnColorIDChanging(string value);
+    partial void OnColorIDChanged();
+    partial void OnColor2IDChanging(string value);
+    partial void OnColor2IDChanged();
+    partial void OnColor3IDChanging(string value);
+    partial void OnColor3IDChanged();
+    #endregion
+		
+		public OrderView()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CustomerNum", DbType="SmallInt NOT NULL")]
+		public short CustomerNum
+		{
+			get
+			{
+				return this._CustomerNum;
+			}
+			set
+			{
+				if ((this._CustomerNum != value))
+				{
+					this.OnCustomerNumChanging(value);
+					this.SendPropertyChanging();
+					this._CustomerNum = value;
+					this.SendPropertyChanged("CustomerNum");
+					this.OnCustomerNumChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CompanyName", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string CompanyName
+		{
+			get
+			{
+				return this._CompanyName;
+			}
+			set
+			{
+				if ((this._CompanyName != value))
+				{
+					this.OnCompanyNameChanging(value);
+					this.SendPropertyChanging();
+					this._CompanyName = value;
+					this.SendPropertyChanged("CompanyName");
+					this.OnCompanyNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OrderNum", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int OrderNum
+		{
+			get
+			{
+				return this._OrderNum;
+			}
+			set
+			{
+				if ((this._OrderNum != value))
+				{
+					this.OnOrderNumChanging(value);
+					this.SendPropertyChanging();
+					this._OrderNum = value;
+					this.SendPropertyChanged("OrderNum");
+					this.OnOrderNumChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OrderDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> OrderDate
+		{
+			get
+			{
+				return this._OrderDate;
+			}
+			set
+			{
+				if ((this._OrderDate != value))
+				{
+					this.OnOrderDateChanging(value);
+					this.SendPropertyChanging();
+					this._OrderDate = value;
+					this.SendPropertyChanged("OrderDate");
+					this.OnOrderDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Quantity", DbType="SmallInt NOT NULL")]
+		public short Quantity
+		{
+			get
+			{
+				return this._Quantity;
+			}
+			set
+			{
+				if ((this._Quantity != value))
+				{
+					this.OnQuantityChanging(value);
+					this.SendPropertyChanging();
+					this._Quantity = value;
+					this.SendPropertyChanged("Quantity");
+					this.OnQuantityChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Sku", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Sku
+		{
+			get
+			{
+				return this._Sku;
+			}
+			set
+			{
+				if ((this._Sku != value))
+				{
+					this.OnSkuChanging(value);
+					this.SendPropertyChanging();
+					this._Sku = value;
+					this.SendPropertyChanged("Sku");
+					this.OnSkuChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Price", DbType="SmallMoney")]
+		public System.Nullable<decimal> Price
+		{
+			get
+			{
+				return this._Price;
+			}
+			set
+			{
+				if ((this._Price != value))
+				{
+					this.OnPriceChanging(value);
+					this.SendPropertyChanging();
+					this._Price = value;
+					this.SendPropertyChanged("Price");
+					this.OnPriceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SeasonID", DbType="NVarChar(10)")]
+		public string SeasonID
+		{
+			get
+			{
+				return this._SeasonID;
+			}
+			set
+			{
+				if ((this._SeasonID != value))
+				{
+					this.OnSeasonIDChanging(value);
+					this.SendPropertyChanging();
+					this._SeasonID = value;
+					this.SendPropertyChanged("SeasonID");
+					this.OnSeasonIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SizeType", DbType="NVarChar(10)")]
+		public string SizeType
+		{
+			get
+			{
+				return this._SizeType;
+			}
+			set
+			{
+				if ((this._SizeType != value))
+				{
+					this.OnSizeTypeChanging(value);
+					this.SendPropertyChanging();
+					this._SizeType = value;
+					this.SendPropertyChanged("SizeType");
+					this.OnSizeTypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Size", DbType="NVarChar(10)")]
+		public string Size
+		{
+			get
+			{
+				return this._Size;
+			}
+			set
+			{
+				if ((this._Size != value))
+				{
+					this.OnSizeChanging(value);
+					this.SendPropertyChanging();
+					this._Size = value;
+					this.SendPropertyChanged("Size");
+					this.OnSizeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Desc]", Storage="_Desc", DbType="NVarChar(50)")]
+		public string Desc
+		{
+			get
+			{
+				return this._Desc;
+			}
+			set
+			{
+				if ((this._Desc != value))
+				{
+					this.OnDescChanging(value);
+					this.SendPropertyChanging();
+					this._Desc = value;
+					this.SendPropertyChanged("Desc");
+					this.OnDescChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Expr17", DbType="NVarChar(50)")]
+		public string Expr17
+		{
+			get
+			{
+				return this._Expr17;
+			}
+			set
+			{
+				if ((this._Expr17 != value))
+				{
+					this.OnExpr17Changing(value);
+					this.SendPropertyChanging();
+					this._Expr17 = value;
+					this.SendPropertyChanged("Expr17");
+					this.OnExpr17Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ColorID", DbType="NVarChar(10)")]
+		public string ColorID
+		{
+			get
+			{
+				return this._ColorID;
+			}
+			set
+			{
+				if ((this._ColorID != value))
+				{
+					this.OnColorIDChanging(value);
+					this.SendPropertyChanging();
+					this._ColorID = value;
+					this.SendPropertyChanged("ColorID");
+					this.OnColorIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Color2ID", DbType="NVarChar(10)")]
+		public string Color2ID
+		{
+			get
+			{
+				return this._Color2ID;
+			}
+			set
+			{
+				if ((this._Color2ID != value))
+				{
+					this.OnColor2IDChanging(value);
+					this.SendPropertyChanging();
+					this._Color2ID = value;
+					this.SendPropertyChanged("Color2ID");
+					this.OnColor2IDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Color3ID", DbType="NVarChar(10)")]
+		public string Color3ID
+		{
+			get
+			{
+				return this._Color3ID;
+			}
+			set
+			{
+				if ((this._Color3ID != value))
+				{
+					this.OnColor3IDChanging(value);
+					this.SendPropertyChanging();
+					this._Color3ID = value;
+					this.SendPropertyChanged("Color3ID");
+					this.OnColor3IDChanged();
 				}
 			}
 		}
