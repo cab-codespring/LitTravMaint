@@ -110,7 +110,7 @@
       <Column Name="OrderNum" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="OrderDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="Quantity" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
-      <Column Name="Sku" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Sku" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Price" Type="System.Decimal" DbType="SmallMoney" CanBeNull="true" />
       <Column Name="SeasonID" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
       <Column Name="SizeType" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
