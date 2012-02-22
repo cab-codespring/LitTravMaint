@@ -37,6 +37,9 @@ namespace LitTravProj.ViewModel
             SaveCommand.Subscribe(_ => SaveOrder());
             NewOrderNumCommand = new ReactiveCommand();
             NewOrderNumCommand.Subscribe(_ => NewOrderNum());
+
+            CustomerOptions = (from cs in context.Customers select cs.CompanyName).ToList();
+
         }
 
         public ReactiveCommand SaveCommand { get; private set; }
@@ -94,6 +97,22 @@ namespace LitTravProj.ViewModel
             this.RaiseAndSetIfChanged(vm => vm.OrderNum, ref _orderNum, _newOrderNum );
             
         }
-    
+
+
+          /// <summary>
+          /// Returns a list of strings used to populate the Customer selector.
+          /// </summary>
+          public IEnumerable<string> CustomerOptions { get; private set; }
+
+          private string _selectedCustomer;
+
+          public string SelectedCustomer
+          {
+              get { return _selectedCustomer; }
+              set
+              {
+                  this.RaiseAndSetIfChanged(vm => vm.SelectedCustomer, ref _selectedCustomer, value);
+              }
+          }
     }
 }
