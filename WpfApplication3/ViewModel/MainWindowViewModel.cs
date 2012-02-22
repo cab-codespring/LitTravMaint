@@ -72,7 +72,11 @@ namespace LitTravProj.ViewModel
 
               new CommandViewModel(
                     "View All Orders",
-                    new RelayCommand(param => this.ShowAllOrders()))
+                    new RelayCommand(param => this.ShowAllOrders())),
+
+              new CommandViewModel(
+                    "Add or Edit Orders",
+                    new RelayCommand(param => this.CreateNewOrders()))
 
             };
         }
@@ -116,7 +120,7 @@ namespace LitTravProj.ViewModel
 
         void CreateNewItem()
         {
-            Item newItem = new Item();
+            Item newItem = new Item(); // huh?
             ItemViewModel workspace = new ItemViewModel();
             this.Workspaces.Add(workspace);
             this.SetActiveWorkspace(workspace);
@@ -125,7 +129,7 @@ namespace LitTravProj.ViewModel
 
         void CreateNewCustomer()
         {
-            Customer newCustomer = new Customer();
+            Customer newCustomer = new Customer();  // huh?
             CustomerViewModel workspace = new CustomerViewModel();
             this.Workspaces.Add(workspace);
             this.SetActiveWorkspace(workspace);
@@ -178,6 +182,15 @@ namespace LitTravProj.ViewModel
             this.SetActiveWorkspace(workspace);
         }
 
+
+
+        void CreateNewOrders()
+        {
+            OrderViewModel workspace = new OrderViewModel();
+            this.Workspaces.Add(workspace);
+            this.SetActiveWorkspace(workspace);
+
+        }
         void SetActiveWorkspace(WorkspaceViewModel workspace)
         {
             Debug.Assert(this.Workspaces.Contains(workspace));

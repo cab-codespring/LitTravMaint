@@ -35,9 +35,8 @@ namespace LitTravProj.ViewModel
             var CanSave = this.Changed.Select(_ => ValidateFields()).StartWith(false);
             SaveCommand = new ReactiveCommand(CanSave);
             SaveCommand.Subscribe(_ => SaveOrder());
-
-            //SeasonOptions = context.Seasons.ToList();
-            //ColorOptions1 = context.Colors.ToList();
+            NewOrderNumCommand = new ReactiveCommand();
+            NewOrderNumCommand.Subscribe(_ => NewOrderNum());
         }
 
         public ReactiveCommand SaveCommand { get; private set; }
@@ -59,7 +58,7 @@ namespace LitTravProj.ViewModel
             return true;
         }
 
-        private string _orderNum;
+        private string _orderNum = "";
         public string OrderNum
         {
             get { return _orderNum; }
@@ -86,5 +85,15 @@ namespace LitTravProj.ViewModel
              
             }
         }
+
+          public ReactiveCommand NewOrderNumCommand { get; private set; }
+          public void  NewOrderNum()
+        {
+
+            string _newOrderNum = ((from order in context.Orders select order.OrderNum).Max() + 1).ToString();
+            this.RaiseAndSetIfChanged(vm => vm.OrderNum, ref _orderNum, _newOrderNum );
+            
+        }
+    
     }
 }
