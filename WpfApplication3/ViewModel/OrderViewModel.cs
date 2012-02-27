@@ -39,7 +39,8 @@ namespace LitTravProj.ViewModel
             NewOrderNumCommand.Subscribe(_ => NewOrderNum());
 
             CustomerOptions = (from cs in context.Customers select cs.CompanyName).ToList();
-
+            SeasonOptions = context.Seasons.ToList();
+            SizeTypeOptions = context.SizeTypes.ToList();
         }
 
         public ReactiveCommand SaveCommand { get; private set; }
@@ -110,9 +111,55 @@ namespace LitTravProj.ViewModel
           {
               get { return _selectedCustomer; }
               set
-              {
+              { 
+                  SelectedCustomerNum = (from cn in context.Customers where cn.CompanyName == _selectedCustomer select cn.CustomerNum).FirstOrDefault();
                   this.RaiseAndSetIfChanged(vm => vm.SelectedCustomer, ref _selectedCustomer, value);
               }
+          }
+
+
+          private short _selectedCustomerNum;
+
+          public short SelectedCustomerNum
+          {
+              get { return _selectedCustomerNum; }
+              set
+              {
+                  this.RaiseAndSetIfChanged(vm => vm.SelectedCustomerNum, ref _selectedCustomerNum, value);
+              }
+          }
+          /// <summary>
+          /// Returns a list of Seasons used to populate the Season selector.
+          /// </summary>
+          public IEnumerable<Season> SeasonOptions { get; private set; }
+
+          private Season _selectedSeason = new Season();
+          public Season SelectedSeason
+          {
+              get { return _selectedSeason; }
+              set
+              {
+                  this.RaiseAndSetIfChanged(vm => vm.SelectedSeason, ref _selectedSeason, value);
+              }
+          }
+
+          public IEnumerable<SizeType> SizeTypeOptions { get; private set; }
+          private SizeType _selectedSizeTypeID;
+
+          /// <summary>
+          /// Size must be limited to this size Type
+          /// </summary>
+
+          public SizeType SelectedSizeTypeID
+          {
+
+              get { return _selectedSizeTypeID; }
+              set
+              {
+                  // _selectedSizeTypeID = value;
+                  this.RaiseAndSetIfChanged(vm => vm.SelectedSizeTypeID, ref _selectedSizeTypeID, value);
+      
+               }
           }
     }
 }
