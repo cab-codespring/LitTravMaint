@@ -12,6 +12,7 @@ using ReactiveUI;
 using ReactiveUI.Xaml;
 using System.Collections.ObjectModel;
 using System.Globalization;
+using System.Collections;
 
 namespace LitTravProj.ViewModel
 {
@@ -24,7 +25,6 @@ namespace LitTravProj.ViewModel
 
         private Order _order;
         private bool _orderExists = false;
-
 
         public OrderViewModel()
         {
@@ -41,15 +41,19 @@ namespace LitTravProj.ViewModel
             CustomerOptions = (from cs in context.Customers select cs.CompanyName).ToList();
             SeasonOptions = context.Seasons.ToList();
             SizeTypeOptions = context.SizeTypes.ToList();
+            ItemOptions = new List<ItemOptionsClass>();
+
+            AllSeasonsChecked = true;
+            AllSizeTypesChecked = true;
+
+             FillItemOptions();
+
         }
 
         public ReactiveCommand SaveCommand { get; private set; }
 
         private void SaveOrder()
         {
-
-
-
             if (!_orderExists)
                 context.Orders.InsertOnSubmit(_order);
             context.SubmitChanges();
@@ -86,80 +90,182 @@ namespace LitTravProj.ViewModel
                 _order = existingOrder;
                 _orderExists = true;
 
-             
+
             }
         }
 
-          public ReactiveCommand NewOrderNumCommand { get; private set; }
-          public void  NewOrderNum()
+        public ReactiveCommand NewOrderNumCommand { get; private set; }
+        public void NewOrderNum()
         {
 
             string _newOrderNum = ((from order in context.Orders select order.OrderNum).Max() + 1).ToString();
-            this.RaiseAndSetIfChanged(vm => vm.OrderNum, ref _orderNum, _newOrderNum );
-            
+            this.RaiseAndSetIfChanged(vm => vm.OrderNum, ref _orderNum, _newOrderNum);
+
         }
 
 
-          /// <summary>
-          /// Returns a list of strings used to populate the Customer selector.
-          /// </summary>
-          public IEnumerable<string> CustomerOptions { get; private set; }
+        /// <summary>
+        /// Returns a list of strings used to populate the Customer selector.
+        /// </summary>
+        public IEnumerable<string> CustomerOptions { get; private set; }
 
-          private string _selectedCustomer;
+        private string _selectedCustomer;
 
-          public string SelectedCustomer
-          {
-              get { return _selectedCustomer; }
-              set
-              { 
-                  SelectedCustomerNum = (from cn in context.Customers where cn.CompanyName == _selectedCustomer select cn.CustomerNum).FirstOrDefault();
-                  this.RaiseAndSetIfChanged(vm => vm.SelectedCustomer, ref _selectedCustomer, value);
-              }
-          }
+        public string SelectedCustomer
+        {
+            get 
+            {
+                return _selectedCustomer; 
+            }
+            set
+            {
+                SelectedCustomerNum = (from cn in context.Customers where cn.CompanyName == value 
+                                       select cn.CustomerNum).FirstOrDefault();
+                this.RaiseAndSetIfChanged(vm => vm.SelectedCustomer, ref _selectedCustomer, value);
+            }
+        }
 
 
-          private short _selectedCustomerNum;
+        private short _selectedCustomerNum;
 
-          public short SelectedCustomerNum
-          {
-              get { return _selectedCustomerNum; }
-              set
-              {
-                  this.RaiseAndSetIfChanged(vm => vm.SelectedCustomerNum, ref _selectedCustomerNum, value);
-              }
-          }
-          /// <summary>
-          /// Returns a list of Seasons used to populate the Season selector.
-          /// </summary>
-          public IEnumerable<Season> SeasonOptions { get; private set; }
+        public short SelectedCustomerNum
+        {
+            get { return _selectedCustomerNum; }
+            set
+            {
+                this.RaiseAndSetIfChanged(vm => vm.SelectedCustomerNum, ref _selectedCustomerNum, value);
+            }
+        }
+        /// <summary>
+        /// Returns a list of Seasons used to populate the Season selector.
+        /// </summary>
+        public IEnumerable<Season> SeasonOptions { get; private set; }
 
-          private Season _selectedSeason = new Season();
-          public Season SelectedSeason
-          {
-              get { return _selectedSeason; }
-              set
-              {
-                  this.RaiseAndSetIfChanged(vm => vm.SelectedSeason, ref _selectedSeason, value);
-              }
-          }
+        private Season _selectedSeason = new Season();
+        public Season SelectedSeason
+        {
+            get { return _selectedSeason; }
+            set
+            {
+             
+                this.RaiseAndSetIfChanged(vm => vm.SelectedSeason, ref _selectedSeason, value);
+                AllSeasonsChecked = false;
+            }
+        }
 
-          public IEnumerable<SizeType> SizeTypeOptions { get; private set; }
-          private SizeType _selectedSizeTypeID;
 
-          /// <summary>
-          /// Size must be limited to this size Type
-          /// </summary>
 
-          public SizeType SelectedSizeTypeID
-          {
 
-              get { return _selectedSizeTypeID; }
-              set
-              {
-                  // _selectedSizeTypeID = value;
-                  this.RaiseAndSetIfChanged(vm => vm.SelectedSizeTypeID, ref _selectedSizeTypeID, value);
-      
-               }
-          }
+        public IEnumerable<SizeType> SizeTypeOptions { get; private set; }
+        private SizeType _selectedSizeTypeID;
+        public SizeType SelectedSizeTypeID
+        {
+
+            get { return _selectedSizeTypeID; }
+            set
+            {
+               
+                this.RaiseAndSetIfChanged(vm => vm.SelectedSizeTypeID, ref _selectedSizeTypeID, value);
+                 AllSizeTypesChecked = false;
+            }
+        }
+        private bool _allSeasonsChecked;
+        public bool AllSeasonsChecked
+        {
+
+            get { return _allSeasonsChecked; }
+            set
+            {
+               
+                this.RaiseAndSetIfChanged(vm => vm.AllSeasonsChecked, ref _allSeasonsChecked, value);
+                 FillItemOptions();
+            }
+        }
+
+        private bool _allSizeTypesChecked;
+        public bool AllSizeTypesChecked
+        {
+
+            get { return _allSizeTypesChecked; }
+            set
+            {
+                this.RaiseAndSetIfChanged(vm => vm.AllSizeTypesChecked, ref _allSizeTypesChecked, value);
+
+                FillItemOptions();
+            }
+        }
+
+        /// <summary>
+        ///  litle class for holding items in the items options list
+        /// </summary>
+        public class ItemOptionsClass
+        {
+            public ItemOptionsClass(string sku, string itemString)
+            {
+                this.Sku = sku;
+                this.ItemString = itemString;
+            }
+            public string Sku { get; private set;}
+            public string ItemString { get; private set; }
+        }
+
+      //  private  System.Linq.IQueryable<LitTravData.Model.ItemsGridView>  _itemOptions;
+
+
+
+        private IList<ItemOptionsClass> _itemOptions;
+        public IList<ItemOptionsClass> ItemOptions
+        {
+            get
+            {
+                return _itemOptions;
+            }
+            set
+            {
+                _itemOptions = value;
+            }
+        }
+
+        private void FillItemOptions()
+        {
+            ItemOptions.Clear();
+            System.Linq.IQueryable<LitTravData.Model.ItemsGridView> tmpTable;
+            tmpTable = getItemOptionsData();
+          
+            foreach (ItemsGridView itm in tmpTable)
+            {
+                string makeItemStr = itm.Sku + " " + itm.SeasonID + " " + 
+                    itm.ColorID + " " + itm.Color2ID + " " + itm.Color3ID + " " + itm.SizeType + 
+                        " " + itm.Size + " " + itm.StyleType + " " + itm.Design + " " + itm.Price;
+                ItemOptionsClass ioc = new ItemOptionsClass(itm.Sku, makeItemStr);
+                ItemOptions.Add(ioc);
+            }
+        }
+
+        private System.Linq.IQueryable<LitTravData.Model.ItemsGridView> getItemOptionsData()
+        {
+            // the constructor calls this before the checkbozes are checked
+            // and it causes the query to be bad as it's looking for null seasons.
+            if(SelectedSeason == null && !AllSeasonsChecked || 
+                SelectedSizeTypeID == null && !AllSizeTypesChecked)
+                return this.context.GetTable<ItemsGridView>();
+
+            if (!AllSeasonsChecked && AllSizeTypesChecked)
+                return (from igv in context.ItemsGridViews
+                        where igv.SeasonID == SelectedSeason.SeasonCode
+                        select igv);
+            else if (AllSeasonsChecked && !AllSizeTypesChecked)
+                return (from igv in context.ItemsGridViews
+                        where igv.SizeType == SelectedSizeTypeID.SizeTypeName
+                        select igv);
+            else if (!AllSeasonsChecked && !AllSizeTypesChecked)
+                return (from igv in context.ItemsGridViews
+                        where igv.SizeType == SelectedSizeTypeID.SizeTypeName &&
+                            igv.SeasonID == SelectedSeason.SeasonCode
+                        select igv);
+            return this.context.GetTable<ItemsGridView>();
+        }
+
+       
     }
 }
