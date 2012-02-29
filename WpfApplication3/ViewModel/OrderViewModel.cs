@@ -234,12 +234,16 @@ namespace LitTravProj.ViewModel
           
             foreach (ItemsGridView itm in tmpTable)
             {
-                string makeItemStr = itm.Sku + " " + itm.SeasonID + " " + 
-                    itm.ColorID + " " + itm.Color2ID + " " + itm.Color3ID + " " + itm.SizeType + 
-                        " " + itm.Size + " " + itm.StyleType + " " + itm.Design + " " + itm.Price;
-                ItemOptionsClass ioc = new ItemOptionsClass(itm.Sku, makeItemStr);
+                ItemOptionsClass ioc = new ItemOptionsClass(itm.Sku, formatItem(itm));
                 ItemOptions.Add(ioc);
             }
+        }
+
+        private string formatItem(ItemsGridView itm)
+        {
+            return itm.Sku + " " + itm.SeasonID + " " +
+                    itm.ColorID + " " + itm.Color2ID + " " + itm.Color3ID + " " + itm.SizeType +
+                        " " + itm.Size + " " + itm.StyleType + " " + itm.Design + " " + itm.Price;
         }
 
         private System.Linq.IQueryable<LitTravData.Model.ItemsGridView> getItemOptionsData()
@@ -266,6 +270,20 @@ namespace LitTravProj.ViewModel
             return this.context.GetTable<ItemsGridView>();
         }
 
-       
+        private System.Data.Linq.ITable<ItemsGridView> _orderItems;
+
+        public System.Data.Linq.ITable<ItemsGridView> OrderItems
+        {
+            get
+            {
+                return _orderItems;
+            }
+            set
+            {
+              //  _orderItems.InsertOnSubmit(value.);
+            }
+        }
+
+     
     }
 }
