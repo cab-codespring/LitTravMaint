@@ -25,7 +25,7 @@
         <Label Content="Order Number:" Height="28" HorizontalAlignment="Right" Margin="0,20,0,0" Name="label1" VerticalAlignment="Top" Grid.Row="1" HorizontalContentAlignment="Right" />
         <TextBox Grid.Column="1" Grid.Row="1" Height="23" HorizontalAlignment="Left" Margin="0,22,0,0" VerticalAlignment="Top" Width="120"
                  Name="OrderNumber" Text="{Binding OrderNum}"  />
-        <Label Content="Company :" Grid.Column="3" Grid.Row="1" Height="28" HorizontalAlignment="Right" Margin="0,18,4,0" Name="label2" VerticalAlignment="Top" Width="145" HorizontalContentAlignment="Right" />
+        <Label Content="Company:" Grid.Column="3" Grid.Row="1" Height="28" HorizontalAlignment="Right" Margin="0,18,4,0" Name="label2" VerticalAlignment="Top" Width="145" HorizontalContentAlignment="Right" />
         <ComboBox Name="CompanyComBox" ItemsSource="{Binding CustomerOptions}" SelectedItem="{Binding SelectedCustomer}" Grid.Column="4" Grid.Row="1" Height="23" HorizontalAlignment="Left" Margin="6,23,0,0" VerticalAlignment="Top" Width="287" />
         <Label Content="{Binding SelectedCustomerNum}"  Grid.Column="4" Grid.Row="3" Height="28" HorizontalAlignment="Center" Margin="7,5,278,0" Name="CompanyNumber" VerticalAlignment="Top" Width="78" />
         <Button Content="New Number"  Command="{Binding NewOrderNumCommand}" Grid.Column="1" Grid.Row="1" Height="23" HorizontalAlignment="Right" Margin="0,20,16,0" Name="button1" VerticalAlignment="Top" Width="90" />
@@ -47,17 +47,17 @@
 
         <DataGrid ItemsSource="{Binding OrderItems}" AutoGenerateColumns="False" Grid.ColumnSpan="5" Grid.Row="6" Height="247" HorizontalAlignment="Stretch"
                   Name="dataGrid1" VerticalAlignment="Top" Width="874" IsReadOnly="True"
-                 AlternatingRowBackground="#4BE6E6F2" Margin="0,51,-8,0">
+                 AlternatingRowBackground="#4BE6E6F2" Margin="0,51,-8,0" SelectedValue="{Binding SelectedOrderItem}">
             <DataGrid.Columns>
                 <DataGridTemplateColumn Header="Delete" Width="60" IsReadOnly="True">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="Delete"/>
+                            <Button Content="Delete" Command="{Binding DeleteItemCommand}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}" Width="Auto"/>
-                <DataGridTextColumn Header="Item" Binding="{Binding OrderItems}" Width="Auto"/>
+                <DataGridTextColumn Header="Item" Binding="{Binding ItemString}" Width="Auto"/>
             </DataGrid.Columns>
         </DataGrid>
 

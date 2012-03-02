@@ -39,6 +39,8 @@ namespace LitTravProj.ViewModel
             NewOrderNumCommand.Subscribe(_ => NewOrderNum());
             AddItemCommand = new ReactiveCommand();
             AddItemCommand.Subscribe(_ => AddItem());
+            DeleteItemCommand = new ReactiveCommand();
+            DeleteItemCommand.Subscribe(_ => DeleteItem());
 
             CustomerOptions = (from cs in context.Customers select cs.CompanyName).ToList();
             SeasonOptions = context.Seasons.ToList();
@@ -301,8 +303,23 @@ namespace LitTravProj.ViewModel
             OrderItems.Add(SelectedItemOption);
         }
 
+        public ReactiveCommand DeleteItemCommand { get; private set; }
+        public void DeleteItem()
+        {
+            OrderItems.Remove(SelectedOrderItem);
+          
+        }
 
 
+        private ItemOptionsClass _selectedOrderItem;
+        public ItemOptionsClass SelectedOrderItem
+        {
+            get { return _selectedOrderItem; }
+            set
+            {
+                this.RaiseAndSetIfChanged(vm => vm.SelectedOrderItem, ref _selectedOrderItem, value);
+            }
+        }
 
     }
 }
