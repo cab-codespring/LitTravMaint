@@ -37,16 +37,18 @@ namespace LitTravProj.ViewModel
             SaveCommand.Subscribe(_ => SaveOrder());
             NewOrderNumCommand = new ReactiveCommand();
             NewOrderNumCommand.Subscribe(_ => NewOrderNum());
+            AddItemCommand = new ReactiveCommand();
+            AddItemCommand.Subscribe(_ => AddItem());
 
             CustomerOptions = (from cs in context.Customers select cs.CompanyName).ToList();
             SeasonOptions = context.Seasons.ToList();
             SizeTypeOptions = context.SizeTypes.ToList();
             ItemOptions = new List<ItemOptionsClass>();
-
+            _orderItems = new ObservableCollection<ItemOptionsClass>();
             AllSeasonsChecked = true;
             AllSizeTypesChecked = true;
 
-             FillItemOptions();
+            FillItemOptions();
 
         }
 
@@ -113,13 +115,14 @@ namespace LitTravProj.ViewModel
 
         public string SelectedCustomer
         {
-            get 
+            get
             {
-                return _selectedCustomer; 
+                return _selectedCustomer;
             }
             set
             {
-                SelectedCustomerNum = (from cn in context.Customers where cn.CompanyName == value 
+                SelectedCustomerNum = (from cn in context.Customers
+                                       where cn.CompanyName == value
                                        select cn.CustomerNum).FirstOrDefault();
                 this.RaiseAndSetIfChanged(vm => vm.SelectedCustomer, ref _selectedCustomer, value);
             }
@@ -147,7 +150,7 @@ namespace LitTravProj.ViewModel
             get { return _selectedSeason; }
             set
             {
-             
+
                 this.RaiseAndSetIfChanged(vm => vm.SelectedSeason, ref _selectedSeason, value);
                 AllSeasonsChecked = false;
             }
@@ -164,9 +167,9 @@ namespace LitTravProj.ViewModel
             get { return _selectedSizeTypeID; }
             set
             {
-               
+
                 this.RaiseAndSetIfChanged(vm => vm.SelectedSizeTypeID, ref _selectedSizeTypeID, value);
-                 AllSizeTypesChecked = false;
+                AllSizeTypesChecked = false;
             }
         }
         private bool _allSeasonsChecked;
@@ -176,9 +179,9 @@ namespace LitTravProj.ViewModel
             get { return _allSeasonsChecked; }
             set
             {
-               
+
                 this.RaiseAndSetIfChanged(vm => vm.AllSeasonsChecked, ref _allSeasonsChecked, value);
-                 FillItemOptions();
+                FillItemOptions();
             }
         }
 
@@ -200,16 +203,18 @@ namespace LitTravProj.ViewModel
         /// </summary>
         public class ItemOptionsClass
         {
+            public ItemOptionsClass(){}
             public ItemOptionsClass(string sku, string itemString)
             {
                 this.Sku = sku;
                 this.ItemString = itemString;
             }
-            public string Sku { get; private set;}
+            public string Sku { get; private set; }
             public string ItemString { get; private set; }
+            public string Quantity { get; set; }
         }
 
-      //  private  System.Linq.IQueryable<LitTravData.Model.ItemsGridView>  _itemOptions;
+        //  private  System.Linq.IQueryable<LitTravData.Model.ItemsGridView>  _itemOptions;
 
 
 
@@ -231,7 +236,7 @@ namespace LitTravProj.ViewModel
             ItemOptions.Clear();
             System.Linq.IQueryable<LitTravData.Model.ItemsGridView> tmpTable;
             tmpTable = getItemOptionsData();
-          
+
             foreach (ItemsGridView itm in tmpTable)
             {
                 ItemOptionsClass ioc = new ItemOptionsClass(itm.Sku, formatItem(itm));
@@ -250,7 +255,7 @@ namespace LitTravProj.ViewModel
         {
             // the constructor calls this before the checkbozes are checked
             // and it causes the query to be bad as it's looking for null seasons.
-            if(SelectedSeason == null && !AllSeasonsChecked || 
+            if (SelectedSeason == null && !AllSeasonsChecked ||
                 SelectedSizeTypeID == null && !AllSizeTypesChecked)
                 return this.context.GetTable<ItemsGridView>();
 
@@ -270,20 +275,34 @@ namespace LitTravProj.ViewModel
             return this.context.GetTable<ItemsGridView>();
         }
 
-        private System.Data.Linq.ITable<ItemsGridView> _orderItems;
-
-        public System.Data.Linq.ITable<ItemsGridView> OrderItems
+        private ItemOptionsClass _selectedItemOption = new ItemOptionsClass();
+        public ItemOptionsClass SelectedItemOption
         {
-            get
-            {
-                return _orderItems;
-            }
+            get { return _selectedItemOption; }
             set
             {
-              //  _orderItems.InsertOnSubmit(value.);
+                this.RaiseAndSetIfChanged(vm => vm.SelectedItemOption, ref _selectedItemOption, value);
             }
         }
 
-     
+        private ObservableCollection<ItemOptionsClass> _orderItems;
+        public ObservableCollection<ItemOptionsClass> OrderItems
+        {
+            get { return _orderItems; }
+            set { _orderItems = value; }
+        }
+
+        public string Quantity { get; set; }
+
+        public ReactiveCommand AddItemCommand { get; private set; }
+        public void AddItem()
+        {
+            SelectedItemOption.Quantity = Quantity;
+            OrderItems.Add(SelectedItemOption);
+        }
+
+
+
+
     }
 }
