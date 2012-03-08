@@ -60,7 +60,20 @@ namespace LitTravProj.ViewModel
         private void SaveOrder()
         {
             if (!_orderExists)
+            {
+                _order.OrderDate = new DateTime();
+
+                 foreach (ItemOptionsClass ioc in ItemOptions)
+                {
+                    OrderItem oi = new OrderItem();
+                    oi.Sku = ioc.Sku;
+                    oi.Quantity = Int16.Parse(ioc.Quantity);
+                    oi.OrderNum = _order.OrderNum;
+                    context.OrderItems.InsertOnSubmit(oi);
+                }
+
                 context.Orders.InsertOnSubmit(_order);
+            }
             context.SubmitChanges();
 
             this.RaiseAndSetIfChanged(vm => vm.OrderNum, ref _orderNum, "");
@@ -72,11 +85,8 @@ namespace LitTravProj.ViewModel
                 return false;
             if (SelectedCustomer == null)
                 return false;
-         
-            short ordNumParsed;
-            if (!Int16.TryParse(OrderNum, out ordNumParsed))
-                return false;
-            if (ordNumParsed == 0)
+            // the setter for OrderNum sets the field to "" if it doesn't parse
+            if (_orderNum.Length == 0)
                 return false;
             return true;
         }
@@ -90,20 +100,35 @@ namespace LitTravProj.ViewModel
             set
             {
                 _orderNum = value;
+                short ordNumParsed;
+                if (!Int16.TryParse(OrderNum, out ordNumParsed))
+                {
+                    _orderNum = "";
+                    return;
+                }
+                if (ordNumParsed == 0)
+                {
+                    _orderNum = "";
+                    return;
+                }            
                 if (_orderNum.Length == 0)
                     return;
+                 
                 Order existingOrder = null;
                 // first or default returns null if none
-                existingOrder = context.Orders.FirstOrDefault(it => it.OrderNum.Equals(_orderNum));
+                existingOrder = context.Orders.FirstOrDefault(it => it.OrderNum.Equals(ordNumParsed));
                 if (existingOrder == null)
                 {
                     //item doesn;t exist              
                     _order = new Order();
-                    _order.OrderNum = Int16.Parse(_orderNum);
+                    _order.OrderNum = ordNumParsed;
                     _orderExists = false;
                     return; // new sku
                 }
                 _order = existingOrder;
+                _orderNum = _order.OrderNum.ToString();
+                SelectedCustomerNum = _order.CustomerNum;
+                
                 _orderExists = true;
 
 
@@ -113,7 +138,6 @@ namespace LitTravProj.ViewModel
         public ReactiveCommand NewOrderNumCommand { get; private set; }
         public void NewOrderNum()
         {
-
             string _newOrderNum = ((from order in context.Orders select order.OrderNum).Max() + 1).ToString();
             this.RaiseAndSetIfChanged(vm => vm.OrderNum, ref _orderNum, _newOrderNum);
 
