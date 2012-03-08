@@ -5,54 +5,55 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="478" d:DesignWidth="872" BorderThickness="1">
-    <Grid  VerticalAlignment="Top">
+    <Grid  VerticalAlignment="Top" Margin="0">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="264*" />
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="149*" />
-            <ColumnDefinition Width="363*" />
+            <ColumnDefinition Width="157" />
+            <ColumnDefinition Width="287*" />
+            <ColumnDefinition Width="426*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="66" />
-            <RowDefinition Height="46" />
-            <RowDefinition Height="49" />
+            <RowDefinition Height="44" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="77" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Label Content="Order Number:" Height="28" HorizontalAlignment="Right" Margin="0,20,0,0" Name="label1" VerticalAlignment="Top" Grid.Row="1" HorizontalContentAlignment="Right" />
-        <TextBox Grid.Column="1" Grid.Row="1" Height="23" HorizontalAlignment="Left" Margin="0,22,0,0" VerticalAlignment="Top" Width="120"
-                 Name="OrderNumber" Text="{Binding OrderNum}"  />
-        <Label Content="Company:" Grid.Column="3" Grid.Row="1" Height="28" HorizontalAlignment="Right" Margin="0,18,4,0" Name="label2" VerticalAlignment="Top" Width="145" HorizontalContentAlignment="Right" />
-        <ComboBox Name="CompanyComBox" ItemsSource="{Binding CustomerOptions}" SelectedItem="{Binding SelectedCustomer}" Grid.Column="4" Grid.Row="1" Height="23" HorizontalAlignment="Left" Margin="6,23,0,0" VerticalAlignment="Top" Width="287" />
-        <Label Content="{Binding SelectedCustomerNum}"  Grid.Column="4" Grid.Row="3" Height="28" HorizontalAlignment="Center" Margin="7,5,278,0" Name="CompanyNumber" VerticalAlignment="Top" Width="78" />
-        <Button Content="New Number"  Command="{Binding NewOrderNumCommand}" Grid.Column="1" Grid.Row="1" Height="23" HorizontalAlignment="Right" Margin="0,20,16,0" Name="button1" VerticalAlignment="Top" Width="90" />
-        <Label Content="Quantity:" Grid.Row="6" Height="28" HorizontalAlignment="Right" Margin="0,0,6,0" Name="label4" VerticalAlignment="Top" Width="90" HorizontalContentAlignment="Right" />
-        <TextBox Text="{Binding Quantity}" Grid.Row="6" Height="23" HorizontalAlignment="Left" Margin="0,2,0,0" Name="textBox2" VerticalAlignment="Top" Width="61" Grid.Column="1" />
+        <TextBox Grid.Row="1" Height="23" HorizontalAlignment="Left" Margin="0,23,0,0" VerticalAlignment="Top" Width="120"
+                 Name="OrderNumber" Text="{Binding OrderNum}" Grid.Column="1" />
+        <Label Content="Company:" Grid.Row="3" Height="28" HorizontalAlignment="Right" Name="label2" VerticalAlignment="Top" Width="145" HorizontalContentAlignment="Right" />
+        <ComboBox Name="CompanyComBox" ItemsSource="{Binding CustomerOptions}" SelectedItem="{Binding SelectedCustomer}" Grid.Column="1" Grid.Row="3" Height="23" HorizontalAlignment="Stretch" Margin="2,5,424,0" VerticalAlignment="Top" Width="287" Grid.ColumnSpan="2" />
+        <Label Content="{Binding SelectedCustomerNum}" Grid.Row="3" Height="28" HorizontalAlignment="Center" Margin="176,0,172,0" Name="CompanyNumber" VerticalAlignment="Top" Width="78" Grid.Column="2" />
+        <Button Content="New Number"  Command="{Binding NewOrderNumCommand}" Grid.Column="1" Grid.Row="1" Height="23" HorizontalAlignment="Right" Margin="0,20,59,0" Name="button1" VerticalAlignment="Top" Width="90" />
+        <Label Content="Quantity:" Grid.Row="5" Height="28" HorizontalAlignment="Right" Margin="0,51,57,0" Name="label4" VerticalAlignment="Top" Width="71" HorizontalContentAlignment="Right" Grid.RowSpan="2" />
+        <TextBox Text="{Binding Quantity}" Grid.Row="5" Height="23" HorizontalAlignment="Left" Margin="96,54,0,0" Name="textBox2" VerticalAlignment="Top" Width="61" MaxWidth="61" />
         <ComboBox ItemsSource="{Binding SeasonOptions}" SelectedItem="{Binding SelectedSeason, Mode=TwoWay}" DisplayMemberPath="SeasonCode" 
-                  Grid.Row="4" Height="23" HorizontalAlignment="Left" Name="comboBox2" VerticalAlignment="Top" Width="120" Grid.Column="1" Margin="0,8,0,0" />
-        <Label Content="Season:" Grid.Row="4" Height="28" HorizontalAlignment="Right" Margin="0,5,0,0" Name="label5" VerticalAlignment="Top" Width="85" HorizontalContentAlignment="Right" />
-        <Label Content="Size Type:" Grid.Column="3" Grid.Row="4" Height="28" HorizontalAlignment="Right" Margin="0,5,4,0" Name="label6" VerticalAlignment="Top" Width="145" FlowDirection="LeftToRight" HorizontalContentAlignment="Right" />
+                  Grid.Row="4" Height="23" HorizontalAlignment="Left" Name="comboBox2" VerticalAlignment="Top" Width="120" Margin="0,15,0,0" Grid.Column="1" />
+        <Label Content="Season:" Grid.Row="4" Height="28" HorizontalAlignment="Right" Margin="0,13,0,0" Name="label5" VerticalAlignment="Top" Width="85" HorizontalContentAlignment="Right" Grid.RowSpan="2" />
+        <Label Content="Size Type:" Grid.Column="2" Grid.Row="4" Height="28" HorizontalAlignment="Right" Margin="0,8,335,0" Name="label6" VerticalAlignment="Top" Width="85" FlowDirection="LeftToRight" HorizontalContentAlignment="Right" />
         <ComboBox ItemsSource="{Binding SizeTypeOptions}" DisplayMemberPath="SizeTypeName" SelectedItem="{Binding SelectedSizeTypeID}" 
-                  Grid.Column="4" Grid.Row="4" Height="23" HorizontalAlignment="Left" Margin="6,6,0,0" Name="comboBox3" VerticalAlignment="Top" Width="120" />
+                  Grid.Column="2" Grid.Row="4" Height="23" HorizontalAlignment="Left" Margin="97,13,0,0" Name="comboBox3" VerticalAlignment="Top" Width="120" />
         <ComboBox ItemsSource="{Binding ItemOptions}" SelectedItem="{Binding SelectedItemOption}"
-            DisplayMemberPath="ItemString" Grid.ColumnSpan="5" Grid.Row="5" Height="23" HorizontalAlignment="Left" Margin="9,12,0,0" Name="comboBox1" VerticalAlignment="Top" Width="842" />
-        
-        <Button Content="Add Selected Item" Command="{Binding AddItemCommand}"  Grid.Row="6" Height="23" HorizontalAlignment="Right" Name="button2" VerticalAlignment="Top" Width="144" Grid.Column="1" Margin="0,1,43,0" />
-         <Label  Content="Customer Number:" Grid.Column="3" Grid.Row="3" Height="28" HorizontalAlignment="Left" Margin="0,5,0,0" Name="label3" VerticalAlignment="Top" Width="145" HorizontalContentAlignment="Right" />
-        <CheckBox IsChecked="{Binding AllSeasonsChecked}" Content="All" Grid.Column="1" Grid.Row="4" Height="16" HorizontalAlignment="Left" Margin="136,9,0,0" Name="SeasonsBox" VerticalAlignment="Top" />
-        <CheckBox  IsChecked="{Binding AllSizeTypesChecked}" Content="All" Grid.Row="4" Height="16" HorizontalAlignment="Left" Margin="142,10,0,0" Name="checkBox1" VerticalAlignment="Top" Grid.Column="4" />
+            DisplayMemberPath="ItemString" Grid.ColumnSpan="3" Grid.Row="5" Height="23" HorizontalAlignment="Left" Margin="9,12,0,0" Name="comboBox1" VerticalAlignment="Top" Width="842" />
 
-        <DataGrid ItemsSource="{Binding OrderItems}" AutoGenerateColumns="False" Grid.ColumnSpan="5" Grid.Row="6" Height="247" HorizontalAlignment="Stretch"
+        <Button Content="Add Selected Item" Command="{Binding AddItemCommand}" Grid.Row="5" Height="23" HorizontalAlignment="Center" Name="AddItemButton" VerticalAlignment="Top" Width="144" Grid.Column="1" Margin="40,52,103,0" />
+         <Label  Content="Customer Number:" Grid.Row="3" Height="28" HorizontalAlignment="Left" Margin="6,0,0,0" Name="label3" VerticalAlignment="Top" Width="145" HorizontalContentAlignment="Right" Grid.Column="2" />
+        <CheckBox IsChecked="{Binding AllSeasonsChecked}" Content="All" Grid.Column="1" Grid.Row="4" Height="16" HorizontalAlignment="Left" Margin="138,20,0,0" Name="SeasonsBox" VerticalAlignment="Top" />
+        <CheckBox  IsChecked="{Binding AllSizeTypesChecked}" Content="All" Grid.Row="4" Height="16" HorizontalAlignment="Left" Margin="230,20,0,0" Name="checkBox1" VerticalAlignment="Top" Grid.Column="2" />
+
+        <DataGrid ItemsSource="{Binding OrderItems}" AutoGenerateColumns="False" Grid.ColumnSpan="3" Grid.Row="6" Height="280" HorizontalAlignment="Stretch"
                   Name="dataGrid1" VerticalAlignment="Top" Width="874" IsReadOnly="True"
-                 AlternatingRowBackground="#4BE6E6F2" Margin="0,51,-8,0" SelectedValue="{Binding SelectedOrderItem}">
+                 AlternatingRowBackground="#4BE6E6F2" Margin="2,18,-6,0" SelectedValue="{Binding SelectedOrderItem}">
             <DataGrid.Columns>
-                <DataGridTemplateColumn Header="Delete" Width="60" IsReadOnly="True">
+                <DataGridTemplateColumn Header="       " Width="60" IsReadOnly="True">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="Delete" Command="{Binding DeleteItemCommand}"/>
+                            <Button Content="Delete" 
+                                    Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=DataGrid},
+                                               Path=DataContext.DeleteItemCommand}"
+                                    CommandParameter="{Binding}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
@@ -60,6 +61,7 @@
                 <DataGridTextColumn Header="Item" Binding="{Binding ItemString}" Width="Auto"/>
             </DataGrid.Columns>
         </DataGrid>
-
+        <Button Content="Save"  Command="{Binding SaveCommand}" Grid.Column="2" Grid.Row="5" Height="23" HorizontalAlignment="Left" Margin="52,52,0,0" Name="button2" VerticalAlignment="Top" Width="75" />
+        <Button Content="Cancel"  Grid.Column="2" Grid.Row="5" Height="23" HorizontalAlignment="Left" Margin="252,52,0,0" Name="button3" VerticalAlignment="Top" Width="75" />
     </Grid>
 </UserControl>

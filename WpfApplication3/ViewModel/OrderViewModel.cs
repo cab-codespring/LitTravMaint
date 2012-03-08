@@ -37,15 +37,16 @@ namespace LitTravProj.ViewModel
             SaveCommand.Subscribe(_ => SaveOrder());
             NewOrderNumCommand = new ReactiveCommand();
             NewOrderNumCommand.Subscribe(_ => NewOrderNum());
-            AddItemCommand = new ReactiveCommand();
+            var CanAddItem = this.Changed.Select(_ => CanAddItemValidate()).StartWith(false);
+            AddItemCommand = new ReactiveCommand(CanAddItem);
             AddItemCommand.Subscribe(_ => AddItem());
             DeleteItemCommand = new ReactiveCommand();
-            DeleteItemCommand.Subscribe(_ => DeleteItem());
-
+            DeleteItemCommand.OfType<ItemOptionsClass>().Subscribe(item=> DeleteItem(item));
+          
             CustomerOptions = (from cs in context.Customers select cs.CompanyName).ToList();
             SeasonOptions = context.Seasons.ToList();
             SizeTypeOptions = context.SizeTypes.ToList();
-            ItemOptions = new List<ItemOptionsClass>();
+            ItemOptions = new ReactiveCollection<ItemOptionsClass>();
             _orderItems = new ObservableCollection<ItemOptionsClass>();
             AllSeasonsChecked = true;
             AllSizeTypesChecked = true;
@@ -67,8 +68,19 @@ namespace LitTravProj.ViewModel
 
         private bool ValidateFields()
         {
+            if (OrderItems == null || OrderItems.Count<ItemOptionsClass>() == 0)
+                return false;
+            if (SelectedCustomer == null)
+                return false;
+         
+            short ordNumParsed;
+            if (!Int16.TryParse(OrderNum, out ordNumParsed))
+                return false;
+            if (ordNumParsed == 0)
+                return false;
             return true;
         }
+
 
         private string _orderNum = "";
         public string OrderNum
@@ -220,8 +232,8 @@ namespace LitTravProj.ViewModel
 
 
 
-        private IList<ItemOptionsClass> _itemOptions;
-        public IList<ItemOptionsClass> ItemOptions
+        private ReactiveCollection<ItemOptionsClass> _itemOptions;
+        public ReactiveCollection<ItemOptionsClass> ItemOptions
         {
             get
             {
@@ -229,7 +241,7 @@ namespace LitTravProj.ViewModel
             }
             set
             {
-                _itemOptions = value;
+                this.RaiseAndSetIfChanged(vm => vm.ItemOptions, ref _itemOptions, value);
             }
         }
 
@@ -294,7 +306,15 @@ namespace LitTravProj.ViewModel
             set { _orderItems = value; }
         }
 
-        public string Quantity { get; set; }
+        string _quantity;
+        public string Quantity
+        { 
+            get { return _quantity; }
+            set
+            {
+                this.RaiseAndSetIfChanged(vm => vm.Quantity, ref _quantity, value);
+            }
+        }
 
         public ReactiveCommand AddItemCommand { get; private set; }
         public void AddItem()
@@ -304,9 +324,9 @@ namespace LitTravProj.ViewModel
         }
 
         public ReactiveCommand DeleteItemCommand { get; private set; }
-        public void DeleteItem()
+        public void DeleteItem(ItemOptionsClass itemToDelete)
         {
-            OrderItems.Remove(SelectedOrderItem);
+            OrderItems.Remove(itemToDelete);
           
         }
 
@@ -319,6 +339,18 @@ namespace LitTravProj.ViewModel
             {
                 this.RaiseAndSetIfChanged(vm => vm.SelectedOrderItem, ref _selectedOrderItem, value);
             }
+        }
+
+        public ReactiveCommand CanAddItemCommand { get; private set; }
+        public bool CanAddItemValidate()
+        {
+            short parsedQty;
+            if (!Int16.TryParse(Quantity, out parsedQty))
+                return false;
+            if (parsedQty == 0)
+                return false;
+            return true;
+ 
         }
 
     }
