@@ -45,6 +45,9 @@ namespace LitTravData.Model
     partial void InsertOrder(Order instance);
     partial void UpdateOrder(Order instance);
     partial void DeleteOrder(Order instance);
+    partial void InsertOrderItem(OrderItem instance);
+    partial void UpdateOrderItem(OrderItem instance);
+    partial void DeleteOrderItem(OrderItem instance);
     partial void InsertItemsGridView(ItemsGridView instance);
     partial void UpdateItemsGridView(ItemsGridView instance);
     partial void DeleteItemsGridView(ItemsGridView instance);
@@ -1396,8 +1399,10 @@ namespace LitTravData.Model
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.OrderItem")]
-	public partial class OrderItem
+	public partial class OrderItem : INotifyPropertyChanging, INotifyPropertyChanged
 	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
 		private int _OrderNum;
 		
@@ -1405,11 +1410,24 @@ namespace LitTravData.Model
 		
 		private short _Quantity;
 		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnOrderNumChanging(int value);
+    partial void OnOrderNumChanged();
+    partial void OnSkuChanging(string value);
+    partial void OnSkuChanged();
+    partial void OnQuantityChanging(short value);
+    partial void OnQuantityChanged();
+    #endregion
+		
 		public OrderItem()
 		{
+			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OrderNum", DbType="Int NOT NULL")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OrderNum", DbType="Int NOT NULL", IsPrimaryKey=true)]
 		public int OrderNum
 		{
 			get
@@ -1420,12 +1438,16 @@ namespace LitTravData.Model
 			{
 				if ((this._OrderNum != value))
 				{
+					this.OnOrderNumChanging(value);
+					this.SendPropertyChanging();
 					this._OrderNum = value;
+					this.SendPropertyChanged("OrderNum");
+					this.OnOrderNumChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Sku", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Sku", DbType="NVarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
 		public string Sku
 		{
 			get
@@ -1436,7 +1458,11 @@ namespace LitTravData.Model
 			{
 				if ((this._Sku != value))
 				{
+					this.OnSkuChanging(value);
+					this.SendPropertyChanging();
 					this._Sku = value;
+					this.SendPropertyChanged("Sku");
+					this.OnSkuChanged();
 				}
 			}
 		}
@@ -1452,8 +1478,32 @@ namespace LitTravData.Model
 			{
 				if ((this._Quantity != value))
 				{
+					this.OnQuantityChanging(value);
+					this.SendPropertyChanging();
 					this._Quantity = value;
+					this.SendPropertyChanged("Quantity");
+					this.OnQuantityChanged();
 				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}
