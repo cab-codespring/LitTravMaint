@@ -25,7 +25,6 @@ namespace LitTravProj.ViewModel
 
         private Order _order;
         private bool _orderExists = false;
-
         public OrderViewModel()
         {
 
@@ -50,6 +49,7 @@ namespace LitTravProj.ViewModel
             _orderItems = new ObservableCollection<ItemOptionsClass>();
             AllSeasonsChecked = true;
             AllSizeTypesChecked = true;
+          
 
             FillItemOptions();
 
@@ -113,7 +113,6 @@ namespace LitTravProj.ViewModel
 
             set
             {
-
                 short ordNumParsed;
                 if (!Int16.TryParse(value, out ordNumParsed))
                 {
@@ -132,7 +131,10 @@ namespace LitTravProj.ViewModel
                 // first or default returns null if none
                 existingOrder = context.Orders.FirstOrDefault(it => it.OrderNum.Equals(ordNumParsed));
                 if (existingOrder == null)
-                {
+                {  // if there are changes show warning window and process result 
+                 //   if(true) // (CanSave
+                  //    open DatalossWaningDlg
+
                     //item doesn;t exist        
                     _order = new Order();
                     _order.OrderNum = ordNumParsed;
@@ -307,6 +309,7 @@ namespace LitTravProj.ViewModel
                 ItemOptionsClass ioc = new ItemOptionsClass(itm.Sku, formatItem(itm));
                 ItemOptions.Add(ioc);
             }
+            SelectedItemOption = ItemOptions.First();
         }
 
         private string formatItem(ItemsGridView itm)
