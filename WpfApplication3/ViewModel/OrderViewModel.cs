@@ -25,6 +25,7 @@ namespace LitTravProj.ViewModel
 
         private Order _order;
         private bool _orderExists = false;
+        bool _hasChanges = false;
         public OrderViewModel()
         {
 
@@ -91,6 +92,7 @@ namespace LitTravProj.ViewModel
             context.SubmitChanges();
 
             this.RaiseAndSetIfChanged(vm => vm.OrderNum, ref _orderNum, "");
+            _hasChanges = false;
         }
 
         private bool ValidateFields()
@@ -113,6 +115,14 @@ namespace LitTravProj.ViewModel
 
             set
             {
+                if (_hasChanges)
+                {
+                    DataLossWarningDlg warn = new DataLossWarningDlg();
+                    warn.ShowDialog();
+                    if (warn.DialogResult != System.Windows.Forms.DialogResult.OK)
+                        return;
+
+                }
                 short ordNumParsed;
                 if (!Int16.TryParse(value, out ordNumParsed))
                 {
@@ -375,6 +385,7 @@ namespace LitTravProj.ViewModel
         {
             SelectedItemOption.Quantity = Quantity;
             OrderItems.Add(SelectedItemOption);
+            _hasChanges = true;
         }
 
         public ReactiveCommand DeleteItemCommand { get; private set; }
@@ -382,8 +393,11 @@ namespace LitTravProj.ViewModel
         {
             OrderItems.Remove(itemToDelete);
             OrderItem oi = context.OrderItems.FirstOrDefault(it => it.Sku.Equals( itemToDelete.Sku));
-            if(context.OrderItems.Contains(oi))
-              context.OrderItems.DeleteOnSubmit(context.OrderItems.FirstOrDefault(it => it.Sku.Equals( itemToDelete.Sku)));
+            if (context.OrderItems.Contains(oi))
+            {
+                context.OrderItems.DeleteOnSubmit(context.OrderItems.FirstOrDefault(it => it.Sku.Equals(itemToDelete.Sku)));
+                _hasChanges = true;
+            }
         }
 
 
