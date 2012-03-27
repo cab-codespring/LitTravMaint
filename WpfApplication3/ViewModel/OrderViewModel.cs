@@ -37,6 +37,9 @@ namespace LitTravProj.ViewModel
             SaveCommand.Subscribe(_ => SaveOrder());
             NewOrderNumCommand = new ReactiveCommand();
             NewOrderNumCommand.Subscribe(_ => NewOrderNum());
+            CloseTabCommand = new ReactiveCommand();
+            CloseTabCommand.Subscribe(_ => TabClosing());
+            SaveCommand.Subscribe(_ => SaveOrder());
             var CanAddItem = this.Changed.Select(_ => CanAddItemValidate()).StartWith(false);
             AddItemCommand = new ReactiveCommand(CanAddItem);
             AddItemCommand.Subscribe(_ => AddItem());
@@ -422,6 +425,22 @@ namespace LitTravProj.ViewModel
             return true;
 
         }
+
+        
+          public ReactiveCommand CloseTabCommand { get; private set; }
+
+          private void TabClosing()
+          {
+              if (_hasChanges)
+              {
+                  DataLossWarningCloseDlg warn = new DataLossWarningCloseDlg();
+                  warn.ShowDialog();
+                  if (warn.DialogResult == System.Windows.Forms.DialogResult.OK)
+                      CloseCommand.Execute(this); ;
+              }
+              
+          }
+
 
     }
 }

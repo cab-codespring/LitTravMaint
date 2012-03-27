@@ -70,6 +70,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ViewModel\DataLossWarningCloseDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewModel\DataLossWarningCloseDlg.Designer.cs">
+      <DependentUpon>DataLossWarningCloseDlg.cs</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\DataLossWarningDlg.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -162,6 +168,9 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewModel\DataLossWarningCloseDlg.resx">
+      <DependentUpon>DataLossWarningCloseDlg.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ViewModel\DataLossWarningDlg.resx">
       <DependentUpon>DataLossWarningDlg.cs</DependentUpon>
