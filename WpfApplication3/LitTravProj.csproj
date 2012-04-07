@@ -70,6 +70,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="MainWindow.xaml.cs" />
     <Compile Include="ViewModel\DataLossWarningCloseDlg.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -116,9 +117,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="RelayCommand.cs" />
     <Compile Include="ViewModel\AllCustomersViewModel.cs" />
@@ -185,6 +183,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Model\" />
+    <Folder Include="Reports\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LitTravData\LitTravData.csproj">
