@@ -37,40 +37,47 @@ namespace LitTravProj.ViewModel
             BillToStateOptions = context.states.ToList();
         }
 
-        private string _customerNum;
-        public string CustomerNum
+        private Customer _selectedCustomer;
+        public Customer SelectedCustomer
         {
-            get { return _customerNum; }
+             get 
+             { 
+                 return _selectedCustomer; 
+             }
+             set
+            {
+             _selectedCustomer = value;
+            }
+
+        }
+
+
+        private string _customerName;
+        public string CustomerName
+        {
+            get { return _customerName; }
 
             set
             {
-                _customerNum = value;
-                if (_customerNum.Length == 0)
+
+                _customerName = value;
+                if (_customerName.Length == 0)
                     return;
                 Customer existingCustomer = null;
                 // first or default returns null if none
-                existingCustomer = context.Customers.FirstOrDefault(it => it.CustomerNum.Equals(_customerNum));
+                existingCustomer = context.Customers.FirstOrDefault(it => it.CompanyName.Equals(_customerName));
                 if (existingCustomer == null)
                 {
                     //item doesn;t exist              
                     _customer = new Customer();
-
-                    try
-                    {
-                        _customer.CustomerNum = Int16.Parse(_customerNum);
-                    }
-                    catch (Exception)
-                    {
-
-                        _customerNum = "";
-                        return;
-                    }
+                    CustomerNum = GetNewCustomerNum().ToString();
                     _customerExists = false;
-                    return; // new sku
+                    return; // new customer
                 }
                 _customer = existingCustomer;
                 _customerExists = true;
 
+                CustomerNum = _customer.CustomerNum.ToString();
                 CompanyName = _customer.CompanyName;
                 BillToAddr1 = _customer.BillToAddr1;
                 BillToAddr2 = _customer.BillToAddr2;
@@ -93,12 +100,14 @@ namespace LitTravProj.ViewModel
             }
         }
 
-
+        private short GetNewCustomerNum()
+        {
+            return (short) ((from Customer in context.Customers select Customer.CustomerNum).Max() + 1); 
+        }
 
         private bool ValidateFields()
         {
-            if ( CustomerNum == null  ||  
-                (BillToAddr1 == null && BillToAddr2 == null) ||
+            if ((BillToAddr1 == null && BillToAddr2 == null) ||
                 BillToCity == null ||
                 SelectedBillToState == null ||
                 BillToPhone == null || 
@@ -168,6 +177,23 @@ namespace LitTravProj.ViewModel
 
         public List<Customer> Customers { get; private set; }
 
+        private string _customerNum;
+        public string CustomerNum
+        {
+            get
+            {
+                if (_customer == null)
+                    return "";
+                _customerNum = _customer.CustomerNum.ToString();
+                return _customerNum;
+            }
+            set
+            {
+             
+                _customer.CustomerNum = Int16.Parse(value);
+                this.RaiseAndSetIfChanged(vm => vm.CustomerNum, ref _customerNum, value);
+            }
+        }
 
 
         private string _companyName;
