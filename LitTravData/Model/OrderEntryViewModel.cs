@@ -7,7 +7,7 @@ namespace LittleTraveller.Models
 {
     public class OrderEntryViewModel
     { // use automatic properties
-        private string season;
+        private string season = null; // never assigned
         public OrderEntryViewModel(Order order, List<Item> items, List<OrderItem> orderItems)
         {
             Order = order;

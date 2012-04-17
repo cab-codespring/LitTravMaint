@@ -77,6 +77,12 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="MainWindow.xaml.cs" />
+    <Compile Include="Reports\OrderInvoiceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\OrderInvoiceForm.Designer.cs">
+      <DependentUpon>OrderInvoiceForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\DataLossWarningCloseDlg.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -173,6 +179,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\OrderInvoiceForm.resx">
+      <DependentUpon>OrderInvoiceForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Report2.rdlc" />
     <EmbeddedResource Include="ViewModel\DataLossWarningCloseDlg.resx">
       <DependentUpon>DataLossWarningCloseDlg.cs</DependentUpon>
     </EmbeddedResource>
@@ -180,6 +190,7 @@
       <DependentUpon>DataLossWarningDlg.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
+    <None Include="LitTravData.Model.OrderInvoiceView.datasource" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -189,7 +200,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Model\" />
-    <Folder Include="Reports\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LitTravData\LitTravData.csproj">

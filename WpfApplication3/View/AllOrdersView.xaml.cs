@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using LitTravProj.Reports;
 
 namespace LitTravProj.View
 {
@@ -22,6 +23,13 @@ namespace LitTravProj.View
         public AllOrdersView()
         {
             InitializeComponent();
+        }
+
+        private void dataGrid1_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            OrderInvoiceForm oiv = new OrderInvoiceForm();
+            oiv.Show();
+
         }
     }
 }
