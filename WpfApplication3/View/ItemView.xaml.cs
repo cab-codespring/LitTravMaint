@@ -13,15 +13,6 @@ namespace LitTravProj.View
             InitializeComponent();
         }
 
-         private void SizeTypeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-         {
-
-         }
-
-         private void comboBox1_SelectionChanged(object sender, SelectionChangedEventArgs e)
-         {
-
-         }
     }
 
     //    LittleTravellerDataContext context;

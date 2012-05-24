@@ -5,6 +5,10 @@ using System.Text;
 using LitTravData.Model;
 using System.Data;
 using System.Windows.Controls;
+using ReactiveUI.Xaml;
+using ReactiveUI;
+using System.Reactive.Linq;
+
 
 namespace LitTravProj.ViewModel
 {
@@ -12,15 +16,41 @@ namespace LitTravProj.ViewModel
     class AllItemsViewModel : WorkspaceViewModel
     {  
         LittleTravellerDataContext context;
-
+       
        public  AllItemsViewModel()
         {
              context = new LittleTravellerDataContext();
              this.DisplayName = "View All Items";
-             Items = context.ItemsGridViews.ToList<ItemsGridView>();
-        }
-       public List<ItemsGridView> Items { get; private set; }
+             List<AllItemsGridView> ItemsLst = context.AllItemsGridViews.ToList<AllItemsGridView>();
+             ItemsGrid = new ReactiveCollection<AllItemsGridView>();
+             foreach (AllItemsGridView igv in ItemsLst)
+             {
+                 ItemsGrid.Add(igv);
+             }
+             DeleteItemCommand = new ReactiveCommand();
+             DeleteItemCommand.OfType<AllItemsGridView>().Subscribe(item => DeleteItem(item));
 
+        }
+       private ReactiveCollection<AllItemsGridView> _itemsGrid;
+       public ReactiveCollection<AllItemsGridView> ItemsGrid
+       {
+           get
+           {
+               return _itemsGrid;
+           }
+           set
+           {
+               this.RaiseAndSetIfChanged(vm => vm.ItemsGrid, ref _itemsGrid, value);
+           }
+       }
+    
+
+       public ReactiveCommand DeleteItemCommand { get; private set; }
+       public void DeleteItem(AllItemsGridView itemToDelete)
+       {
+         context.Items.DeleteOnSubmit(context.Items.FirstOrDefault(it => it.Sku.Equals(itemToDelete.Sku)));
+         context.SubmitChanges();
+       }
        
     }
 }

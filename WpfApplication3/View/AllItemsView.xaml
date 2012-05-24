@@ -6,6 +6,29 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="1196">
     <Grid >
-        <DataGrid ItemsSource="{Binding Items}" AutoGenerateColumns="True"  HorizontalAlignment="Stretch"  Margin="12,12,0,0" Name="dataGrid1" VerticalAlignment="Top" />
+        <DataGrid ItemsSource="{Binding ItemsGrid}" AutoGenerateColumns="False"  HorizontalAlignment="Stretch"  Margin="12,12,0,0" Name="dataGrid1" VerticalAlignment="Top" >
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="       " Width="60" IsReadOnly="True">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Delete" 
+                                    Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=DataGrid},
+                                               Path=DataContext.DeleteItemCommand}"
+                                    CommandParameter="{Binding}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="SKU" Binding="{Binding Sku}" Width="Auto"/>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="Auto"/>
+                <DataGridTextColumn Header="Season" Binding="{Binding SeasonID}" Width="Auto"/>
+                <DataGridTextColumn Header="Color 1" Binding="{Binding ColorID}" Width="Auto"/>
+                <DataGridTextColumn Header="Color 2" Binding="{Binding Color2ID}" Width="Auto"/>
+                <DataGridTextColumn Header="Color 3" Binding="{Binding Color3ID}" Width="Auto"/>
+                <DataGridTextColumn Header="Size Type" Binding="{Binding SizeType}" Width="Auto"/>
+                <DataGridTextColumn Header="Style Type" Binding="{Binding StyleTypeID}" Width="Auto"/>
+                <DataGridTextColumn Header="Design" Binding="{Binding DesignID}" Width="Auto"/>
+
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </UserControl>

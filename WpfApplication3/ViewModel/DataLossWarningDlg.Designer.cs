@@ -7,6 +7,30 @@
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
+        public string TextBox1Msg
+        {
+            get
+            {
+                return textBox1.Text;
+            }
+            set
+            {
+                textBox1.Text = value;
+            }
+        }
+        public string ContButtonMsg
+        {
+            get
+            {
+                return button2.Text;
+            }
+            set
+            {
+                button2.Text = value;
+            }
+        }
+   
+      
         /// <summary>
         /// Clean up any resources being used.
         /// </summary>

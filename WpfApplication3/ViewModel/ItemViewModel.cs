@@ -24,11 +24,11 @@ namespace LitTravProj.ViewModel
       
         private Item _item;
         private bool _itemExists = false;
-
+        
 
         public ItemViewModel()
         {
-
+            CanChangeSizeType = true;
             this.DisplayName = "Add/Edit Item";
 
             context = new LittleTravellerDataContext();
@@ -41,9 +41,10 @@ namespace LitTravProj.ViewModel
             ColorOptions2 = context.Colors.ToList();
             ColorOptions3 = context.Colors.ToList();
             SizeTypeOptions = context.SizeTypes.ToList();
-            SizeOptions = context.Sizes.ToList();
+            SizeOptions = context.Sizes.ToList(); 
             DesignOptions = context.Designs.ToList();
             StyleTypeOptions = context.StyleTypes.ToList();
+            SelectedSizeTypeID = SizeTypeOptions.First();
         }
 
         public ItemViewModel(Item itemIn)
@@ -70,20 +71,25 @@ namespace LitTravProj.ViewModel
                     _item = new Item();
                     _item.Sku = _sku;
                     _itemExists = false;
+                    CanChangeSizeType = true;
+                    SelectedSizeTypeID = SizeTypeOptions.First();
                     return; // new sku
                 }
                 _item = existingItem;
-                _itemExists = true;
+               
 
                 SelectedSeason = SeasonOptions.FirstOrDefault(ssn => ssn.SeasonCode == _item.SeasonID);
                 SelectedColor1 = ColorOptions1.FirstOrDefault(ssn => ssn.ColorCode == _item.ColorID);
                 SelectedColor2 = ColorOptions2.FirstOrDefault(ssn => ssn.ColorCode == _item.Color2ID);
                 SelectedColor3 = ColorOptions3.FirstOrDefault(ssn => ssn.ColorCode == _item.Color3ID);
+                ItemName = _item.Name;
                 SelectedSizeTypeID = SizeTypeOptions.FirstOrDefault(ssn => ssn.SizeTypeName == _item.SizeType);
-                SelectedSize = SizeOptions.FirstOrDefault(ssn => ssn.SizeVal == _item.Size);
+              //  SelectedSize = SizeOptions.FirstOrDefault(ssn => ssn.SizeVal == _item.Size);
                 SelectedStyleType = StyleTypeOptions.FirstOrDefault(ssn => ssn.ID == _item.StyleTypeID);
                 SelectedDesign = DesignOptions.FirstOrDefault(ssn => ssn.ID == _item.DesignID);
-                Price = String.Format("{0:C}", _item.Price);        
+                //Price = String.Format("{0:C}", _item.Price);    
+                _itemExists = true;
+                CanChangeSizeType = false;
             }
         }
 
@@ -158,18 +164,53 @@ namespace LitTravProj.ViewModel
 
         /// <summary>
         /// Size must be limited to this size Type
+        /// When size type changes it affects the ItemsSize table. ItemSize keeps the price info
+        /// for each size of an item. The sizes that go with a sizeType are in the size table. 
+        /// every time the sizeTYpe changes the associated sizes must be collected as the sizeOptions
+        /// and any prices for those sizes already existing in the ItemSize table must be collected.
+        /// the grid is bound to SizepPrices collection, so the collection must be updated to reflect the
+        /// sizes and prices.
         /// </summary>
 
+        bool _canChangeSizeType;
+        public bool CanChangeSizeType 
+        {
+            get { return _canChangeSizeType; }
+            set 
+            {
+                 this.RaiseAndSetIfChanged(vm => vm.CanChangeSizeType, ref _canChangeSizeType , value);
+            }
+        }
+      
         public SizeType SelectedSizeTypeID
         {
 
             get { return _selectedSizeTypeID; }
             set
             {
+                // Warn if Changing sizeType of an existing item
+                if (_itemExists)
+                {
+                    DataLossWarningDlg warn = new DataLossWarningDlg();
+                    warn.TextBox1Msg = "If you change the Size Type all prices for this item will be lost.";
+                    warn.ContButtonMsg = "Continue changing Size Type";
+                    System.Windows.Forms.DialogResult res = warn.ShowDialog();
+                    //if (res == System.Windows.Forms.DialogResult.Cancel)
+                    //{
+                    //    SizeType moo = new SizeType();
+                    //    moo.SizeTypeName = "BLAH";
+
+                    //    this.RaiseAndSetIfChanged(vm => vm.SelectedSizeTypeID, ref moo , _selectedSizeTypeID);
+                    //    return;
+                    //}
+                }
                 // _selectedSizeTypeID = value;
                 this.RaiseAndSetIfChanged(vm => vm.SelectedSizeTypeID, ref _selectedSizeTypeID, value);
                 // this.RaisePropertyChanged(vm => vm.SizeOptions);
                 SizeOptions = (from sz in context.Sizes where sz.SizeTypeName.CompareTo(SelectedSizeTypeID.SizeTypeName) == 0 select sz).ToList();
+                FillSizePrices();
+              
+              
             }
         }
 
@@ -231,32 +272,24 @@ namespace LitTravProj.ViewModel
                 this.RaiseAndSetIfChanged(vm => vm.SelectedDesign, ref _selectedDesign, value);
             }
         }
-        private string _price;
-        public string Price 
-        { 
-            get { return _price;}
+        private string _itemName;
+        public string ItemName 
+        {
+            get { return _itemName; }
             set
             {
-                this.RaiseAndSetIfChanged(vm => vm.Price, ref _price, value);
+                this.RaiseAndSetIfChanged(vm => vm.ItemName, ref _itemName, value);
             }
             
          }
 
-        decimal _validatedPrice = 0;
+      
         private bool ValidateFields()
         {
             if (SKU == null || SKU.Length == 0)
                 return false;
-            if (Price == null)
-                return false;
-            try
-            {
-                _validatedPrice = Decimal.Parse(Price, NumberStyles.Currency);
-            }
-            catch (Exception )
-            {
-                return false;
-            }
+            
+           
             return true;
         }
 
@@ -270,10 +303,27 @@ namespace LitTravProj.ViewModel
             _item.Color2ID = SelectedColor2.ColorCode;
             _item.Color3ID = SelectedColor3.ColorCode;
             _item.SizeType = SelectedSizeTypeID.SizeTypeName;
-            _item.Size = SelectedSize.SizeVal;
+            _item.Name = ItemName;
+         //   _item.Size = SelectedSize.SizeVal;
             _item.StyleTypeID = _selectedStyleType.ID;
             _item.DesignID = SelectedDesign.ID;
-            _item.Price = _validatedPrice;
+          //  _item.Price = _validatedPrice;
+            var deleteSizesPrices =
+              from isz in context.ItemSizes
+                 where isz.Sku == this.SKU
+                  select isz;
+            foreach (var isz in deleteSizesPrices)
+            {
+                context.ItemSizes.DeleteOnSubmit(isz);
+            }
+            foreach (var spc in SizePrices)
+            {
+                ItemSize isv = new ItemSize();
+                isv.Sku = this.SKU;
+                isv.SizeVal = spc.Size;
+                isv.Price = spc.Price;
+                context.ItemSizes.InsertOnSubmit(isv);
+            }
 
             if (!_itemExists)
                 context.Items.InsertOnSubmit(_item);
@@ -282,7 +332,80 @@ namespace LitTravProj.ViewModel
             this.RaiseAndSetIfChanged(vm => vm.SKU, ref _sku, "");
         }
 
+        /**
+         * for the size/price grid
+         **/
 
+        /// <summary>
+        ///  litle class for holding items in the items options list
+        /// </summary>
+        public class SizePriceClass
+        {
+            public SizePriceClass() { }
+            public SizePriceClass(string size, string price)
+            {
+                this.Size = size;
+                this.Price = price;
+            }
+            public string Size { get; set; }
+            public string Price { get; set; }
+        }
+
+        private ReactiveCollection<SizePriceClass> _sizePrices;
+        public ReactiveCollection<SizePriceClass> SizePrices
+        {
+            get
+            {
+                return _sizePrices;
+            }
+            set
+            {
+                this.RaiseAndSetIfChanged(vm => vm.SizePrices, ref _sizePrices, value);
+            }
+        }
+
+        private void FillSizePrices()
+        {
+            SizePrices = new ReactiveCollection<SizePriceClass>();
+            System.Linq.IQueryable<LitTravData.Model.ItemSize> tmpTable;
+            tmpTable =  (from isz in context.ItemSizes
+                        where isz.Sku == SKU
+                        select isz);
+            if (tmpTable.Count() == 0)
+            {
+                foreach (Size sz in SizeOptions)
+                {
+                    SizePriceClass isc = new SizePriceClass(sz.SizeVal, "");
+                    SizePrices.Add(isc);
+                }
+            }
+            else
+            {
+                foreach (ItemSize isz in tmpTable)
+                {
+                    SizePriceClass isc = new SizePriceClass(isz.SizeVal, isz.Price.ToString());
+                    SizePrices.Add(isc);
+                }
+            }
+          
+          
+        }
+        //private ItemOptionsClass _selectedItemOption = new ItemOptionsClass();
+        //public ItemOptionsClass SelectedItemOption
+        //{
+        //    get { return _selectedItemOption; }
+        //    set
+        //    {
+        //        this.RaiseAndSetIfChanged(vm => vm.SelectedItemOption, ref _selectedItemOption, value);
+        //    }
+        //}
+
+        //private ObservableCollection<ItemOptionsClass> _orderItems;
+        //public ObservableCollection<ItemOptionsClass> OrderItems
+        //{
+        //    get { return _orderItems; }
+        //    set { _orderItems = value; }
+        //}
        
     }
 }

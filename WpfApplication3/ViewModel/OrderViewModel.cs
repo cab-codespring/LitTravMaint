@@ -7,9 +7,9 @@ using LitTravProj.Properties;
 using System.Diagnostics;
 using System.Linq;
 using System.Collections.Generic;
-using System.Reactive.Linq;
 using ReactiveUI;
 using ReactiveUI.Xaml;
+using System.Reactive.Linq;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Collections;
@@ -329,7 +329,7 @@ namespace LitTravProj.ViewModel
         {
             return itm.Sku + " " + itm.SeasonID + " " +
                     itm.ColorID + " " + itm.Color2ID + " " + itm.Color3ID + " " + itm.SizeType +
-                        " " + itm.Size + " " + itm.StyleType + " " + itm.Design + " " + itm.Price;
+                        " " + itm.SizeVal + " " + itm.StyleType + " " + itm.Design + " " + itm.Price;
         }
 
         private System.Linq.IQueryable<LitTravData.Model.ItemsGridView> getItemOptionsData()

@@ -4,21 +4,21 @@
                xmlns:diag="clr-namespace:System.Diagnostics;assembly=WindowsBase"
         Name="addItemDialog" mc:Ignorable="d" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" d:DesignHeight="717" d:DesignWidth="700" Height="Auto" Width="Auto" HorizontalAlignment="Left" Margin="3.5" VerticalAlignment="Top">
 
-    <Grid Height="Auto" Width="Auto" HorizontalAlignment="Stretch" Margin="3.5" VerticalAlignment="Top">
+    <Grid Height="558" Width="688" HorizontalAlignment="Stretch" Margin="3.5" VerticalAlignment="Top">
         <Grid.RowDefinitions>
-            <RowDefinition Height="33*" />
-            <RowDefinition Height="33*" />
-            <RowDefinition Height="33*" />
-            <RowDefinition Height="33*" />
-            <RowDefinition Height="33*" />
-            <RowDefinition Height="33*" />
-            <RowDefinition Height="34*" />
-            <RowDefinition Height="29" />
-            <RowDefinition Height="39*" />
-            <RowDefinition Height="29" />
-            <RowDefinition Height="44*" />
-            <RowDefinition Height="0*" />
-            <RowDefinition Height="0*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="12*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20*" />
@@ -26,41 +26,38 @@
         </Grid.ColumnDefinitions>
         <Label Content="SKU:" Height="Auto" HorizontalAlignment="Stretch" Margin="3.5" Name="label1" VerticalAlignment="Center" Width="Auto" />
         <TextBox Text="{Binding SKU}"  Height="Auto" HorizontalAlignment="Left" Margin="3.5" Name="textBox1" VerticalAlignment="Center" Width="251" Grid.Column="1" />
-        <Label Content="Season ID:" Height="Auto" HorizontalAlignment="Stretch" Margin="3.5" Name="label2" VerticalAlignment="Center" Grid.Row="1" Width="Auto" />
-        <ComboBox Height="Auto" HorizontalAlignment="Left" Margin="3.5" Name="SeasonIDComBox" VerticalAlignment="Center" Width="251"
-                  ItemsSource="{Binding SeasonOptions}" SelectedItem="{Binding SelectedSeason, Mode=TwoWay}" DisplayMemberPath="SeasonCode" Grid.Column="1" Grid.Row="1">
+        <Label Content="Name:"  Height="Auto" HorizontalAlignment="Stretch" Margin="3,5,4,2" Name="label7" VerticalAlignment="Center" Width="Auto" Grid.Row="1" />
+        <TextBox Height="Auto" HorizontalAlignment="Left" Margin="5,5,0,6" Name="NameTextBox" Text="{Binding ItemName}"  VerticalAlignment="Center" Width="251" Grid.Column="1" Grid.Row="1" />
+        <Label Content="Season ID:" Height="Auto" HorizontalAlignment="Stretch" Margin="3.5,32,3.5,8" Name="label2" VerticalAlignment="Center" Grid.Row="1" Width="Auto" Grid.RowSpan="2" />
+        <ComboBox Height="Auto" HorizontalAlignment="Left" Margin="3.5,1,0,10" Name="SeasonIDComBox" VerticalAlignment="Center" Width="251"
+                  ItemsSource="{Binding SeasonOptions}" SelectedItem="{Binding SelectedSeason, Mode=TwoWay}" DisplayMemberPath="SeasonCode" Grid.Column="1" Grid.Row="2">
         </ComboBox>
-        <Label Content="Color1:" Height="Auto" HorizontalAlignment="Stretch" Margin="3.5" Name="label3" VerticalAlignment="Center" Grid.Row="2" Width="Auto" />
+        <Label Content="Color1:" Height="Auto" HorizontalAlignment="Stretch" Margin="3.5,32,3.5,8" Name="label3" VerticalAlignment="Center" Grid.Row="2" Width="Auto" Grid.RowSpan="2" />
         <ComboBox Height="Auto" HorizontalAlignment="Left" ItemsSource="{Binding ColorOptions1}" SelectedItem="{Binding SelectedColor1, Mode=TwoWay, diag:PresentationTraceSources.TraceLevel=High}"
-                  DisplayMemberPath="ColorCode" Margin="3.5" Name="Color1ComboBox" VerticalAlignment="Center" Width="251" Grid.Column="1" Grid.Row="2" />
-        <Label Content="Color2:" Height="Auto" HorizontalAlignment="Stretch" Margin="3.5" Name="label4" VerticalAlignment="Center" Grid.Row="3" Width="Auto" />
+                  DisplayMemberPath="ColorCode" Margin="3.5,1,0,10" Name="Color1ComboBox" VerticalAlignment="Center" Width="251" Grid.Column="1" Grid.Row="3" />
+        <Label Content="Color2:" Height="Auto" HorizontalAlignment="Stretch" Margin="3.5,32,3.5,8" Name="label4" VerticalAlignment="Center" Grid.Row="3" Width="Auto" Grid.RowSpan="2" />
         <ComboBox Height="Auto" HorizontalAlignment="Left" ItemsSource="{Binding ColorOptions2}" SelectedItem="{Binding SelectedColor2, Mode=TwoWay}" 
-                  DisplayMemberPath="ColorCode" Margin="3.5" Name="Color2ComboBox" VerticalAlignment="Center" Width="251" Grid.Column="1" Grid.Row="3" />
-        <Label Content="Color3:" Height="Auto" HorizontalAlignment="Stretch" Margin="3.5" Name="label5" VerticalAlignment="Center" Grid.Row="4" Width="Auto" />
+                  DisplayMemberPath="ColorCode" Margin="3.5,1,0,10" Name="Color2ComboBox" VerticalAlignment="Center" Width="251" Grid.Column="1" Grid.Row="4" />
+        <Label Content="Color3:" Height="Auto" HorizontalAlignment="Stretch" Margin="3.5,32,3.5,8" Name="label5" VerticalAlignment="Center" Grid.Row="4" Width="Auto" Grid.RowSpan="2" />
         <ComboBox Height="Auto" HorizontalAlignment="Left" ItemsSource="{Binding ColorOptions3}" SelectedItem="{Binding SelectedColor3, Mode=TwoWay}" 
-                  DisplayMemberPath="ColorCode" Margin="3.5" Name="Color3ComboBox" VerticalAlignment="Center" Width="251" Grid.Column="1" Grid.Row="4" />
-        <Label Content="Size Type:" Height="Auto" HorizontalAlignment="Stretch" Margin="3.5" Name="label6" VerticalAlignment="Center" Grid.Row="5" Width="Auto" />
+                  DisplayMemberPath="ColorCode" Margin="3.5,1,0,10" Name="Color3ComboBox" VerticalAlignment="Center" Width="251" Grid.Column="1" Grid.Row="5" />
+        <Label Content="Size Type:" Height="Auto" HorizontalAlignment="Stretch" Margin="3.5,32,3.5,9" Name="label6" VerticalAlignment="Center" Grid.Row="5" Width="Auto" Grid.RowSpan="2" />
 
-        <ComboBox Height="Auto" HorizontalAlignment="Left" Margin="3.5" Name="SizeTypeComboBox" VerticalAlignment="Center" Width="251" 
+        <ComboBox Height="Auto" HorizontalAlignment="Left" Margin="3.5,1,0,11" Name="SizeTypeComboBox" VerticalAlignment="Center" Width="251" 
             ItemsSource="{Binding SizeTypeOptions}"
             DisplayMemberPath="SizeTypeName"
-            SelectedItem="{Binding SelectedSizeTypeID}" Grid.Column="1" Grid.Row="5" />
-
-        <Label Content="Size:" Height="Auto" HorizontalAlignment="Stretch" Margin="3.5,4" Name="label7" VerticalAlignment="Center" Grid.Row="6" Width="Auto" />
-        <ComboBox Height="Auto" HorizontalAlignment="Left" ItemsSource="{Binding SizeOptions}" SelectedItem="{Binding SelectedSize}"  DisplayMemberPath="SizeVal"  Margin="3.5,6,0,6"
-                  Name="SizeComboBox" VerticalAlignment="Center" Width="251" Grid.Column="1" Grid.Row="6" />
-        
-        <Label Content="Style Type:" Height="Auto" HorizontalAlignment="Stretch" Margin="3,0,0,3" Name="label9" VerticalAlignment="Center" Width="Auto" Grid.Row="7" />
-        <ComboBox DisplayMemberPath="Desc" Height="Auto" HorizontalAlignment="Left" ItemsSource="{Binding StyleTypeOptions}" Margin="3.5" 
-                  Name="StyleTypeComboBox" SelectedItem="{Binding SelectedStyleType}" VerticalAlignment="Center" Width="251" Grid.Row="7" Grid.Column="1"  />
-
-        <Label Content="Design:" Height="Auto" HorizontalAlignment="Stretch" Margin="3.5,4" Name="label8" VerticalAlignment="Center" Grid.Row="8" Width="Auto" />
-        <ComboBox Height="Auto" HorizontalAlignment="Left" ItemsSource="{Binding DesignOptions}" SelectedItem="{Binding SelectedDesign}" 
-                  DisplayMemberPath="Desc" Margin="3.5,6,0,6" Name="DesignComboBox"  VerticalAlignment="Center" Width="251" Grid.Column="1" Grid.Row="8" />
-        
+            SelectedItem="{Binding SelectedSizeTypeID}" Grid.Column="1" Grid.Row="6" IsEnabled="{Binding CanChangeSizeType}" />
         <Button Content="Save" Height="23" HorizontalAlignment="Left" Margin="22,16,0,12" Name="SaveButton" VerticalAlignment="Center" Width="75" Command="{Binding SaveCommand}" Grid.Column="1" Grid.Row="10" />
-        <Button Content="Close" Height="23" HorizontalAlignment="Center" Margin="136,16,366,12" Name="CancelButton" VerticalAlignment="Center" Width="75" Grid.Column="1" Grid.Row="10" Command="{Binding CloseCommand}"/>
-        <Label Content="Price:" Height="Auto" HorizontalAlignment="Stretch" Margin="3,3,4,0" Name="label10" VerticalAlignment="Center" Width="Auto" Grid.Row="9" />
-        <TextBox Height="Auto" HorizontalAlignment="Left" Margin="4,4,0,3" Name="priceTextBox" Text="{Binding Price, StringFormat=c}"  VerticalAlignment="Center" Width="251" Grid.Column="1" Grid.Row="9" />
+        <Button Content="Close" Height="23" HorizontalAlignment="Center" Margin="134,16,373,12" Name="CancelButton" VerticalAlignment="Center" Width="66" Grid.Column="1" Grid.Row="10" Command="{Binding CloseCommand}"/>
+        <Label Content="Style Type:" Height="Auto" HorizontalAlignment="Stretch" Margin="0,0,2,3" Name="label9" VerticalAlignment="Center" Width="Auto" Grid.Row="7" />
+        <ComboBox DisplayMemberPath="Desc" Grid.Column="1" Height="Auto" HorizontalAlignment="Left" ItemsSource="{Binding StyleTypeOptions}" Margin="0,3,0,4" Name="StyleTypeComboBox" SelectedItem="{Binding SelectedStyleType}" VerticalAlignment="Center" Width="251" Grid.Row="7" />
+        <Label Content="Design:" Height="Auto" HorizontalAlignment="Stretch" Margin="3,3,4,10" Name="label8" VerticalAlignment="Center" Width="Auto" Grid.Row="8" />
+        <ComboBox DisplayMemberPath="Desc" Grid.Column="1" Height="Auto" HorizontalAlignment="Left" ItemsSource="{Binding DesignOptions}" Margin="0,6,0,11" Name="DesignComboBox" SelectedItem="{Binding SelectedDesign}" VerticalAlignment="Center" Width="251" Grid.Row="8" />
+        <DataGrid ItemsSource="{Binding SizePrices}" AutoGenerateColumns="False" Grid.Column="1" Grid.Row="9"  Height="195" HorizontalAlignment="Left" Margin="4,0,0,0" Name="SizePriceDataGrid" VerticalAlignment="Top" Width="366" >
+                  <DataGrid.Columns>
+                        <DataGridTextColumn Header="Size" Binding="{Binding Size}" Width="Auto" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Price" Binding="{Binding Price, StringFormat=c}" Width="Auto" IsReadOnly="False"/>
+                  </DataGrid.Columns>
+            </DataGrid>
     </Grid>
 </UserControl>

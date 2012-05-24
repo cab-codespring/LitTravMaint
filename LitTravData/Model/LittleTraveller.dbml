@@ -34,20 +34,6 @@
       <Column Name="[Desc]" Member="Desc" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.Item" Member="Items">
-    <Type Name="Item">
-      <Column Name="Sku" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="SeasonID" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
-      <Column Name="ColorID" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
-      <Column Name="Color2ID" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
-      <Column Name="Color3ID" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
-      <Column Name="SizeType" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
-      <Column Name="Size" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
-      <Column Name="StyleTypeID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="DesignID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Price" Type="System.Decimal" DbType="SmallMoney" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.Season" Member="Seasons">
     <Type Name="Season">
       <Column Name="SeasonCode" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
@@ -80,27 +66,6 @@
       <Column Name="OrderNum" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="CustomerNum" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
       <Column Name="OrderDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.OrderItem" Member="OrderItems">
-    <Type Name="OrderItem">
-      <Column Name="OrderNum" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Sku" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Quantity" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
-  <Table Name="dbo.ItemsGridView" Member="ItemsGridViews">
-    <Type Name="ItemsGridView">
-      <Column Name="Sku" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="SeasonID" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
-      <Column Name="ColorID" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
-      <Column Name="Color2ID" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
-      <Column Name="Color3ID" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
-      <Column Name="SizeType" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
-      <Column Name="Size" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
-      <Column Name="StyleType" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Design" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Price" Type="System.Decimal" DbType="SmallMoney" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.OrderView" Member="OrderViews">
@@ -155,6 +120,63 @@
       <Column Name="ColorID" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
       <Column Name="Color2ID" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
       <Column Name="Color3ID" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Item" Member="Items">
+    <Type Name="Item">
+      <Column Name="Sku" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="SeasonID" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="ColorID" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="Color2ID" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="Color3ID" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="SizeType" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="StyleTypeID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DesignID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.OrderItem" Member="OrderItems">
+    <Type Name="OrderItem">
+      <Column Name="OrderNum" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Sku" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="SizeVal" Type="System.String" DbType="NChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Quantity" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ItemSize" Member="ItemSizes">
+    <Type Name="ItemSize">
+      <Column Name="Sku" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="SizeVal" Type="System.String" DbType="NChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Price" Type="System.Object" DbType="Variant" CanBeNull="true" UpdateCheck="Never" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ItemsGridView" Member="ItemsGridViews">
+    <Type Name="ItemsGridView">
+      <Column Name="Sku" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="SeasonID" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="ColorID" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="Color2ID" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="Color3ID" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="StyleType" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Design" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SizeType" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="SizeVal" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Price" Type="System.Object" DbType="Variant" CanBeNull="true" UpdateCheck="Never" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AllItemsGridView" Member="AllItemsGridViews">
+    <Type Name="AllItemsGridView">
+      <Column Name="Sku" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="SeasonID" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="ColorID" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="Color2ID" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="Color3ID" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="StyleType" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Design" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SizeType" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="StyleTypeID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DesignID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
     </Type>
   </Table>
 </Database>
