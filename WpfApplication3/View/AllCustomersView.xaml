@@ -5,7 +5,44 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="1196">
-    <Grid >
+  <!-- <Grid >
         <DataGrid ItemsSource="{Binding Customers}" AutoGenerateColumns="True"  HorizontalAlignment="Stretch"  Margin="12,12,0,0" Name="dataGrid1" VerticalAlignment="Top" />
     </Grid>
+   -->
+    <Grid >
+        <DataGrid ItemsSource="{Binding CustsGrid}" AutoGenerateColumns="False"  HorizontalAlignment="Stretch"  Margin="12,12,0,0" Name="dataGrid1" VerticalAlignment="Top" >
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="       " Width="60" IsReadOnly="True">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Delete" 
+                                    Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=DataGrid},
+                                               Path=DataContext.DeleteItemCommand}"
+                                    CommandParameter="{Binding}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Company Name" Binding="{Binding CompanyName}" Width="Auto"/>
+                <DataGridTextColumn Header="BillToAddr1" Binding="{Binding BillToAddr1}" Width="Auto"/>
+                <DataGridTextColumn Header="BillToAddr2" Binding="{Binding BillToAddr2}" Width="Auto"/>
+                <DataGridTextColumn Header="BillToCity" Binding="{Binding BillToCity}" Width="Auto"/>
+                <DataGridTextColumn Header="BillToState" Binding="{Binding BillToState}" Width="Auto"/>
+                <DataGridTextColumn Header="BillToZip5" Binding="{Binding BillToZip5}" Width="Auto"/>
+                <DataGridTextColumn Header="BillToZip4" Binding="{Binding BillToZip4}" Width="Auto"/>
+                <DataGridTextColumn Header="BillToPhone" Binding="{Binding BillToPhone}" Width="Auto"/>
+                <DataGridTextColumn Header="BillToFax" Binding="{Binding BillToFax}" Width="Auto"/>
+                <DataGridTextColumn Header="email" Binding="{Binding email}" Width="Auto"/>
+                <DataGridTextColumn Header="ShipToAddr1" Binding="{Binding ShipToAddr1}" Width="Auto"/>
+                <DataGridTextColumn Header="ShipToAddr2" Binding="{Binding ShipToAddr2}" Width="Auto"/>
+                <DataGridTextColumn Header="ShipToCity" Binding="{Binding ShipToCity}" Width="Auto"/>
+                <DataGridTextColumn Header="ShipToState" Binding="{Binding ShipToState}" Width="Auto"/>
+                <DataGridTextColumn Header="ShipToZip5" Binding="{Binding ShipToZip5}" Width="Auto"/>
+                <DataGridTextColumn Header="ShipToPhone" Binding="{Binding ShipToPhone}" Width="Auto"/>
+                <DataGridTextColumn Header="ShipToFax" Binding="{Binding ShipToFax}" Width="Auto"/>
+
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
 </UserControl>
+
+

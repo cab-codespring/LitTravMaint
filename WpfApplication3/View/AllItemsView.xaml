@@ -13,7 +13,7 @@
                         <DataTemplate>
                             <Button Content="Delete" 
                                     Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=DataGrid},
-                                               Path=DataContext.DeleteItemCommand}"
+                                               Path=DataContext.DeleteCustomerCommand}"
                                     CommandParameter="{Binding}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>

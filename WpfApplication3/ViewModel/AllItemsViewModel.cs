@@ -21,17 +21,25 @@ namespace LitTravProj.ViewModel
         {
              context = new LittleTravellerDataContext();
              this.DisplayName = "View All Items";
-             List<AllItemsGridView> ItemsLst = context.AllItemsGridViews.ToList<AllItemsGridView>();
-             ItemsGrid = new ReactiveCollection<AllItemsGridView>();
-             foreach (AllItemsGridView igv in ItemsLst)
-             {
-                 ItemsGrid.Add(igv);
-             }
-             DeleteItemCommand = new ReactiveCommand();
-             DeleteItemCommand.OfType<AllItemsGridView>().Subscribe(item => DeleteItem(item));
+             FillItemsGrid();
 
         }
+
+       private void FillItemsGrid()
+       {
+           List<AllItemsGridView> ItemsLst = context.AllItemsGridViews.ToList<AllItemsGridView>();
+           ItemsGrid = new ReactiveCollection<AllItemsGridView>();
+           foreach (AllItemsGridView igv in ItemsLst)
+           {
+               ItemsGrid.Add(igv);
+           }
+           DeleteItemCommand = new ReactiveCommand();
+           DeleteItemCommand.OfType<AllItemsGridView>().Subscribe(item => DeleteItem(item));
+       }
+        
        private ReactiveCollection<AllItemsGridView> _itemsGrid;
+
+       // the grid is bound to this
        public ReactiveCollection<AllItemsGridView> ItemsGrid
        {
            get
@@ -50,6 +58,8 @@ namespace LitTravProj.ViewModel
        {
          context.Items.DeleteOnSubmit(context.Items.FirstOrDefault(it => it.Sku.Equals(itemToDelete.Sku)));
          context.SubmitChanges();
+         FillItemsGrid();
+       //  this.RaisePropertyChanged(vm => vm.ItemsGrid);
        }
        
     }
