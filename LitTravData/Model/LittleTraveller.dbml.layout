@@ -56,12 +56,6 @@
         <elementListCompartment Id="3fa6ec4f-44c2-43b1-b117-d1bd37fb344a" absoluteBounds="0.89000000000000012, 5.46, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="9f0274b2-74d4-4873-90dd-1ae4d74220b3" isExpanded="false" absoluteBounds="3.125, 0.5, 2, 0.45">
-      <DataClassMoniker Name="/LittleTravellerDataContext/OrderView" />
-      <nestedChildShapes>
-        <elementListCompartment Id="981f83df-b607-4ee0-b5a9-a4e35e47b8a3" absoluteBounds="3.1400000000000006, 0.96, 1.9700000000000002, 3.1339111328125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
     <classShape Id="8c43f8a2-e265-466a-9d4a-5a3c6a52243a" isExpanded="false" absoluteBounds="7, 2.375, 2, 0.45">
       <DataClassMoniker Name="/LittleTravellerDataContext/OrderInvoiceView" />
       <nestedChildShapes>
@@ -96,6 +90,12 @@
       <DataClassMoniker Name="/LittleTravellerDataContext/AllItemsGridView" />
       <nestedChildShapes>
         <elementListCompartment Id="2af2b1c5-44a1-40df-afc5-f6b628f418be" absoluteBounds="4.015, 5.96, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="7e90c366-089b-4a50-b1f9-1e81e659a5d8" isExpanded="false" absoluteBounds="4, 0.75, 2, 0.45">
+      <DataClassMoniker Name="/LittleTravellerDataContext/OrderView" />
+      <nestedChildShapes>
+        <elementListCompartment Id="57a346d8-8632-4c81-814a-77bc847a1aa8" absoluteBounds="4.015, 1.21, 1.9700000000000002, 3.1339111328125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>
